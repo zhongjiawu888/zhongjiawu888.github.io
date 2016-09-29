@@ -1,0 +1,29 @@
+markdown: kramdown
+highlighter: rouge
+
+permalink: blog/:year/:month/:day/:title.html
+paginate: 7
+paginate_path: page/:num
+encoding: "utf-8"
+future: true
+lsi: false
+safe: true
+gems: [jekyll-paginate]
+
+blog:
+    name: MrZhong's Blog # 博客名称
+    description: 生命在不停流逝-滴答滴答滴 # 博客描述
+    title: MrZhong's Blog # 网页标题
+    url: zhongjiawu888.github.io # 博客地址
+    duoshuo: zjia5 # 多说ID
+    tongji: zjia5 # 百度统计ID
+    qiniu: # 七牛云地址
+author:
+    name: zhongjiawu # 作者名称
+    email: 1941105185@qq.com # 邮箱地址
+    weibo: http://weibo.com/u/5309164852 # 微博地址
+    github: https://github.com/zhongjiawu888 # GitHub地址
+    logo: /res/img/psb.jpg # logo地址
+    douban:
+        name: https://www.douban.com/people/151788440/    # 豆瓣地址名称
+        key: 111            # 豆瓣API Key
