@@ -15,7 +15,7 @@ blog:
     description: 生命在不停流逝-滴答滴答滴 # 博客描述
     title: MrZhong's Blog # 网页标题
     url: zhongjiawu888.github.io # 博客地址
-    duoshuo: zjia5 # 多说ID
+    duoshuo: zhongjiawu # 多说ID
     tongji: zjia5 # 百度统计ID
     qiniu: # 七牛云地址
 author:
