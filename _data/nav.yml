@@ -1,0 +1,15 @@
+- href: /page/timing.html
+  icon: fa fa-clock-o
+  title: 生命时间轴
+
+- href: /life/index.html
+  icon: fa fa-eyedropper
+  title: 心路随笔集
+
+- href: /page/category.html
+  icon: fa fa-tags
+  title: 分类浏览
+  
+- href: /page/about.html
+  icon: fa fa-paper-plane-o
+  title: 关于自己
