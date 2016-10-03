@@ -13,6 +13,7 @@ gems: [jekyll-paginate]
 disqus_shortname: "zhongjiawu888"
 baseurl : ""
 blog:
+    copyright_year: "2016"
     name: MrZhong's Blog # 博客名称
     description: 生命在不停流逝-滴答滴答滴 # 博客描述
     title: MrZhong's Blog # 网页标题
