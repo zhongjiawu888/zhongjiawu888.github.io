@@ -73,13 +73,6 @@ cssbg: life7.css
 </div>
 
 
-
-
-~~o(╯□╰)o~~
-
-
-![](/res/img/psb.jpg)
-
 ******
 
  
