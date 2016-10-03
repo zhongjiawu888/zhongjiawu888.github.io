@@ -11,7 +11,7 @@
   <link rel="shortcut icon" href="/res/img/shortimg.ico" type="image/x-icon">
   <link rel="canonical" href="{{ site.blog.url }}{{ page.url }}">
   <link rel="stylesheet" href="/res/css/public.css">
-  <link rel="stylesheet" href="/res/css/life.css">
+  <link rel="stylesheet" href="/res/css/{{ page.cssbg }}">
   <link rel="stylesheet" href="/res/css/pygments.css">
   {% include tongji.html %}
 
@@ -26,7 +26,7 @@ var _hmt = _hmt || [];
 </script>
 
 </head>
-<body>
+<body >
   <div class="main">
     <div class="title">{{ page.title }}</div>
     {% if page.meta != false %}<div class="post-info"><i class="fa fa-clock-o"></i>&nbsp;{{ page.date | date: "%Y" }}-{{ page.date | date: "%m" }}-{{ page.date | date: "%d" }} 转载请注明出处：<a href = "http://zhongjiawu888.github.io/">http://zhongjiawu888.github.io/</a> </div>{% endif %}
