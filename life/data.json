@@ -13,7 +13,7 @@
 	"height": 520,
 	"width": 520,
 	"des": "日记",
-	"url": "/life/2.html",
+	"url": "/life/diary.html",
 	"code": ""
 },
 {
@@ -21,14 +21,14 @@
 	"height": 125,
 	"width": 220,
 	"des": "音乐",
-	"url": "/life/3.html",
+	"url": "http://music.163.com/#/artist?id=46487",
 	"code": ""
 },
 {
 	"src": "/images/roadRes/4.jpg",
 	"height": 401,
 	"des": "电影",
-	"url": "/life/4.html",
+	"url": "/life/index.html",
 	"code": ""
 },
 {
@@ -36,7 +36,7 @@
 	"height": 182,
 	"width": 220,
 	"des": "字帖",
-	"url": "/life/5.html",
+	"url": "/life/zi.html",
 	"code": ""
 },
 {
@@ -44,7 +44,7 @@
 	"height": 104,
 	"width": 220,
 	"des": "书单",
-	"url": "/life/6.html",
+	"url": "/life/index.html",
 	"code": ""
 },
 {
@@ -52,7 +52,7 @@
 	"height": 104,
 	"width": 220,
 	"des": "MrZhong",
-	"url": "/life/7.html",
+	"url": "/life/me.html",
 	"code": ""
 }
 ]
