@@ -59,7 +59,7 @@ cssbg: life7.css
         <h1>我:第八次鄙视我的灵魂 </h1>
         <ul>
           <li>
-            <p><strong>吾日三省无声，高否，富否，帅否，则当日日精进，但求无愧.</strong></p>
+            <p><strong>吾日三省吾身，高否，富否，帅否，则当日日精进，但求无愧.</strong></p>
           </li>
         </ul>
         <hr />
@@ -72,13 +72,6 @@ cssbg: life7.css
 
 </div>
 
-
-
-
-~~o(╯□╰)o~~
-
-
-![](/res/img/psb.jpg)
 
 ******
 
