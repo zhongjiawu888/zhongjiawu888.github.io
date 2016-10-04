@@ -20,7 +20,8 @@ Jekyll是一个静态站点生成器，它会根据网页源码生成静态文�
 
 
 在本地编写符合Jekyll规范的网站源码，然后上传到github，由github生成并托管整个网站。
-	这种做法的好处是：
+这种做法的好处是：
+
 	免费，无限流量。
 	享受git的版本管理功能，不用担心文章遗失。
 
@@ -28,8 +29,10 @@ Jekyll是一个静态站点生成器，它会根据网页源码生成静态文�
 它的缺点是：
 	
 	有一定技术门槛，你必须要懂一点git和网页开发。
-	它生成的是静态网页，添加动态功能必须使用外部服务，比如评论功能就只能用disqus。
-	它不适合大型网站，因为没有用到数据库，每运行一次都必须遍历全部的文本文件，网站越大，生成时间越长。
+	它生成的是静态网页，添加动态功能必须使用外部服务，
+	比如评论功能就只能用disqus。
+	它不适合大型网站，因为没有用到数据库，每运行一次都
+	必须遍历全部的文本文件，网站越大，生成时间越长。
 
 # 二、环境搭建
 
@@ -86,12 +89,14 @@ Jekyll是一个静态站点生成器，它会根据网页源码生成静态文�
 
 # 三、遇到的问题
 
-	jekyll 3.2.1 | Error:  Only one usage of each socket address (protocol/network
+	jekyll 3.2.1 | Error:  Only one usage of each
+	socket address (protocol/network
 	ddress/port) is normally permitted. - bind(2)
 	这是因为4000端口号被占用，解决方法
 	Cmd命令：
 	netstat -ano，列出所有端口的情况 找到pid 4000
-	tasklist|findstr "4000"，回车，查看是哪个进程或者程序占用了4000端口，结果是：svchost.exe
+	tasklist|findstr "4000"，回车，查看是哪个进程或者程序
+	占用了4000端口，结果是：svchost.exe
 	打开任务管理，结束进程即可。
 
 # 四、参考文档
