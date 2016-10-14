@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="description" content="MrZhong's Blog">
+  <meta name="author" content="zhongjiawu">
+  <meta name="keywords" content="LabelAtlas标签的切割, MrZhong's Blog, LabelAtlas标签的切割 - MrZhong's Blog">
+  <title>LabelAtlas标签的切割 - MrZhong's Blog</title>
+  <link rel="icon" href="/res/img/shortimg.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/res/img/shortimg.ico" type="image/x-icon">
+  <link rel="canonical" href="zhongjiawu888.github.io/blog/2016/05/22/cocostudio-labelAtlas.html">
+  <link rel="stylesheet" href="/res/css/public.css">
+  <link rel="stylesheet" href="/res/css/life.css">
+  <link rel="stylesheet" href="/res/css/pygments.css">
+
+</head>
+<body>
+  <div class="main">
+    <div class="title">LabelAtlas标签的切割</div>
+    <div class="post-info"><i class="fa fa-clock-o"></i>&nbsp;2016-05-22 转载请注明出处：<a href = "http://zhongjiawu888.github.io/">http://zhongjiawu888.github.io/</a> </div>
+    <div class="content">
+    <div class="highlighter-rouge"><pre class="highlight"><code>作者: MrZhong
+时间: 2016年5月22日
+版本: 0.0.1
+</code></pre>
+</div>
+
+<hr />
+
+<p>之前有带符合的数字切割功能代码一直写的纠结迷糊，不得其髓，今天正式遇到这两个问题卡了很久，算是搞了个清楚，方才了然。</p>
+
+<p>一、带符合的数字切割</p>
+
+<p><img src="/images/studyRes/18.png" alt="" /></p>
+
+<p>ui::LabelAtlas* moneyLabel = LabelAtlas::create(“0”,w,h,’/’);</p>
+
+<p>参数：w,h  每个图形字符的宽度宽高；
+参数4：<strong><em>startCharMap 首字符，决定了他的切割原理：要从图像文件中获取的第一个字符（其他的字符都以它为起点，因此，这个首字符的确定非常重要，其前面的字符将不会显示，从startCharMap开始按照这个顺序往下排，一格对应一个，程序是从这个首字符后往下切割）</em></strong>
+首字符实际上是对应ascii码表的。</p>
+
+<p><img src="/images/studyRes/19.jpg" alt="" /></p>
+
+<p>所以 不管“.”号，还是任意字符’/’，‘X’等，实际上都是：
+moneyLabel = LabelAtlas::create(“10”,w,h,’/’);
+而不是 <strong><em>moneyLabel = LabelAtlas::create(“0”,w,h,’.’);,</em></strong>
+moneyLabel = LabelAtlas::create(“0”,w,h,’x’);等
+若要显示 12.34，是 moneyLabel = LabelAtlas::create(“12/34”,w,h,’/’);,
+而不是 moneyLabel = LabelAtlas::create(“12.34”,w,h,’.’)；;,
+moneyLabel = LabelAtlas::create(“12.34”,w,h,’/’)；
+如果图片是0123456789.</p>
+
+<p>要显示12.34，正确代码为：
+ moneyLabel = LabelAtlas::create(“12：34”,w,h,’0’)；
+由ascll码值 知道 9的下一个符号是”：”0，所以要用”：;“才能获得到点”.”;,</p>
+
+<hr />
+
+
+    </div>
+    <style>#ds-reset .ds-avatar img{border-radius:50%;}</style>
+<div class="comments">
+  <div class="ds-thread" data-title="LabelAtlas标签的切割" data-thread-key="/blog/2016/05/22/cocostudio-labelAtlas" data-url="zhongjiawu888.github.io/blog/2016/05/22/cocostudio-labelAtlas.html"></div>
+  <script type="text/javascript">var duoshuoQuery = {short_name:"zhongjiawu"};(function(){var ds = document.createElement('script');ds.type = 'text/javascript';ds.async = true;ds.src = '/res/js/embed.js';ds.charset = 'UTF-8';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);})();</script>
+
+  <script src="/statics/js/tongji.js" defer></script>
+</div>
+
+  </div>
+  <div id="top"><a id="rocket" href="javascript:;" title="返回顶部"><i></i></a></div>
+  <script src="/res/js/light.js"></script>
+  
+</body>
+</html>
