@@ -1,0 +1,1237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>RSS - MrZhong's Blog</title>
+    <description>MrZhong's Blog - 生命不停流逝，当日日精进</description>
+    <link>zhongjiawu888.github.io</link>
+    <atom:link href="zhongjiawu888.github.io/page/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Fri, 14 Oct 2016 18:14:28 +0800</pubDate>
+    <lastBuildDate>Fri, 14 Oct 2016 18:14:28 +0800</lastBuildDate>
+    <generator>zhongjiawu</generator>
+    
+      <item>
+        <title>卒</title>
+        <description>&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;作者: MrZhong
+时间: 2080年10月1日
+版本: 0.0.1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;有一种程序员一生只会休息一次，那就是他死亡的时候。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Good-bye&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/lifeRes/2.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+</description>
+        <pubDate>Fri, 01 Oct 2088 00:00:00 +0800</pubDate>
+        <link>zhongjiawu888.github.io/blog/2088/10/01/dead.html</link>
+        <guid isPermaLink="true">zhongjiawu888.github.io/blog/2088/10/01/dead.html</guid>
+        
+        <category>Programming Life</category>
+        
+      </item>
+    
+      <item>
+        <title>Lua Project</title>
+        <description>&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;作者: MrZhong
+时间: 2016年10月13日
+版本: 0.0.1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;cocos2d-x-312-pc&quot;&gt;一、Cocos2d-x 3.12 PC环境搭建和创建工程&lt;/h1&gt;
+
+&lt;p&gt;下载Cocos2d-x引擎后，需要配置下面四个环境变量：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;•COCOS_CONSOLE_ROOT: 
+cocos控制台路径，用于新建、构建和发行工程。&lt;/li&gt;
+  &lt;li&gt;•NDK_ROOT:NDK根目录&lt;/li&gt;
+  &lt;li&gt;•ANDROID_SDK_ROOT:  SDK根目录&lt;/li&gt;
+  &lt;li&gt;•ANT_ROOT:  ANT根目录&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;这些变量可以通过引擎根目录的setup.py来配置，打开引擎根目录，运行setup.py，一步步输入下面路径：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    -&amp;gt;COCOS_CONSOLE_ROOT : 
+    F:\Cocos2d-x\tools\cocos2d-console\bin
+     -&amp;gt;NDK_ROOT : F:\Android\android-ndk-r9b
+     -&amp;gt;ANDROID_SDK_ROOT :  F:\Android\sdk
+     -&amp;gt;ANT_ROOT :  F:\Android\ant\bin
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;配置好之后就可以在环境变量看到添加了这些NDK_ROOT等路径&lt;/p&gt;
+
+&lt;p&gt;使用cocos2d-console这个工具来创建和构建工程，这个工具提供了下面几个功能：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;•new 创建一个新的工程&lt;/li&gt;
+  &lt;li&gt;•compile 编译当前工程，生成二进制文件&lt;/li&gt;
+  &lt;li&gt;•deploy 发布程序到一个平台&lt;/li&gt;
+  &lt;li&gt;•run 编译和发布，和运行程序&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;打开cmd，输入cocos new 项目名 -p 包名 -l cpp -d 存放路径&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cocos new test -p com.odao.test -l cpp -d F:\work
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;这里为了方便，将创建工程的命令写成一个批处理文件：&lt;/p&gt;
+
+&lt;p&gt;下载Python&lt;/p&gt;
+
+&lt;p&gt;安装python，我的安装路径是：C:\Program Files (x86)\Python27
+配置python环境变量&lt;/p&gt;
+
+&lt;p&gt;在path环境变量中添加安装路径C:\Program Files (x86)\Python27&lt;/p&gt;
+
+&lt;p&gt;单击“开始”—&amp;gt;“运行”—&amp;gt;输入：cmd命令，在CMD窗口中输入：python 
+   出现如下界面，就表示安装成功：&lt;/p&gt;
+
+&lt;p&gt;新建一个txt文本，打开，拷贝下面的代码到文本中&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    01.@echo off  
+    02.set /p projectName=please input project name:  
+    03.set /p packageName=please input package name:  
+    04.@echo cocos new %projectName% -p %packageName% -l cpp -d F:\Cocos2d-x\project  
+    05.cocos new %projectName% -p %packageName% -l cpp -d F:\Cocos2d-x\project  
+    06.@echo Create Success!!!  
+    07.pause  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;保存并重命名为create_project.bat，放到引擎根目录F:\Cocos2d-x中，以后要创建工程了，直接打开，输入项目名和包名即可，项目存放路径我默认的是F:\Cocos2d-x\project，你可以自己修改&lt;/p&gt;
+
+&lt;hr /&gt;
+
+</description>
+        <pubDate>Thu, 13 Oct 2016 00:00:00 +0800</pubDate>
+        <link>zhongjiawu888.github.io/blog/2016/10/13/ddz.html</link>
+        <guid isPermaLink="true">zhongjiawu888.github.io/blog/2016/10/13/ddz.html</guid>
+        
+        <category>Lua</category>
+        
+      </item>
+    
+      <item>
+        <title>github+jekyll博客搭建</title>
+        <description>&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;作者: MrZhong
+时间: 2010年10月4日
+版本: 0.0.1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;githubjekyll&quot;&gt;一、github与jekyll&lt;/h1&gt;
+
+&lt;p&gt;github是一个具有版本管理功能的代码仓库，每个项目都有一个主页，列出项目的源文件，github设计了Pages功能，允许用户自定义项目首页，用来替代默认的源码列表。所以，github Pages可以被认为是用户编写的、托管在github上的静态网页。github提供模板，允许站内生成网页，但也允许用户自己编写网页，然后上传。这种上传并不是单纯的上传，而是会经过Jekyll程序的再处理。&lt;/p&gt;
+
+&lt;p&gt;Jekyll是一个静态站点生成器，它会根据网页源码生成静态文件。它提供了模板、变量、插件等功能，所以实际上可以用来编写整个网站。&lt;/p&gt;
+
+&lt;p&gt;在本地编写符合Jekyll规范的网站源码，然后上传到github，由github生成并托管整个网站。
+这种做法的好处是：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;免费，无限流量。
+享受git的版本管理功能，不用担心文章遗失。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;你只要用自己喜欢的编辑器写文章就可以了，其他事情一概不用操心，都由github处理。
+它的缺点是：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;有一定技术门槛，你必须要懂一点git和网页开发。
+它生成的是静态网页，添加动态功能必须使用外部服务，
+比如评论功能就只能用disqus。
+它不适合大型网站，因为没有用到数据库，每运行一次都
+必须遍历全部的文本文件，网站越大，生成时间越长。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;section&quot;&gt;二、环境搭建&lt;/h1&gt;
+
+&lt;p&gt;1.在github 上 Create a new Repository,&lt;strong&gt;注意 Repository name必须是username.github.io&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;2.安装git.exe,生成SSH KEY,打开C:\Users\Administrator.ssh\id_rsa.pub全选复制，在github上增加SSH key。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/studyRes/39.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;3.jekylly 安装&lt;/p&gt;
+
+&lt;p&gt;下载了一个ruby git devkit工具包，运行setpath.cmd，并配置下系统环境&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/studyRes/40.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;命令行下输入ruby -v 检测是否安装成功：接下来运行&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ruby dk.rb install。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;最后在cmd 窗口中，进入到username.github.io目录，输入命令开始安装&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	gem install Jekyll 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;国内的网络环境需要耐心等待会儿，如果一直不行，求助于万能的淘宝，http://ruby.taobao.org/是淘宝搭建的ruby gems镜像。：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~ $ gem sources --remove https://rubygems.org/
+~ $ gem sources -a https://ruby.taobao.org/
+~ $ gem sources -l
+	*** CURRENT SOURCES ***
+	https://ruby.taobao.org
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;2.clone代码：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~ $ git clone https://github.com/username/username.github.io
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;进入到刚才clone的目录，写一个hello world，或者下载模版代码&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~ $ cd username.github.io
+~ $ echo &quot;Hello World&quot; &amp;gt; index.html
+~ $ git add --all
+~ $ git commit -m &quot;Initial commit&quot;
+~ $ git push -u origin master
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;3.浏览器里访问一下：http://username.github.io&lt;/p&gt;
+
+&lt;p&gt;4.如果是在本地测试开发，cmd命令窗口进入项目目录username.github.io中，运行&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jekyll build 编译会生成一个新目录文件夹_site
+jekyll server 启动本地服务器
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;最后浏览器里访问一下：http://localhost:4000&lt;/p&gt;
+
+&lt;h1 id=&quot;section-1&quot;&gt;三、遇到的问题&lt;/h1&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jekyll 3.2.1 | Error:  Only one usage of each
+socket address (protocol/network
+ddress/port) is normally permitted. - bind(2)
+这是因为4000端口号被占用，解决方法
+Cmd命令：
+netstat -ano，列出所有端口的情况 找到pid 4000
+tasklist|findstr &quot;4000&quot;，回车，查看是哪个进程或者程序
+占用了4000端口，结果是：svchost.exe
+打开任务管理，结束进程即可。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;section-2&quot;&gt;四、参考文档&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html&quot;&gt;http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html&quot;&gt;http://jekyll.com.cn/&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+</description>
+        <pubDate>Tue, 04 Oct 2016 00:00:00 +0800</pubDate>
+        <link>zhongjiawu888.github.io/blog/2016/10/04/blog-build.html</link>
+        <guid isPermaLink="true">zhongjiawu888.github.io/blog/2016/10/04/blog-build.html</guid>
+        
+        <category>Other</category>
+        
+      </item>
+    
+      <item>
+        <title>android微信登录SDK接入笔记</title>
+        <description>&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;作者: MrZhong
+时间: 2016年8月11日
+版本: 0.0.1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;从微信开发官网下载demo后，里面有自带一个签名key:debug.keystore，密码是:android，使用demo的签名包可以正常登录，分享到朋友圈发送数据，可供调试。官网文档也比较清楚。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&amp;amp;t=resource/res_list&amp;amp;verify=1&amp;amp;id=open1419317851&amp;amp;token=&amp;amp;lang=zh_CN&quot;&gt;官网开发文档链接&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;移动应用微信登录是基于OAuth2.0协议标准构建的微信OAuth2.0授权登录系统。&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;一、基本流程：&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;1、首先需要注册微信开放平台，然后获取开发者认证。审批通过之后再创建一个移动应用同样还是需要审批。通过之后就可以给这个应用添加微信授权登陆以及相应功能了。这里移动应用审批通过之后会给你两个参数，一个叫AppId，一个叫Secret。这两个参数在后面用的到。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;2、应用签名&lt;/p&gt;
+&lt;/blockquote&gt;
+
+ 		&lt;img src=&quot;/images/studyRes/1.jpg&quot; alt=&quot;&quot; /&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;3、在需要微信授权的项目中导入微信的第三方JAR包&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;4、尤其注意在包名相应目录下新建一个wxapi目录。说的是在包名相应目录下建一个wxapi目录。也就是是包名目录的子目录，千万不要直接在src下面建个包就完了。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/studyRes/2.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;二、关于第三方登录&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://wiki.mob.com/%e7%ac%ac%e4%b8%89%e6%96%b9%e7%99%bb%e5%bd%95/&quot;&gt;参考文档链接&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;1、第三方登录的定义&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;1.所谓的第三方登录，就是利用用户在第三方平台上已有的账号来快速完成自己应用的登录或者注册的功能。而这里的第三方平台，一般是已经有大量用户的平台，如国内的新浪微博、QQ空间，微信，外国的Facebook、twitter等等。第三方登录不是一个具体的接口，而是一种思想或者一套步骤。
+要实现第三方登录，首先你需要选择一个第三方平台。新浪微博和QQ空间都是好的选择，这些平台拥有大量的用户，而且还开放了API，供我们调用接入。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;2、具备获取用户资料或至少可以进行授权验证,其实ShareSDK已经支持了超过20种这样子的平台，完全足够你选择使用。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;2、第三方登录实现方法&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;选择好平台以后，现在思考下面的问题：
+你的应用是否具备独立账户系统？
+这个问题是第三方登录时接口选择的重要标准。如果你选择“是”，则意味着你的应用只是需要第三方平台的用户，而不是他们的账户验证功能——也就是“要数据，不要功能”。而如果你选择“否”，则表示你实际上是’“要功能，不要数据（用户）”’。对于ShareSDK来说，前者你的入口方法是showUser(null)，而后者是authorize()。那么下面我分情况解释两种接入方式的步骤。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;要数据，不要功能
+如果你的应用拥有用户系统，就是说你的应用自己就有注册和登录功能，使用第三方登录只是为了拥有更多用户，那么你可以依照下面的步骤来做：&lt;/p&gt;
+
+&lt;p&gt;1、用户触发第三方登录事件&lt;/p&gt;
+
+&lt;p&gt;2、showUser(null)请求授权用户的资料（这个过程中可能涉及授权操作）&lt;/p&gt;
+
+&lt;p&gt;3、如果onComplete()方法被回调，&amp;gt; 将其参数Hashmap代入你应用的Login流程&lt;/p&gt;
+
+&lt;p&gt;4、否则提示错误，调用removeAccount()方法，删除可能的授权缓存数据&lt;/p&gt;
+
+&lt;p&gt;5、Login时客户端发送用户资料中的用户ID给服务端&lt;/p&gt;
+
+&lt;p&gt;6、服务端判定用户是已注册用户，则引导用户进入系统，否则返回特定错误码&lt;/p&gt;
+
+&lt;p&gt;7、客户端收到“未注册用户”错误码以后，代入用户资料到你应用的Register流程&lt;/p&gt;
+
+&lt;p&gt;8、Register时在用户资料中挑选你应用的注册所需字段，并提交服务端注册&lt;/p&gt;
+
+&lt;p&gt;9、服务端完成用户注册，成功则反馈客户端引导用户进入系统&lt;/p&gt;
+
+&lt;p&gt;10、否则提示错误，调用removeAccount()方法，删除可能的授权缓存数据&lt;/p&gt;
+
+&lt;p&gt;要功能，不要数据,如果你的应用不具备用户系统，而且也不打算维护这个系统，那么你可以依照下面的步骤来做：&lt;/p&gt;
+
+&lt;p&gt;1、用户触发第三方登录事件&lt;/p&gt;
+
+&lt;p&gt;2、调用platfor&amp;gt; m.getDb().getUserId()请求用户在此平台上的ID&lt;/p&gt;
+
+&lt;p&gt;3、如果用户ID存&amp;gt; 在，则认为用户是合法用户，允许进入系统；否则调用authorize()&lt;/p&gt;
+
+&lt;p&gt;4、authorize()方&amp;gt; 法将引导用户在授权页面输入帐号密码，然后目标平台将验证此用户&lt;/p&gt;
+
+&lt;p&gt;5、如果onComplete(&amp;gt; )方法被回调，表示授权成功，引导用户进入系统&lt;/p&gt;
+
+&lt;p&gt;6、否则提示错误，调用&amp;gt; removeAccount()方法，删除可能的授权缓存数据&lt;/p&gt;
+
+&lt;p&gt;实例代码&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	private void authorize&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Platform plat&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;plat &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; null&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	popupOthers&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;plat.isValid&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+	String userId &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; plat.getDb&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;.getUserId&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;;
+
+	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;userId !&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; null&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+	UIHandler.sendEmptyMessage&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;MSG_USERID_FOUND, this&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;;
+
+	login&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;plat.getName&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;, userId, null&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;;
+
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;;
+
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+	plat.setPlatformActionListener&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;this&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;;
+
+	// true不使用SSO授权，false使用SSO授权
+
+	plat.SSOSetting&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;;
+
+	plat.showUser&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;null&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;;
+
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;上面的代码是当用户触发第三方登录按钮的时候的处理。plat.isValid()判断指定平台是否已经完成授权，如果已经完成授
+权，ShareSDK的用户数据库应该已经存在userId，因此代码尝试获取userId，如果得到的为null，当作为授权，否则用此ID来执行登
+录。如果此平台没有完成授权，则调用plat.showUser(null)方法来获取用户资料。&lt;/p&gt;
+
+&lt;p&gt;获取用户资料以后，并不能立刻用来注册，因为可能只是因为授权时间太久导致AccessToken过期，因此完成授权以后需要先将userId发送给你应用的服务端进行检查，如果服务端发现确实没有注册过，才引导客户端进入注册页面。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://yunpan.cn/c6DkA88RrRMPV&quot;&gt;Demo项目下载地址（提取码：61d4）&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+</description>
+        <pubDate>Thu, 11 Aug 2016 00:00:00 +0800</pubDate>
+        <link>zhongjiawu888.github.io/blog/2016/08/11/android-weixin-login.html</link>
+        <guid isPermaLink="true">zhongjiawu888.github.io/blog/2016/08/11/android-weixin-login.html</guid>
+        
+        <category>Sdk Programming</category>
+        
+      </item>
+    
+      <item>
+        <title>心酸史之随机数和unsign int</title>
+        <description>&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;作者: MrZhong
+时间: 2016年8月3日
+版本: 0.0.1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;这两天写个if都不知如何敲起，if不下去，&lt;/p&gt;
+
+&lt;p&gt;不是不在状态，而是我蒸滴脑袋卡壳了o(╯□╰)o&lt;/p&gt;
+
+&lt;p&gt;有一个功能，类似要写一个这样的算法：
+在一个长度为n(6)的数组里随机选出 其m（4）个不相同的值，并且这些值不能为数组中的某个值(K)。
+例如：
+int arr[6]={1,2,3,4,5,6}，随机生成里面的4个值，生成的这4个值不能是K=3.&lt;/p&gt;
+
+&lt;p&gt;刚开始也是正常的思路：
+首先随机出一个值randomNum1，放入到vector中，循环比较vector中的值是否等于arr[i]并且不等于K，如果是，则重新随机，如果不是，则放入到vector中，直到vector的size为4跳出循环。&lt;/p&gt;
+
+&lt;p&gt;按照这种思路，用whlie 或for，里面的逻辑不管怎么改，怎么改，发现虽然循环的长度不是很大，才6，但是每次好久才能得到随出最后的值，效率很低。&lt;/p&gt;
+
+&lt;p&gt;纠结了好久，发现使用标准库random_shuffle的随机打乱排序，就选其前4个值作为随机的4个值，然后将A与这4个值比较，如果相等，则将第5个值（当然可以是第四个后的任意一个）直接替换它，就得到了最终要的4个值。效率非常快。以下代码：&lt;/p&gt;
+
+&lt;p&gt;```sh
+    std::vector&lt;int&gt; vArr;
+    for (int i = 0;i&amp;lt;6;i++)
+    {
+        vArr.push_back(i);
+    }
+    random_shuffle(vArr.begin(), vArr.end());&lt;/int&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;int awrdIdx = 3;//即K
+for(int i = 0;i&amp;lt;4;i++)
+{
+    if (vArr[i] == awrdIdx)
+    {
+        vArr[i] = vArr[5];
+    }
+    CCLog(&quot;%d&quot;,vArr[i]);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;```
+  例外个很坑问题搞了我2个小时。之前无符号和有符号整形一直不太注意，被忽视，今天终于尝尽苦头。结算积分的时候有正负，我把3个变量直接相加的表达式作为一个函数参数，3个变量中有unsign int 和 int，结果纳闷算出来的值18446744，一直想想想不知道错在哪了。真的是百爪挠心。日了狗了。以下是修正后的代码截图，算是留个原罪吧。
+&lt;img src=&quot;/images/studyRes/3.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+</description>
+        <pubDate>Wed, 03 Aug 2016 00:00:00 +0800</pubDate>
+        <link>zhongjiawu888.github.io/blog/2016/08/03/random-unsign-int.html</link>
+        <guid isPermaLink="true">zhongjiawu888.github.io/blog/2016/08/03/random-unsign-int.html</guid>
+        
+        <category>Programming Life</category>
+        
+      </item>
+    
+      <item>
+        <title>Linux基础二</title>
+        <description>&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;作者: MrZhong
+时间: 2016年8月1日
+版本: 0.0.1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;section&quot;&gt;五、目录与路径&lt;/h1&gt;
+
+&lt;p&gt;1、特殊目录&lt;/p&gt;
+
+&lt;p&gt;.   此层目录
+..  上一层目录&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;前一个工作目录
+~   【目前使用者身份】所在的家目录
+~account    代表account这个使用者的家目录&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;2、目录相关操作&lt;/p&gt;
+
+&lt;p&gt;A.  cd :change director
+B.  pwd [-P]: print working directory 
+显示目前的目录&lt;/p&gt;
+
+&lt;p&gt;pwd 显示的是实际de工作目录，-P显示出确实的路径，而非使用连接路径&lt;/p&gt;
+
+&lt;p&gt;C.  mkdir 创建一个新的目录&lt;/p&gt;
+
+&lt;p&gt;mkdir [-m] 配置文件的权限
+e.g. 创建权限为 rwx–x–x的test目录
+mkdir -m 711 test&lt;/p&gt;
+
+&lt;p&gt;mkdir [-p] 将所需要的目录递回创建(多层目录的创建)
+e.g. 
+mkdir test1/test2/test3&lt;/p&gt;
+
+&lt;p&gt;D.  rmdir 删除一个空的目录&lt;/p&gt;
+
+&lt;p&gt;rmdir [-p] 连同上一级空的目录一起删除&lt;/p&gt;
+
+&lt;p&gt;E.mv 移动&lt;/p&gt;
+
+&lt;p&gt;3、检查文件的内容（读档）&lt;/p&gt;
+
+&lt;p&gt;cat
+tac
+nl
+more
+less
+head
+tail
+od&lt;/p&gt;
+
+&lt;p&gt;4、文件记录的时间参数3种
+access time(atime)
+status time(ctime)
+modification time(mtime)&lt;/p&gt;
+
+&lt;p&gt;5、
+a.新建文件/目录时，新文件的默认权限使用 umask 来规范。默认目录完全权限为drwxrwxrwx， 文件则为-rw-rw-rw-。
+b.文件具有SUID的特殊权限时，代表当使用者运行此一binary程序时，在运行过程中使用者会暂时具有程序拥有者的权限
+c.文件目录具有SGID的特殊权限时，代表使用者在这个目录底下新建的文件之群组都会与该目录的群组名称相同。
+d.目录具有SBIT的特殊权限时，代表在该目录下使用者创建的文件只有自己与root能够删除！&lt;/p&gt;
+
+&lt;h1 id=&quot;section-1&quot;&gt;六、文件系统&lt;/h1&gt;
+
+&lt;p&gt;1、文件压缩&lt;/p&gt;
+
+&lt;p&gt;a.gzip zcat&lt;/p&gt;
+
+&lt;p&gt;b.bzip2 bzcat&lt;/p&gt;
+
+&lt;p&gt;2、打包命令
+tar&lt;/p&gt;
+
+&lt;h1 id=&quot;bash&quot;&gt;七、Bash&lt;/h1&gt;
+
+&lt;p&gt;a.由于核心在内存中是受保护的区块，因此必须要透过[Shell]将输入的命令与 Kernel 沟通，好让 Kernel 可以控制硬件来正确无误的工作&lt;/p&gt;
+
+&lt;p&gt;b.文字接口的 shell 在各大 distribution 都一样；远程管理时文字接口速度较快； shell 是管理 Linux 系统非常重要的一环，因为 Linux 内很多控制都是以 shell 撰写的。&lt;/p&gt;
+
+&lt;p&gt;c.系统合法的 shell 均写在 /etc/shells 文件中&lt;/p&gt;
+
+&lt;p&gt;d.用户默认登陆取得的 shell 记录于 /etc/passwd 的最后一个字段&lt;/p&gt;
+
+&lt;p&gt;e.bash 的功能主要有：命令编修能力；命令与文件补全功能；命令别名配置功能；工作控制、前景背景控制；程序化脚本；通配符&lt;/p&gt;
+
+&lt;p&gt;f.变量主要有环境变量与自定义变量，或称为全局变量与局部变量&lt;/p&gt;
+
+&lt;p&gt;g.bash 的配置文件主要分为 login shell 与 non-login shell。login shell 主要读取 /etc/profile 与 ~/.bash_profile， non-login shell 则仅读取 ~/.bashrc&lt;/p&gt;
+
+&lt;h1 id=&quot;shell-scripts&quot;&gt;八、Shell Scripts&lt;/h1&gt;
+
+&lt;p&gt;shell script 是利用 shell 的功能所写的一个『程序 (program)』，这个程序是使用纯文字档，将一些 shell 的语法与命令(含外部命令)写在里面， 搭配正规表示法、管线命令与数据流重导向等功能，以达到我们所想要的处理目的&lt;/p&gt;
+
+&lt;hr /&gt;
+
+</description>
+        <pubDate>Mon, 01 Aug 2016 00:00:00 +0800</pubDate>
+        <link>zhongjiawu888.github.io/blog/2016/08/01/Linux-Basic-2.html</link>
+        <guid isPermaLink="true">zhongjiawu888.github.io/blog/2016/08/01/Linux-Basic-2.html</guid>
+        
+        <category>Linux</category>
+        
+      </item>
+    
+      <item>
+        <title>Linux基础一</title>
+        <description>&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;作者: MrZhong
+时间: 2016年7月24日
+版本: 0.0.1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;linux&quot;&gt;一、Linux的发展&lt;/h1&gt;
+
+&lt;p&gt;x86架构
+c语言
+gcc
+GNU计划
+多任务，多使用者
+a.网络服务器 www Mail Server File Server
+b.较低硬件资源 ,前调省电
+c.关键任务的应用，金融数据库，大型企业网络环境
+d.嵌入式系统&lt;/p&gt;
+
+&lt;h1 id=&quot;section&quot;&gt;二、磁盘&lt;/h1&gt;
+
+&lt;p&gt;1.磁盘的连接方式
+A.主机提供2个IDE介面，一个IDE排线连接2个IDE装置
+B.这2个IDE介面通常称为IDE1(primary)和IDE2(secondary)，每条排线上面的IDE装置可以被区分为Master与Slave&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/studyRes/4.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/studyRes/5.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;2.IDE装置档名&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/studyRes/6.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;e.g
+假设你的主机仅有一颗IDE介面的磁碟，而这一颗磁碟接在IDE2的Master上面，请问他在Linux操作系统里面的装置档名为何？
+答：比较上表的装置档名对照，IDE2的Master之装置档名为/dev/hdc&lt;/p&gt;
+
+&lt;p&gt;3.磁盘分区&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/studyRes/7.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;A.磁盘的第一个磁区记录了2个重要的信息&lt;/p&gt;
+
+&lt;p&gt;a.Master Boot Record(MBR):主要启动记录区，可以安装启动管理程序的地方，有446 byte
+b.partion table:分割表，记录整颗硬盘分割的状态，有64 byte.&lt;/p&gt;
+
+&lt;p&gt;B.磁盘分区表&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/studyRes/8.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;a.在分割表所在的64 byte容量中，总共分为4组记录区，每组记录区记录了该区段的起始和结束磁柱号码。&lt;/p&gt;
+
+&lt;p&gt;b.这4个记录区被称为主要（Primary)或延伸（Extended)分割槽。&lt;/p&gt;
+
+&lt;p&gt;c.默认的分割表仅能写入4组分割资讯.&lt;/p&gt;
+
+&lt;p&gt;d.分割槽的最小单位为磁柱（cylinder)&lt;/p&gt;
+
+&lt;p&gt;4、主要分割槽、延伸分割槽、逻辑分割槽&lt;/p&gt;
+
+&lt;p&gt;a.主要分割与延伸分配最多可以有4组（硬盘的限制）
+b.延伸分割最多只能有一个（操作系统的限制）
+c.逻辑分割槽是由延伸分割槽持续分割出来的分割槽
+d.延伸分割槽无法格式化,主要分割槽和逻辑分割槽作为数据存取。
+e.逻辑分割的数量依据操作系统而不同，在Linux系统中，IDE硬盘最多有59个逻辑分割（5号到63号），STATE硬盘则有11个逻辑分割（5号到15号）&lt;/p&gt;
+
+&lt;p&gt;4、MBR与启动流程&lt;/p&gt;
+
+&lt;p&gt;A.BIOS与CMOS
+a.CMOS是记录各项硬件参数且嵌入在主板上的存储器
+b.BIOS是一个写入到主板上的一个软件程序，计算机系统启动的时候主动运行的第一个程序。
+c.BIOS会依据使用者的配置去取得能够启动的硬盘， 并且到该硬盘里面去读取第一个磁区的MBR位置。 MBR这个仅有446 bytes的硬盘容量里面会放置最基本的启动管理程序， 此时BIOS就功成圆满，而接下来就是MBR内的启动管理程序的工作了。
+d.这个启动管理程序的目的是在加载(load)核心文件， 由於启动管理程序是操作系统在安装的时候所提供的，所以他会认识硬盘内的文件系统格式，因此就能够读取核心文件， 然后接下来就是核心文件的工作，启动管理程序也功成圆满，之后就是大家所知道的操作系统的任务啦！&lt;/p&gt;
+
+&lt;p&gt;简单描述为：
+a.BIOS:启动主动运行的程序，会识别第一个可启动的装置
+b.MBR:第一个可启动装置的第一个磁区内的主要启动记录区块，内含启动管理程序
+e.boot loader:一个可读取核心文件来运行的软件
+d.核心文件：开始操作系统的功能。。。&lt;/p&gt;
+
+&lt;p&gt;B.Boot Loader
+a.提供菜单
+b.加载核心文件
+c.转交其他loader&lt;/p&gt;
+
+&lt;p&gt;C.
+a.每个分割槽都拥有自己的启动磁区（boot sector)
+b.实际可启动的核心文件是放置到各分割槽内的
+c.loader只会认识自己的系统槽内的可启动核心文件，以及其他loader而已
+d.loader可直接指向或间接将管理权转交给另一个管理程序。&lt;/p&gt;
+
+&lt;p&gt;5、目录结构&lt;/p&gt;
+
+&lt;p&gt;A.树结构&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/studyRes/9.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;B.挂载&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/studyRes/10.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;section-1&quot;&gt;三、文本命令&lt;/h1&gt;
+
+&lt;p&gt;1.登陆&lt;/p&gt;
+
+&lt;p&gt;A.[guest-I4hw4r@ubuntu:~$]&lt;/p&gt;
+
+&lt;p&gt;a.guset-I4hw4r:目前用户的账号
+b.ubuntu:主机名，只取一个小数点前的字母（实际是ubuntu.xxx.xxx）
+c.~:目前所在的目录（家目录），是一个变量，例：root的家目录是/root,所以~代表/root&lt;/p&gt;
+
+&lt;p&gt;B.bc 计算器
+a.保留小数位数：scale=3&lt;/p&gt;
+
+&lt;p&gt;C.时间日期 
+a.date
+b cal [month] [year]&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/studyRes/11.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;D.数据同步写入磁盘：sync&lt;/p&gt;
+
+&lt;p&gt;a.一般账号用户所升级的硬盘数据就仅有自己的数据， 不像root可以升级整个系统中的数据&lt;/p&gt;
+
+&lt;p&gt;E.关机&lt;/p&gt;
+
+&lt;p&gt;a. shutdown -h now 立刻关机
+b. shutdown -h 20:30 在20：30关机，若今天时间已过，则隔天关机
+c. shutdown -h +10 系统10分钟后自动关机
+d. shutdown -r now 重启
+e. shutdown - r +30 ‘The system will reboot’ 系统30分后重启，并显示后面的信息给所有在线的使用者&lt;/p&gt;
+
+&lt;p&gt;F.求助
+A.
+a. man date
+b.man -f man 查找系统中哪些跟man命令有关说明文件
+c.man -k man
+查找系统中说明文件中只要man这个关键词就列出来&lt;/p&gt;
+
+&lt;p&gt;B.在线求助 info&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/studyRes/12.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;a.info info&lt;/p&gt;
+
+&lt;p&gt;G.语系的支持
+a.echo $LANG 显示目前支持的语系
+b LANG=en-US&lt;/p&gt;
+
+&lt;h1 id=&quot;section-2&quot;&gt;四、文件权限与目录配置&lt;/h1&gt;
+
+&lt;p&gt;文件权限&lt;/p&gt;
+
+&lt;p&gt;A.10个字符的意义&lt;/p&gt;
+
+&lt;p&gt;a.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/studyRes/13.ppg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/studyRes/14.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;.第一个字符代表【目录、文件或链接文件】
+eg.
+d：表示目录
+-：表示文件
+l：表示连接档
+b：表示装置文件里面的可供存储的接口设备
+c：表示装置文件里面的串行端口设备，例如键盘、鼠标&lt;/p&gt;
+
+&lt;p&gt;c.剩下的9个字符，以3个为一组&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/studyRes/15.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;eg.
+第一组表示【文件拥有者的权限】
+第二组表示【同群组的权限】
+第三组表示【其他非本群组权限】&lt;/p&gt;
+
+&lt;p&gt;2、修改文件权限&lt;/p&gt;
+
+&lt;p&gt;a.chgrp :改变文件所属群组
+chgrg [-R] dirname/filename
+-R:目录内所有文件&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/studyRes/16.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;b.chown:改变文件拥有者&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/studyRes/17.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;c.chmod:改变文件的权限，SUID,SGID,SBIT等特性
+r:4
+w:2
+x:1
+owner = rwx = 4+2+1=7&lt;/p&gt;
+
+&lt;p&gt;eg.
+chmod 777 test
+若要修改test权限变成[-rwxr-xr–],则
+[4+2+1][4+0+1][4+0+0]即
+chomd 754 test&lt;/p&gt;
+
+&lt;hr /&gt;
+
+</description>
+        <pubDate>Sun, 24 Jul 2016 00:00:00 +0800</pubDate>
+        <link>zhongjiawu888.github.io/blog/2016/07/24/Linux-Basic-1.html</link>
+        <guid isPermaLink="true">zhongjiawu888.github.io/blog/2016/07/24/Linux-Basic-1.html</guid>
+        
+        <category>Linux</category>
+        
+      </item>
+    
+      <item>
+        <title>前后端网络数据交换方式</title>
+        <description>&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;作者: MrZhong
+时间: 2016年7月18日
+版本: 0.0.1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;网络前后端的数据交换常用2种，一种内存映射，一种protobuf。
+都是 Socket字符流。&lt;/p&gt;
+
+&lt;p&gt;一、内存映射&lt;/p&gt;
+
+&lt;p&gt;A.最直接的前后端数据交换方式&lt;/p&gt;
+
+&lt;p&gt;e.g.客户端处理一条服务器加倍消息：
+协议数据为&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/studyRes/25.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;以下收包处理流程：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/studyRes/26.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	void NetworkTickThread::OnGameServerMessage(ODEInt32 nMsgID, ODEChar8 *buffer, ODEInt32 length)
+	{
+	         ODE_AUTO_LOCK_MUTEX(m_kMutex);
+	         switch (nMsgID)
+	         {
+	             case SC_TASK_UPDATE_NTF:
+	              HandleAddBasePointServerMsg(buffer,length);
+	              break;
+	             case KEEP_ALIVE_MSG:
+	             //等等协议处理
+	          }
+	}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/studyRes/27.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/studyRes/28.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;到此得到客户端想要的数据了。
+B.尤其注意的是不定长的数组的处理。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/studyRes/29.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/studyRes/30.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;二、protobuf的数据化方式&lt;/p&gt;
+
+&lt;p&gt;A.protocolbuffer是google的一个开源项目，它是一种二进制的数据交换格式，google提供了多种语言的实现：java、c#、c++、go 和 python，每一种实现都包含了相应语言的编译器以及库文件。&lt;/p&gt;
+
+&lt;p&gt;B.序列化/反序列化API&lt;/p&gt;
+
+&lt;p&gt;bool ParseFromString(const string&amp;amp; data);
+bool SerializeToString(string* output) const:&lt;/p&gt;
+
+&lt;p&gt;a.ParseFromString() 函数是protobuf 提供的一个C++ API，它的功能就是将string 里面的数据反序列化(解析)到指定的消息结构类中。它其实是一个消息结构类的成员函数，反序列化之后，该消息结构类中的数据成员将会被填充，且有效。&lt;/p&gt;
+
+&lt;p&gt;b.SerializeToString() 函数是protobuf 提供的一个C++ API，它的功能与parseFromString() 函数相对应，是将消息结构的数据序列化(填充)到output 所指向的string  对象中。在string 对象中以二进制的形式存储。&lt;/p&gt;
+
+&lt;p&gt;e.g.处理服务器发过来的任务SCGetTaskInfoRsp消息：
+协议数据为&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/studyRes/31.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;SCGetTaskInfoRsp的父类为：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/studyRes/32.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;2个函数实现为：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/studyRes/33.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/studyRes/34.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;SCGetTaskInfoRsp的xml文件为：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/studyRes/35.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;接下来为收到服务器包的处理：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/studyRes/36.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;m_pTaskProgressItem就是客户端需要的数据。&lt;/p&gt;
+
+&lt;p&gt;然后在看客户端发包处理流程：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/studyRes/37.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/studyRes/38.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Okay，以上，整个流程结束。
+下班回家~(^o^)(^o^)&lt;/p&gt;
+
+&lt;hr /&gt;
+
+</description>
+        <pubDate>Mon, 18 Jul 2016 00:00:00 +0800</pubDate>
+        <link>zhongjiawu888.github.io/blog/2016/07/18/protobuf.html</link>
+        <guid isPermaLink="true">zhongjiawu888.github.io/blog/2016/07/18/protobuf.html</guid>
+        
+        <category>C++</category>
+        
+      </item>
+    
+      <item>
+        <title>Lua基础</title>
+        <description>&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;作者: MrZhong
+时间: 2016年7月16日
+版本: 0.0.1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;section&quot;&gt;业于勤而荒于嬉,行于思而毁于随。&lt;/h1&gt;
+
+&lt;h3 id=&quot;lua&quot;&gt;一、lua基础&lt;/h3&gt;
+
+&lt;p&gt;1、lua命名&lt;/p&gt;
+
+&lt;p&gt;A.常量用全大写和下划线：MY_CONSTTANT&lt;/p&gt;
+
+&lt;p&gt;B.全局变量第一个字母用小写g标识:gMyGlobal&lt;/p&gt;
+
+&lt;p&gt;C.函数名第一个字母大写：function MyFunction()&lt;/p&gt;
+
+&lt;p&gt;2、注释&lt;/p&gt;
+
+&lt;p&gt;A.行注释：–&lt;/p&gt;
+
+&lt;p&gt;B.块注释：–[[–]]&lt;/p&gt;
+
+&lt;p&gt;3.变量&lt;/p&gt;
+
+&lt;p&gt;A.变量的5种类型：nil,Boolean,string,Number,table&lt;/p&gt;
+
+&lt;p&gt;a. nil:如果给一个变量赋值nil,则表示删除该变量的意思。&lt;/p&gt;
+
+&lt;p&gt;b. Boolean:只有2种值：true或false&lt;/p&gt;
+
+&lt;p&gt;c. string&lt;/p&gt;
+
+&lt;p&gt;d. Number:指的是双精度浮点数，没有整数类型。&lt;/p&gt;
+
+&lt;p&gt;eg.myNumber= 7 myNumber = 0.756&lt;/p&gt;
+
+&lt;p&gt;e.  table:&lt;/p&gt;
+
+&lt;p&gt;B.type函数可以判断变量的类型&lt;/p&gt;
+
+&lt;p&gt;eg.myValue = 7&lt;/p&gt;
+
+&lt;p&gt;print(type(myValue))&lt;/p&gt;
+
+&lt;p&gt;C.lua变量默认是全局的。&lt;/p&gt;
+
+&lt;p&gt;D.运算符&lt;/p&gt;
+
+&lt;p&gt;a.算术运算符:+ - * /&lt;/p&gt;
+
+&lt;p&gt;b.关系运算符：&amp;lt; = &amp;gt;&lt;/p&gt;
+
+&lt;p&gt;c.逻辑运算符： and ,or,not&lt;/p&gt;
+
+&lt;p&gt;eg. a and b&lt;/p&gt;
+
+&lt;p&gt;若a是false ,则返回a；否则返回b的值。&lt;/p&gt;
+
+&lt;p&gt;eg. a or b&lt;/p&gt;
+
+&lt;p&gt;若a是true,则返回a,否则返回b。&lt;/p&gt;
+
+&lt;p&gt;4.控制结构&lt;/p&gt;
+
+&lt;p&gt;A.if&lt;/p&gt;
+
+&lt;p&gt;B.while 和 repeat until&lt;/p&gt;
+
+&lt;p&gt;C.for&lt;/p&gt;
+
+&lt;p&gt;D.break&lt;/p&gt;
+
+&lt;h2 id=&quot;lua-1&quot;&gt;二、lua深入&lt;/h2&gt;
+
+&lt;p&gt;1、函数&lt;/p&gt;
+
+&lt;p&gt;A.不定长参数  (…)&lt;/p&gt;
+
+&lt;p&gt;eg.&lt;/p&gt;
+
+&lt;p&gt;function HowMany(…)
+    if arg.n &amp;gt; 0 then
+        for idx = 1,arg.n do
+            local myString = string.format(“%s%d”,”Argument”,idx,”:”)
+            print(myString,arg(idx))
+        end
+    else
+        print(“no variables entered.”)
+    end
+end&lt;/p&gt;
+
+&lt;p&gt;说明：arg表中保存了所有的值，arg.n中保存了参数的数量值。&lt;/p&gt;
+
+&lt;p&gt;2、标准库&lt;/p&gt;
+
+&lt;p&gt;A.asert(myValue)() 传入指向编译后的代码的变量，然后立刻被执行。&lt;/p&gt;
+
+&lt;p&gt;B.dofile(filename) 用它载入定义函数的文件以备调用。&lt;/p&gt;
+
+&lt;p&gt;C.数学运算函数 LuagLue接口，调用C标准库，存放在“math”表中&lt;/p&gt;
+
+&lt;p&gt;a.math.floor() 向下取整，即舍去小数部分，+0.5得到四舍五入&lt;/p&gt;
+
+&lt;p&gt;b.math.random()&lt;/p&gt;
+
+&lt;p&gt;c.math.min()…&lt;/p&gt;
+
+&lt;p&gt;3、字符处理&lt;/p&gt;
+
+&lt;p&gt;A.类型转换&lt;/p&gt;
+
+&lt;p&gt;a.tonumber 字符转数字&lt;/p&gt;
+
+&lt;p&gt;myStr = “1234”
+myNum = tonumber(myStr) –1234&lt;/p&gt;
+
+&lt;p&gt;b.tostring 数字转字符&lt;/p&gt;
+
+&lt;p&gt;c.string.len(myString)&lt;/p&gt;
+
+&lt;p&gt;d.string.sub(myString,start,end)
+当start为负数如-5时，返回字符串最后5位&lt;/p&gt;
+
+&lt;p&gt;e.string.format()&lt;/p&gt;
+
+&lt;p&gt;d.string.find(sourceString,findString)
+如果找到了返回开始和结束位置，否则返回nil&lt;/p&gt;
+
+&lt;p&gt;eg.myString = “My name is Mr Zhong”
+start,end = string.find(myString,”name”) – 3 6&lt;/p&gt;
+
+&lt;p&gt;e.string.gsub(sourceString,pattem,replacementString)
+返回一个字符串，sourceString中满足pattern格式的字符都会被替换成replacementString参数的值。&lt;/p&gt;
+
+&lt;p&gt;string.gsub(sourceString,pattem,replacementString,num)
+num = 2:最后的参数num表示指定的次数，只替换最先找到的2个字符串&lt;/p&gt;
+
+&lt;p&gt;f.string.gfind(sourceString,patterm)
+一旦找到符合指定格式的字符串就返回该字符串&lt;/p&gt;
+
+&lt;p&gt;4、table 数据结构&lt;/p&gt;
+
+&lt;p&gt;A.table内建函数&lt;/p&gt;
+
+&lt;p&gt;a.tabele.getn(myTable)&lt;/p&gt;
+
+&lt;p&gt;b.table.insert(myTable,position,value)&lt;/p&gt;
+
+&lt;p&gt;c.table.remove(myTable,postion)&lt;/p&gt;
+
+&lt;p&gt;B.table 数组和引用&lt;/p&gt;
+
+&lt;p&gt;myData = {}&lt;/p&gt;
+
+&lt;p&gt;a.pairs(myTable) 遍历table中的每一个值&lt;/p&gt;
+
+&lt;p&gt;5、I/0&lt;/p&gt;
+
+&lt;p&gt;A.生成一个Lua文件&lt;/p&gt;
+
+&lt;p&gt;myFile = io.open(“test.lua”,”w”)
+if myFile -= nil then
+    myFile:write(“–test lua file”)
+    myFile:write(string.char(10))
+    myFile:write(string.format(“%s”,os.date()))
+    myFile:close(myFile)
+end&lt;/p&gt;
+
+&lt;p&gt;6、lua与c++&lt;/p&gt;
+
+&lt;p&gt;A.LuaGlue c++函数接口
+#include &lt;string.h&gt;
+extern 'C'
+{
+    #include &lt;lua.h&gt;
+    #include &lt;lualib.h&gt;
+    #include &lt;lauxlib.h&gt;
+}&lt;/lauxlib.h&gt;&lt;/lualib.h&gt;&lt;/lua.h&gt;&lt;/string.h&gt;&lt;/p&gt;
+
+&lt;p&gt;extern ‘C’ int _Version(lua_State *L)
+{
+    puts(“This is version 1.0 of the CP”)
+    return 0;
+}&lt;/p&gt;
+
+&lt;p&gt;static luaL_reg ConsoleGlue[] =
+{
+    {“Version”, _Version},
+    {NULL,NULL}
+}
+B.创建lua运行环境&lt;/p&gt;
+
+&lt;p&gt;a.lua环境初始化&lt;/p&gt;
+
+&lt;p&gt;lua_State *pLuaState = lua_open()
+luaopen_base(pLuaState)
+lua_iolibopen(pLuaState)
+lua_strlibopen(pLuaState)
+lua_mathlibopen(pLuaState)
+lua_dblibopen(pLuaState)&lt;/p&gt;
+
+&lt;p&gt;C.添加LuaGlue函数,让c++函数可以被Lua调用
+for(int i=0;Console[i].name;i++)
+{
+    lua_register(pLuaState,ConsoleGlue[i].name,ConsoleGlue[i].func);
+}&lt;/p&gt;
+
+&lt;p&gt;D.cLua 对象&lt;/p&gt;
+
+&lt;p&gt;struct lua_State
+#define LuaGlue extern “C” int
+extern “C”
+{
+    typedef int (*LuaFunctionType)(struct lua_State *pLuaState);
+};
+class cLua
+{
+    public:
+        cLua();
+        virtual ~cLua();
+        bool RunScript(const char *pFilename);
+        bool RunScript(const char *pCommand);
+        bool AddFunction(const char *pFilename,LuaFunctionType pFunction);&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;private:
+    lua_State *m_pScriptContext;        
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;};&lt;/p&gt;
+
+&lt;p&gt;eg. 
+void main(void)
+{
+    cLua *pLua = new cLua;
+    pLua-&amp;gt;AddFunction(“Version”,_Version)&lt;/p&gt;
+
+&lt;p&gt;}&lt;/p&gt;
+
+&lt;p&gt;7、事件驱动编程&lt;/p&gt;
+
+&lt;p&gt;c++ LuaGlue函数：&lt;/p&gt;
+
+&lt;p&gt;#define EVENT_SAMPLE 1000
+std::string g_strEventHander=””;
+extern “C” int _RegisterEvent(lua_State *L)
+{
+    g_strEventHander = g_pLua-&amp;gt;GetStringArgument(1,””);
+}
+void FireEvent(int id)
+{
+    if(g_strEventHandle != “”)
+    {
+        char buf[254];
+        sprintf(buf,”%s(%d)”,g_strEventHandle,id);
+        lua_dostring(buf);
+    }
+}&lt;/p&gt;
+
+&lt;p&gt;lua代码：
+function EventHandler(id,…)
+{
+    if(id == EVENT_SAMPLE)
+        print(“Sample Event”)
+    end
+}
+EventHandler(EVENT_SAMPLE,100,”arg1”)&lt;/p&gt;
+
+&lt;hr /&gt;
+
+</description>
+        <pubDate>Sat, 16 Jul 2016 00:00:00 +0800</pubDate>
+        <link>zhongjiawu888.github.io/blog/2016/07/16/Lua-Basic-1.html</link>
+        <guid isPermaLink="true">zhongjiawu888.github.io/blog/2016/07/16/Lua-Basic-1.html</guid>
+        
+        <category>Lua</category>
+        
+      </item>
+    
+      <item>
+        <title>LabelAtlas标签的切割</title>
+        <description>&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;作者: MrZhong
+时间: 2016年5月22日
+版本: 0.0.1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;之前有带符合的数字切割功能代码一直写的纠结迷糊，不得其髓，今天正式遇到这两个问题卡了很久，算是搞了个清楚，方才了然。&lt;/p&gt;
+
+&lt;p&gt;一、带符合的数字切割&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/studyRes/18.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;ui::LabelAtlas* moneyLabel = LabelAtlas::create(“0”,w,h,’/’);&lt;/p&gt;
+
+&lt;p&gt;参数：w,h  每个图形字符的宽度宽高；
+参数4：&lt;strong&gt;&lt;em&gt;startCharMap 首字符，决定了他的切割原理：要从图像文件中获取的第一个字符（其他的字符都以它为起点，因此，这个首字符的确定非常重要，其前面的字符将不会显示，从startCharMap开始按照这个顺序往下排，一格对应一个，程序是从这个首字符后往下切割）&lt;/em&gt;&lt;/strong&gt;
+首字符实际上是对应ascii码表的。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/studyRes/19.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;所以 不管“.”号，还是任意字符’/’，‘X’等，实际上都是：
+moneyLabel = LabelAtlas::create(“10”,w,h,’/’);
+而不是 &lt;strong&gt;&lt;em&gt;moneyLabel = LabelAtlas::create(“0”,w,h,’.’);,&lt;/em&gt;&lt;/strong&gt;
+moneyLabel = LabelAtlas::create(“0”,w,h,’x’);等
+若要显示 12.34，是 moneyLabel = LabelAtlas::create(“12/34”,w,h,’/’);,
+而不是 moneyLabel = LabelAtlas::create(“12.34”,w,h,’.’)；;,
+moneyLabel = LabelAtlas::create(“12.34”,w,h,’/’)；
+如果图片是0123456789.&lt;/p&gt;
+
+&lt;p&gt;要显示12.34，正确代码为：
+ moneyLabel = LabelAtlas::create(“12：34”,w,h,’0’)；
+由ascll码值 知道 9的下一个符号是”：”0，所以要用”：;“才能获得到点”.”;,&lt;/p&gt;
+
+&lt;hr /&gt;
+
+</description>
+        <pubDate>Sun, 22 May 2016 00:00:00 +0800</pubDate>
+        <link>zhongjiawu888.github.io/blog/2016/05/22/cocostudio-labelAtlas.html</link>
+        <guid isPermaLink="true">zhongjiawu888.github.io/blog/2016/05/22/cocostudio-labelAtlas.html</guid>
+        
+        <category>Programming Life</category>
+        
+      </item>
+    
+  </channel>
+</rss>
