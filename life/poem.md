@@ -34,7 +34,7 @@ title: 钟式换行"诗"
 >>> - [<font color="#4590a3" size = "4px">斑马线</font>](/life/poem/ZebraCcrossing)
 >>> - [<font color="#4590a3" size = "4px">早安</font>](/life/poem/goodMorning)
 >>> - [<font color="#4590a3" size = "4px">阳光欺骗</font>](/life/poem/sunshine)
->>> - [<font color="#4590a3" size = "4px">魔法/font>](/life/poem/magic)
+>>> - [<font color="#4590a3" size = "4px">魔法</font>](/life/poem/magic)
 
 
 
