@@ -15,7 +15,7 @@ baseurl : ""
 blog:
     copyright_year: "2016"
     name: MrZhong's Blog # 博客名称
-    description: 生命不停流逝，当日日精进 # 博客描述
+    description: 不忘初心，逐梦前行 # 博客描述
     title: MrZhong's Blog # 网页标题
     url: zhongjiawu888.github.io # 博客地址
     duoshuo: zhongjiawu # 多说ID

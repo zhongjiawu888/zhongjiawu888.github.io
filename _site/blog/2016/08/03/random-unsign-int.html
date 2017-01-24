@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="description" content="MrZhong's Blog">
+  <meta name="author" content="zhongjiawu">
+  <meta name="keywords" content="心酸史之随机数和unsign int, MrZhong's Blog, 心酸史之随机数和unsign int - MrZhong's Blog">
+  <title>心酸史之随机数和unsign int - MrZhong's Blog</title>
+  <link rel="icon" href="/res/img/shortimg.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/res/img/shortimg.ico" type="image/x-icon">
+  <link rel="canonical" href="zhongjiawu888.github.io/blog/2016/08/03/random-unsign-int.html">
+  <link rel="stylesheet" href="/res/css/public.css">
+  <link rel="stylesheet" href="/res/css/life.css">
+  <link rel="stylesheet" href="/res/css/pygments.css">
+
+</head>
+<body>
+  <div class="main">
+    <div class="title">心酸史之随机数和unsign int</div>
+    <div class="post-info"><i class="fa fa-clock-o"></i>&nbsp;2016-08-03 转载请注明出处：<a href = "http://www.zhongjiawu.com">http://www.zhongjiawu.com</a> </div>
+    <div class="content">
+    <div class="highlighter-rouge"><pre class="highlight"><code>作者: MrZhong
+时间: 2016年8月3日
+版本: 0.0.1
+</code></pre>
+</div>
+
+<hr />
+
+<p>这两天写个if都不知如何敲起，if不下去，</p>
+
+<p>不是不在状态，而是我蒸滴脑袋卡壳了o(╯□╰)o</p>
+
+<p>有一个功能，类似要写一个这样的算法：
+在一个长度为n(6)的数组里随机选出 其m（4）个不相同的值，并且这些值不能为数组中的某个值(K)。
+例如：
+int arr[6]={1,2,3,4,5,6}，随机生成里面的4个值，生成的这4个值不能是K=3.</p>
+
+<p>刚开始也是正常的思路：
+首先随机出一个值randomNum1，放入到vector中，循环比较vector中的值是否等于arr[i]并且不等于K，如果是，则重新随机，如果不是，则放入到vector中，直到vector的size为4跳出循环。</p>
+
+<p>按照这种思路，用whlie 或for，里面的逻辑不管怎么改，怎么改，发现虽然循环的长度不是很大，才6，但是每次好久才能得到随出最后的值，效率很低。</p>
+
+<p>纠结了好久，发现使用标准库random_shuffle的随机打乱排序，就选其前4个值作为随机的4个值，然后将A与这4个值比较，如果相等，则将第5个值（当然可以是第四个后的任意一个）直接替换它，就得到了最终要的4个值。效率非常快。以下代码：</p>
+
+<p>```sh
+    std::vector<int> vArr;
+    for (int i = 0;i&lt;6;i++)
+    {
+        vArr.push_back(i);
+    }
+    random_shuffle(vArr.begin(), vArr.end());</int></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>int awrdIdx = 3;//即K
+for(int i = 0;i&lt;4;i++)
+{
+    if (vArr[i] == awrdIdx)
+    {
+        vArr[i] = vArr[5];
+    }
+    CCLog("%d",vArr[i]);
+}
+</code></pre>
+</div>
+
+<p>```
+  例外个很坑问题搞了我2个小时。之前无符号和有符号整形一直不太注意，被忽视，今天终于尝尽苦头。结算积分的时候有正负，我把3个变量直接相加的表达式作为一个函数参数，3个变量中有unsign int 和 int，结果纳闷算出来的值18446744，一直想想想不知道错在哪了。真的是百爪挠心。日了狗了。以下是修正后的代码截图，算是留个原罪吧。
+<img src="/images/studyRes/3.jpg" alt="" /></p>
+
+<hr />
+
+
+    </div>
+    <style>#ds-reset .ds-avatar img{border-radius:50%;}</style>
+<div class="comments">
+  <div class="ds-thread" data-title="心酸史之随机数和unsign int" data-thread-key="/blog/2016/08/03/random-unsign-int" data-url="zhongjiawu888.github.io/blog/2016/08/03/random-unsign-int.html"></div>
+  <script type="text/javascript">var duoshuoQuery = {short_name:"zhongjiawu"};(function(){var ds = document.createElement('script');ds.type = 'text/javascript';ds.async = true;ds.src = '/res/js/embed.js';ds.charset = 'UTF-8';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);})();</script>
+
+  <script src="/statics/js/tongji.js" defer></script>
+</div>
+
+  </div>
+  <div id="top"><a id="rocket" href="javascript:;" title="返回顶部"><i></i></a></div>
+  <script src="/res/js/light.js"></script>
+  
+</body>
+</html>

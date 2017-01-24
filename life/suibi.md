@@ -9,11 +9,10 @@ title: 随笔
 
 -----------
 
-> **某年某月的某一天**
-
 > **时间缓缓飘落在**
 
-> **文字的河里**
+> **某年某月的某一天**
+
 
 
 <div class='lifelog'>
@@ -76,7 +75,7 @@ title: 随笔
 		  <td style="text-align: center"><code class="highlighter-rouge">万馨</code></td>			  
 		</tr>
 		<tr>
-		  <td style="text-align: center"><a href="/life/essay/2016-09-18.html">听话</a></td>	  
+		  <td style="text-align: center"><a href="/life/essay/2016-09-18-wrong.html">听话</a></td>	  
 		  <td style="text-align: center"><code class="highlighter-rouge">2016-09-18 23:46</code></td>
 		  <td style="text-align: center"><code class="highlighter-rouge">万馨</code></td>			  
 		</tr>
@@ -97,7 +96,11 @@ title: 随笔
 		  <td style="text-align: center"><code class="highlighter-rouge">公司</code></td>			  
 		</tr>		
 
-
+		<tr>
+		  <td style="text-align: center"><a href="/life/essay/2016-09-12.html">说话</a></td>	  
+		  <td style="text-align: center"><code class="highlighter-rouge">2016-09-12</code></td>
+		  <td style="text-align: center"><code class="highlighter-rouge">草堂</code></td>			  
+		</tr>	
 
 
 

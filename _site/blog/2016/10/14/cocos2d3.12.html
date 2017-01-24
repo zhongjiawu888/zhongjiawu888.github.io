@@ -1,0 +1,209 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="description" content="MrZhong's Blog">
+  <meta name="author" content="zhongjiawu">
+  <meta name="keywords" content="Cocos2d-x 3.12环境搭建整理, MrZhong's Blog, Cocos2d-x 3.12环境搭建整理 - MrZhong's Blog">
+  <title>Cocos2d-x 3.12环境搭建整理 - MrZhong's Blog</title>
+  <link rel="icon" href="/res/img/shortimg.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/res/img/shortimg.ico" type="image/x-icon">
+  <link rel="canonical" href="zhongjiawu888.github.io/blog/2016/10/14/cocos2d3.12.html">
+  <link rel="stylesheet" href="/res/css/public.css">
+  <link rel="stylesheet" href="/res/css/life.css">
+  <link rel="stylesheet" href="/res/css/pygments.css">
+
+</head>
+<body>
+  <div class="main">
+    <div class="title">Cocos2d-x 3.12环境搭建整理</div>
+    <div class="post-info"><i class="fa fa-clock-o"></i>&nbsp;2016-10-14 转载请注明出处：<a href = "http://www.zhongjiawu.com">http://www.zhongjiawu.com</a> </div>
+    <div class="content">
+    <div class="highlighter-rouge"><pre class="highlight"><code>作者: MrZhong
+时间: 2016年10月14日
+版本: 0.0.1
+</code></pre>
+</div>
+
+<hr />
+
+<h1 id="cocos2d-x-312-pc">一、Cocos2d-x 3.12 PC环境搭建和创建工程</h1>
+
+<p>下载Cocos2d-x引擎后，运行build 中 .sln工程</p>
+
+<h1 id="cocos2d-x-312-android">一、Cocos2d-x 3.12 Android环境搭建和创建工程</h1>
+
+<p>需要配置下面四个环境变量：</p>
+
+<ul>
+  <li>•COCOS_CONSOLE_ROOT: 
+cocos控制台路径，用于新建、构建和发行工程。</li>
+  <li>•NDK_ROOT:NDK根目录</li>
+  <li>•ANDROID_SDK_ROOT:  SDK根目录</li>
+  <li>•ANT_ROOT:  注意path里面也要加</li>
+</ul>
+
+<p>这些变量可以通过引擎根目录的setup.py来配置，打开引擎根目录，运行setup.py，一步步输入下面路径：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    -&gt;COCOS_CONSOLE_ROOT : 
+    F:\Cocos2d-x\tools\cocos2d-console\bin
+     -&gt;NDK_ROOT : F:\Android\android-ndk-r9b
+     -&gt;ANDROID_SDK_ROOT :  F:\Android\sdk
+     -&gt;ANT_ROOT :  F:\Android\ant\bin
+</code></pre>
+</div>
+
+<p>配置好之后就可以在环境变量看到添加了这些NDK_ROOT等路径</p>
+
+<p>使用cocos2d-console这个工具来创建和构建工程，这个工具提供了下面几个功能：</p>
+
+<ul>
+  <li>•new 创建一个新的工程</li>
+  <li>•compile 编译当前工程，生成二进制文件</li>
+  <li>•deploy 发布程序到一个平台</li>
+  <li>•run 编译和发布，和运行程序</li>
+</ul>
+
+<p>打开cmd，输入cocos new 项目名 -p 包名 -l cpp -d 存放路径</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>cocos new test -p com.odao.test -l cpp -d F:\work
+</code></pre>
+</div>
+
+<p>这里为了方便，将创建工程的命令写成一个批处理文件：</p>
+
+<p>下载Python</p>
+
+<p>安装python，我的安装路径是：C:\Program Files (x86)\Python27
+配置python环境变量</p>
+
+<p>在path环境变量中添加安装路径C:\Program Files (x86)\Python27</p>
+
+<p>单击“开始”—&gt;“运行”—&gt;输入：cmd命令，在CMD窗口中输入：python 
+   出现如下界面，就表示安装成功：</p>
+
+<p>新建一个txt文本，打开，拷贝下面的代码到文本中</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    01.@echo off  
+    02.set /p projectName=please input project name:  
+    03.set /p packageName=please input package name:  
+    04.@echo cocos new %projectName% -p %packageName% -l cpp -d F:\Cocos2d-x\project  
+    05.cocos new %projectName% -p %packageName% -l cpp -d F:\Cocos2d-x\project  
+    06.@echo Create Success!!!  
+    07.pause  
+</code></pre>
+</div>
+
+<p>保存并重命名为create_project.bat，放到引擎根目录F:\Cocos2d-x中，以后要创建工程了，直接打开，输入项目名和包名即可，项目存放路径我默认的是F:\Cocos2d-x\project，你可以自己修改</p>
+
+<p>先给自己科普一下, Android sdk 是给Java开发者用的,  咱C++开发者用的是android ndk, 所以就是使用ndk来编译cocos2dx程序了</p>
+
+<p>使用命令行创建一个项目, 我这里创建的是一个lua项目:cocos new lua_proj2 -p com.company_name.program_name -l lua -d d:\xxx\xxx
+ 此时创建了一个DEMO程序, 此时就可以使用cocos命令生成一个apk包, 进入到目录lua_proj2\frameworks\runtime-src下面,  在此目录下面执行命令</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    cocos compile -p android 
+</code></pre>
+</div>
+
+<p>就会生成一个apk包, 把这个拖到genymotion上面, 就安装跑起来了. 
+ 上面说的是不使用eclipse的方式来生成一个apk包,  下面记录一下在eclipse中加载lua_proj2这个项目, 并生成apk包的过程.   为什么一定要将cocos2dx项目导入到eclipse中来生成apk包呢, 因为在eclipse中可以连接AVD来调试android程序,  再者, eclipse可以运行在Linux环境下面, 后面我打算在linux进行开发, 所以这一步是一定要跨出去的</p>
+
+<p>导入一个新的android工程后，创建一个新的builder，在Properties
+创建一个新的builder</p>
+
+<p>第一个红框是builder名称, 随便填写, 第二个红框框是NDK生成工具, 即, 使用此工具来编译C++项目, 第三个红框框是工作目录, 此处我使用lua_proj2项目目录作为工作目录, 切换到Environment选项卡, 新建一个在此生成器中使用的环境变量NDK_MODULE_PATH, 值是……\lua_proj2\frameworks\cocos2d-x\cocos;……\lua_proj2\frameworks\cocos2d-x;……\lua_proj2\frameworks\cocos2d-x\external,  前面的…….是绝对目录的省略, 这里要输入绝对路径名称,  在此我就不写绝对路径了.一路OK下去</p>
+
+<p>这个就新建立的builder, Project-&gt;Build Project</p>
+
+<p>出现大量的error: ‘override’ does not name a type错误, 这是由于NDK的版本太低了,  override是C++11中才有的关键字, 而到NDKr10才支持C++11, 所以要使用NDKr10</p>
+
+<p>我很想使用clang来编译, 但是现阶段我还不会配置, 就用GCC吧, x86-4.6  &amp; x86-4.8两个版本的GCC, 4.8的支持C++11</p>
+
+<p>在Application.mk中添加一句NDK_TOOLCHAIN_VERSION = 4.8 就是指定使用GCC4.8来编译cocos2dx项目, 跑起来了, 下面是eclipse跑起来的console输出</p>
+
+<p>跟命令行下执行</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    cocos compile -p android 
+</code></pre>
+</div>
+
+<p>跑出来的是一样的,  都是在编译程序.</p>
+
+<p>下面进入到在eclipse下面调试程序</p>
+
+<p>在cmd命令方式下输入：ant -version</p>
+
+<p>出现问题：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  1）Unable to locate tools.jar. Expected to find it in C:\Program Files\Java\jre6\lib
+</code></pre>
+</div>
+
+<p>命令行敲ant命令后提示：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code> “Unable to locate tools.jar. Expected to find it in C:\Program Files\Java\jre6\lib”；
+</code></pre>
+</div>
+
+<p>ANT_HOME环境变量已经配置；</p>
+
+<p>解决途径：将“C:\Program Files\Java\jdk1.6.0_16\lib”目录下的tools.jar文件拷贝到“C:\Program Files\Java\jre6\lib”目录下，重新运行命令ant，运行正常，问题解决。</p>
+
+<p>2）在cmd命令中：输入ant，如果输出：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    Buildfile:build.xml does not exist!
+ 
+    Build failed
+</code></pre>
+</div>
+
+<p>说明ant安装成功。</p>
+
+<p>PS：tools.jar 在jdk下的lib中。先说一下jdk和jre的区别：Jre是运行环境，及编译后的java程序运行时只需要jre就行了；jdk是开发环境，当你开发java程序时需要用jdk。Jdk包括了jre，及 java程序运行有jre或jdk都可以，但jdk包括了在开发过程中需要的工具。如果只是运行java程序，只要jre就行了，因为jre要比jdk省空间。 我在配置java环境时一般都将D:\jdk6\bin目录直接加入环境变量就可以了，这对java编译环境已经可以满足要求。但ant需要tools.jar最好是配置环境变量时：</p>
+
+<p>JAVA_HOME =C:\Program Files\Java\jdk1.6.0_10 classpath =.;%JAVA_HOME%\lib;%JAVA_HOME%\lib\tools.jar</p>
+
+<p>这样在运行ant编译程序时就不会出问题。</p>
+
+<h1 id="cocos2d-x">cocos2d-x环境</h1>
+
+<p>ANDROID_SDK_ROOT
+D:\soft\adt-bundle-windows-x86_64-20140702\adt-bundle-windows-x86_64-20140702\sdk</p>
+
+<p>ANT_ROOT
+D:\soft\apache-ant-1.9.6-bin\apache-ant-1.9.6\bin</p>
+
+<p>COCOS_CONSOLE_ROOT
+F:\proeject\cocos2d-x-3.12\cocos2d-x-3.12\tools\cocos2d-console\bin</p>
+
+<p>COCOS_TEMPLATES_ROOT
+F:\proeject\cocos2d-x-3.12\cocos2d-x-3.12\templates</p>
+
+<p>COCOS_X_ROOT
+F:\proeject\cocos2d-x-3.12\cocos2d-x-3.12</p>
+
+<p>COCOS2DX_ROOT
+F:\proeject\cocos2d-x-2.2.6\cocos2d-x-2.2.6\cocos2dx</p>
+
+<p>NDK_ROOT
+D:\soft\android-ndk-r10c</p>
+
+<hr />
+
+
+    </div>
+    <style>#ds-reset .ds-avatar img{border-radius:50%;}</style>
+<div class="comments">
+  <div class="ds-thread" data-title="Cocos2d-x 3.12环境搭建整理" data-thread-key="/blog/2016/10/14/cocos2d3.12" data-url="zhongjiawu888.github.io/blog/2016/10/14/cocos2d3.12.html"></div>
+  <script type="text/javascript">var duoshuoQuery = {short_name:"zhongjiawu"};(function(){var ds = document.createElement('script');ds.type = 'text/javascript';ds.async = true;ds.src = '/res/js/embed.js';ds.charset = 'UTF-8';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);})();</script>
+
+  <script src="/statics/js/tongji.js" defer></script>
+</div>
+
+  </div>
+  <div id="top"><a id="rocket" href="javascript:;" title="返回顶部"><i></i></a></div>
+  <script src="/res/js/light.js"></script>
+  
+</body>
+</html>

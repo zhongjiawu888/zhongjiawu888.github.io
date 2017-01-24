@@ -1,0 +1,1566 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>RSS - MrZhong's Blog</title>
+    <description>MrZhong's Blog - 生命不停流逝，当日日精进</description>
+    <link>zhongjiawu888.github.io</link>
+    <atom:link href="zhongjiawu888.github.io/page/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Tue, 24 Jan 2017 19:09:23 +0800</pubDate>
+    <lastBuildDate>Tue, 24 Jan 2017 19:09:23 +0800</lastBuildDate>
+    <generator>zhongjiawu</generator>
+    
+      <item>
+        <title>卒</title>
+        <description>&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;作者: MrZhong
+时间: 2088年10月1日
+版本: 0.0.1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Good-bye&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/lifeRes/2.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+</description>
+        <pubDate>Fri, 01 Oct 2088 00:00:00 +0800</pubDate>
+        <link>zhongjiawu888.github.io/blog/2088/10/01/dead.html</link>
+        <guid isPermaLink="true">zhongjiawu888.github.io/blog/2088/10/01/dead.html</guid>
+        
+        <category>Programming Life</category>
+        
+      </item>
+    
+      <item>
+        <title>git 命令</title>
+        <description>&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;作者: MrZhong
+时间: 2017-01-24
+版本: 0.0.1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+&lt;h1 id=&quot;section&quot;&gt;一、克隆仓库&lt;/h1&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	$ git clone https://github.com/zhongjiawu888/zhongjiawu888.github.io.git
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;git-&quot;&gt;二、 git 批量删除文件夹和文件&lt;/h1&gt;
+
+&lt;p&gt;硬盘删除文件后，执行&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	$ git status
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;会提示你仍然需要&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	$ git rm &amp;lt;文件&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;此时如果是要删除大批量文件，这么一个一个命令下去不得累死人啊&lt;/p&gt;
+
+&lt;p&gt;其实可以这样（不管之前有没有已经本地物理删除）&lt;/p&gt;
+
+&lt;p&gt;执行&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; 	$ git rm * -r
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;（记得，cd 到你要删除的目录下。当然 * 可以换成指定目录）&lt;/p&gt;
+
+&lt;p&gt;这时删除文件已经进入本地缓存区，&lt;/p&gt;
+
+&lt;p&gt;接下来就是正常的提交操作了&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	$ git add . 
+	$ git commit -m &quot;clear&quot;
+	$ git push origin master
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+</description>
+        <pubDate>Tue, 24 Jan 2017 00:00:00 +0800</pubDate>
+        <link>zhongjiawu888.github.io/blog/2017/01/24/git-cmd.html</link>
+        <guid isPermaLink="true">zhongjiawu888.github.io/blog/2017/01/24/git-cmd.html</guid>
+        
+        <category>Other</category>
+        
+      </item>
+    
+      <item>
+        <title>android ios内嵌网页</title>
+        <description>&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;作者: MrZhong
+时间: 2016年12月13日
+版本: 0.0.1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;源码整理&lt;/p&gt;
+
+&lt;p&gt;一、创建一个cocos界面&lt;/p&gt;
+
+&lt;p&gt;//————–  ActivityLayer.h  ———————-&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class ActivityLayer:public Layer
+{
+public:
+    ActivityLayer();
+    virtual ~ActivityLayer();
+    static ActivityLayer *create();
+
+
+private:
+    virtual bool init();
+
+    virtual void onEnter();
+    virtual void onExit();
+
+    void handleCloseEvent(Ref* pSender);
+    CCRect changeRectToPhone(const CCRect &amp;amp;rt);
+
+private:
+    //活动内嵌网页
+    ODUIWebView *m_pActivityWebView;
+
+};
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;//————–  ActivityLayer.cpp ———————-&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ActivityLayer::ActivityLayer()
+{
+}
+
+ActivityLayer::~ActivityLayer()
+{
+}
+
+ 
+
+bool ActivityLayer::init()
+{
+
+    auto keyboardListener = EventListenerKeyboard::create();
+    keyboardListener-&amp;gt;onKeyReleased = CC_CALLBACK_2(ActivityLayer::onKeyReleased, this);
+    _eventDispatcher-&amp;gt;addEventListenerWithSceneGraphPriority(keyboardListener, this);
+
+    //标题
+    auto rootNode = CSLoader::createNode(&quot;ActivityLayer.csb&quot;);
+    addChild(rootNode);
+
+    auto webPanel = static_cast&amp;lt;Layout*&amp;gt;(rootNode-&amp;gt;getChildByName(&quot;PanelWeb&quot;));
+    auto m_pBtnClose = static_cast&amp;lt;Button*&amp;gt;(rootNode-&amp;gt;getChildByName(&quot;ButtonBack&quot;));
+    m_pBtnClose-&amp;gt;addClickEventListener(CC_CALLBACK_1(ActivityLayer::handleCloseEvent, this));
+
+
+    m_pActivityWebView = new ODUIWebView();
+    CCRect rtWeb = CCRect(webPanel-&amp;gt;getPosition(), webPanel-&amp;gt;getContentSize());
+    rtWeb = changeRectToPhone(rtWeb);
+    m_pActivityWebView-&amp;gt;ShowWebView(&quot;www.baidui.com&quot;
+        , rtWeb.origin.x, rtWeb.origin.y, rtWeb.size.width, rtWeb.size.height);
+
+
+    return true;
+}
+
+void ActivityLayer::handleCloseEvent(Ref* pSender)
+{
+    m_pActivityWebView-&amp;gt;RemoveWebView();
+    delete m_pActivityWebView;
+    m_pActivityWebView = NULL;
+
+}
+
+CCRect ActivityLayer::changeRectToPhone(const CCRect &amp;amp;rt)
+{
+    CCSize winSize = CCDirector::sharedDirector()-&amp;gt;getWinSize();
+    float xScale = CCDirector::sharedDirector()-&amp;gt;getOpenGLView()-&amp;gt;getScaleX();
+    float yScale = CCDirector::sharedDirector()-&amp;gt;getOpenGLView()-&amp;gt;getScaleY();
+
+    return CCRect(rt.origin.x*xScale, (winSize.height - (rt.origin.y + rt.size.height))*yScale, rt.size.width*xScale, rt.size.height*yScale);
+}
+
+void ActivityLayer::onEnter()
+{
+    Layer::onEnter();
+}
+
+void ActivityLayer::onExit()
+{
+    if (m_pActivityWebView)
+    {
+        m_pActivityWebView-&amp;gt;RemoveWebView();
+        delete m_pActivityWebView;
+        m_pActivityWebView = NULL;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;二、平台封装&lt;/p&gt;
+
+&lt;p&gt;//————–  ODUIWebView.h ———————-&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#pragma once
+
+#include &quot;cocos2d.h&quot;
+
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    #include &quot;../Platform/WebViewClass.h&quot;
+#endif
+
+USING_NS_CC;
+
+class ODUIWebView
+{
+public:
+    ODUIWebView();
+
+    virtual ~ODUIWebView();
+
+    void ShowWebView(const char* pcUrl, float x, float y, float f32Width, float f32Height, int nLoadCache = 0);
+
+    void UpdateUrl(const char* pcUrl, int nLoadCache = 0, const char* orPcUrl = NULL);
+
+    void RemoveWebView(const char* orPcUrl = NULL);
+
+    bool IsShowWebView();
+
+private:
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    CWebView* m_pkIosWebView;
+#endif
+    bool m_bIsShowWeb;
+};
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;//————–  ODUIWebView.cpp ———————-&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#include &quot;ODUIWebView.h&quot;
+#define ANDROID_PACKAGE_NAME &quot;com/odao/fish/AdaoFish&quot;
+
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+#include &quot;platform\android\jni\JniHelper.h&quot;
+#include &amp;lt;jni.h&amp;gt;
+#endif
+
+ODUIWebView::ODUIWebView() : m_bIsShowWeb(false)
+{
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    m_pkIosWebView = nullptr;
+    if (!m_pkIosWebView) {
+        m_pkIosWebView = new CWebView;
+    }
+#endif
+}
+
+ODUIWebView::~ODUIWebView()
+{
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    if (m_pkIosWebView) {
+        delete m_pkIosWebView;
+        m_pkIosWebView = nullptr;
+    }
+#endif
+}
+
+void ODUIWebView::ShowWebView( const char* pcUrl, float x, float y, float f32Width, float f32Height, int nLoadCache)
+{
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+
+    JniMethodInfo t;
+    jobject activityObj;
+
+    if (JniHelper::getStaticMethodInfo(t, ANDROID_PACKAGE_NAME, &quot;GetJavaActivity&quot;, &quot;()Ljava/lang/Object;&quot;))
+    {
+        activityObj = t.env-&amp;gt;CallStaticObjectMethod(t.classID, t.methodID);
+    }
+
+    if (JniHelper::getMethodInfo(t, ANDROID_PACKAGE_NAME, &quot;DisplayWebView&quot;, &quot;(IIIIIJLjava/lang/String;)V&quot;))
+    {
+        int jX = (int)x;
+        jint jY = (int)y;
+        jint jWidth = (int)f32Width;
+        jint jHeight = (int)f32Height;
+        jint jLoadCache = nLoadCache;
+        jlong jaddress = (unsigned long)this;
+
+        jstring jmsg2 = t.env-&amp;gt;NewStringUTF(pcUrl);
+
+        t.env-&amp;gt;CallVoidMethod(activityObj, t.methodID, jX, jY, jWidth, jHeight, jLoadCache, jaddress, jmsg2);
+    }
+
+    if (JniHelper::getMethodInfo(t, ANDROID_PACKAGE_NAME, &quot;UpdateURL&quot;, &quot;(Ljava/lang/String;IJLjava/lang/String;)V&quot;))
+    {
+        jstring jmsg = t.env-&amp;gt;NewStringUTF(pcUrl);
+        jint jLoadCache = nLoadCache;
+        jlong jaddress2 = (unsigned long)this;
+        t.env-&amp;gt;CallVoidMethod(activityObj, t.methodID, jmsg, nLoadCache, jaddress2, jmsg);
+    }
+#endif
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) 
+
+#endif
+
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    float winX = Director::getInstance()-&amp;gt;getWinSize().width;
+    float winY = Director::getInstance()-&amp;gt;getWinSize().height;
+
+    if ((winX == 960 &amp;amp;&amp;amp; winY == 640) ||
+        (winX == 1136 &amp;amp;&amp;amp; winY == 640) ||
+        (winX == 2048 &amp;amp;&amp;amp; winY == 1536))
+    {
+        x /= 2.0f;
+        y /= 2.0f;
+        f32Width /= 2.0f;
+        f32Height /= 2.0f;
+    }
+    m_pkIosWebView-&amp;gt;ShowWebView(pcUrl, x, y, f32Width, f32Height);
+#endif
+    m_bIsShowWeb = true;
+}
+
+void ODUIWebView::UpdateUrl( const char* pcUrl, int nLoadCache, const char* orPcUrl)
+{
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+    JniMethodInfo t;
+    jobject activityObj;
+
+    if (JniHelper::getStaticMethodInfo(t, ANDROID_PACKAGE_NAME, &quot;GetJavaActivity&quot;, &quot;()Ljava/lang/Object;&quot;))
+    {
+        activityObj = t.env-&amp;gt;CallStaticObjectMethod(t.classID, t.methodID);
+    }
+
+    if (JniHelper::getMethodInfo(t, ANDROID_PACKAGE_NAME, &quot;UpdateURL&quot;, &quot;(Ljava/lang/String;IJLjava/lang/String;)V&quot;))
+    {
+        jstring jmsg = t.env-&amp;gt;NewStringUTF(pcUrl);
+        jint jLoadCache = nLoadCache;
+        jstring jmsg2 = t.env-&amp;gt;NewStringUTF(orPcUrl);
+        jlong jaddress = (unsigned long)this;
+        t.env-&amp;gt;CallVoidMethod(activityObj, t.methodID, jmsg, nLoadCache, jaddress, jmsg2);
+    }
+#endif
+
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    m_pkIosWebView-&amp;gt;UpdateUrl(pcUrl);
+#endif
+}
+
+void ODUIWebView::RemoveWebView(const char* orPcUrl)
+{
+    if (m_bIsShowWeb)
+    {
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+        JniMethodInfo t;
+        jobject activityObj;
+
+        if (JniHelper::getStaticMethodInfo(t, ANDROID_PACKAGE_NAME, &quot;GetJavaActivity&quot;, &quot;()Ljava/lang/Object;&quot;))
+        {
+            activityObj = t.env-&amp;gt;CallStaticObjectMethod(t.classID, t.methodID);
+        }
+
+        if (JniHelper::getMethodInfo(t, ANDROID_PACKAGE_NAME, &quot;RemoveWebView&quot;, &quot;(JLjava/lang/String;)V&quot;))
+        {
+            jstring jmsg = t.env-&amp;gt;NewStringUTF(orPcUrl);
+            jlong jaddress = (unsigned long)this;
+            t.env-&amp;gt;CallVoidMethod(activityObj, t.methodID, jaddress, jmsg);
+        }
+#endif
+
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+        m_pkIosWebView-&amp;gt;RemoveWebView();
+#endif
+        m_bIsShowWeb = false;
+    }
+}
+
+bool ODUIWebView::IsShowWebView()
+{
+    return m_bIsShowWeb;
+}   
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;三、Android实现&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public static Activity m_pkActInstance;
+private LinearLayout m_kWebLayout = null;
+private WebView m_kWebView = null;
+private Map&amp;lt;Long, Map&amp;lt;String, WebView&amp;gt; &amp;gt; m_kWebViewMap;
+private Map&amp;lt;Long, Map&amp;lt;String, LinearLayout&amp;gt; &amp;gt; m_kWebLayoutMap;
+
+
+onCreate方法：
+m_pkActInstance = this;
+m_kWebViewMap = new HashMap&amp;lt;Long, Map&amp;lt;String,WebView&amp;gt; &amp;gt;();
+m_kWebLayoutMap  = new HashMap&amp;lt;Long, Map&amp;lt;String, LinearLayout&amp;gt; &amp;gt;();
+
+public static Object GetJavaActivity() {
+    Log.d(&quot;What&quot;, &quot;GetJavaActivity&quot;);
+    return m_pkActInstance;
+}
+
+public void DisplayWebView(final int x, final int y, final int width, final int height, final int nLoadCache, final long address, final String url) {
+    
+    this.runOnUiThread(new Runnable() {
+        public void run() {
+            
+            //Map&amp;lt;Integer, Map&amp;lt;String, WebView&amp;gt; &amp;gt;
+            Map&amp;lt;String, WebView&amp;gt; valueMap = m_kWebViewMap.get(address);
+            Map&amp;lt;String, LinearLayout&amp;gt; valueLayoutMap = m_kWebLayoutMap.get(address);
+            
+            if(null == valueLayoutMap) {
+                m_kWebLayout = new LinearLayout(m_pkActInstance);
+                m_pkActInstance.addContentView(m_kWebLayout, new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.FILL_PARENT));
+                valueLayoutMap = new HashMap&amp;lt;String, LinearLayout&amp;gt;();
+                valueLayoutMap.put(url, m_kWebLayout);
+                m_kWebLayoutMap.put(address, valueLayoutMap);
+            }
+            else {
+                LinearLayout weblayout = valueLayoutMap.get(url);
+                
+                if(null == weblayout) {
+                    m_kWebLayout = new LinearLayout(m_pkActInstance);
+                    m_pkActInstance.addContentView(m_kWebLayout, new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.FILL_PARENT));
+                    valueLayoutMap.put(url, m_kWebLayout);
+                }
+                else {
+                    m_kWebLayout = weblayout;
+                }
+            }
+            
+        
+            if(null == valueMap) {
+                m_kWebView = new WebView(m_pkActInstance);
+                m_kWebLayout.addView(m_kWebView);
+                
+                valueMap = new HashMap&amp;lt;String, WebView&amp;gt;();
+                valueMap.put(url, m_kWebView);
+                
+                m_kWebViewMap.put(address, valueMap);
+            }
+            else {
+                WebView webView = valueMap.get(url);
+                
+                if(null == webView) {
+                    m_kWebView = new WebView(m_pkActInstance);
+                    valueMap.put(url, m_kWebView);
+                    m_kWebLayout.addView(m_kWebView);
+                }
+                else {
+                    m_kWebView = webView;
+                }
+            }
+            
+            Log.d(&quot;DisplayWebView-----&quot;, url);
+            
+            LinearLayout.LayoutParams linearParams = (LinearLayout.LayoutParams) m_kWebView.getLayoutParams();
+            linearParams.leftMargin = x;
+            linearParams.topMargin = y;
+            linearParams.width = width;
+            linearParams.height = height;
+            
+            m_kWebView.setBackgroundColor(0);
+        
+            int screenDensity = getResources().getDisplayMetrics().densityDpi ;   
+            WebSettings.ZoomDensity zoomDensity = WebSettings.ZoomDensity.FAR ;   
+            switch (screenDensity){   
+            case DisplayMetrics.DENSITY_LOW :  
+                zoomDensity = WebSettings.ZoomDensity.CLOSE;  
+                break;  
+            case DisplayMetrics.DENSITY_MEDIUM:  
+                zoomDensity = WebSettings.ZoomDensity.MEDIUM;  
+                break;  
+            case DisplayMetrics.DENSITY_HIGH:  
+                zoomDensity = WebSettings.ZoomDensity.FAR;  
+                break ;  
+            default:
+                 zoomDensity = WebSettings.ZoomDensity.FAR;  
+                break ;  
+            }  
+            //m_kWebView.getSettings().setDefaultZoom( WebSettings.ZoomDensity.MEDIUM);  
+            m_kWebView.getSettings().setDefaultZoom( zoomDensity); 
+            
+            m_kWebView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+            m_kWebView.getSettings().setAppCacheEnabled(false);
+            m_kWebView.getSettings().setUseWideViewPort(true); 
+            m_kWebView.getSettings().setLoadWithOverviewMode(true);
+            m_kWebView.getSettings().setJavaScriptEnabled(true);
+            m_kWebView.getSettings().setLayoutAlgorithm(LayoutAlgorithm.NORMAL); 
+            
+            m_kWebView.setLayoutParams(linearParams);
+            
+            m_kWebView.setBackgroundColor(0); // 设置背景色  
+            Drawable a = m_kWebView.getBackground();
+            
+            if(a != null) {
+                a.setAlpha(0); // 设置填充透明度 范围：0-255
+            }
+            else {
+                Log.d(&quot;What&quot;, &quot;null null null null null!&quot;);
+            }
+            m_kWebView.setWebViewClient(new WebViewClient(){
+                @Override
+                public boolean shouldOverrideUrlLoading(WebView view, String url)
+                {
+                    Log.d(&quot;What&quot;, &quot;url: &quot;+url);
+                    return false;  
+                }
+                
+            });
+        }
+    });
+}
+
+public void UpdateURL(final String url, final int nLoadCache, final long address, final String orUrl) {
+    this.runOnUiThread(new Runnable() {
+        public void run() {
+            if(null != orUrl &amp;amp;&amp;amp; !orUrl.isEmpty()) {
+                Map&amp;lt;String, WebView&amp;gt; valueMap = m_kWebViewMap.get(address);
+                
+                if(null != valueMap) {
+                    WebView webView = valueMap.get(orUrl);
+                    if(null != webView) {
+                        m_kWebView = webView;
+                        m_kWebView.loadUrl(url);
+                    }
+                }
+            }
+            else
+            {
+                m_kWebView.loadUrl(url);
+            }
+        }
+    });
+}
+
+public void RemoveWebView() {
+    this.runOnUiThread(new Runnable() {
+        public void run() {
+            if (m_kWebView != null)
+            {
+                for(Object a : m_kWebLayoutMap.keySet()){  
+                    for(Object b : m_kWebLayoutMap.get(a).keySet()) {
+                        m_kWebLayout = m_kWebLayoutMap.get(a).get(b);
+                        for(Object o : m_kWebViewMap.keySet()){  
+                            for(Object u : m_kWebViewMap.get(o).keySet()) {
+                                m_kWebLayout.removeView(m_kWebViewMap.get(o).get(u));  
+                                m_kWebViewMap.get(o).get(u).destroy();
+                                if(m_kWebViewMap.get(o).get(u) == m_kWebView) {
+                                    m_kWebView = null;
+                                }
+                            }  
+                        }
+                    }
+                }
+                
+                m_kWebViewMap.clear();
+                
+                if (m_kWebView != null)
+                {
+                    for(Object a : m_kWebLayoutMap.keySet()){  
+                        for(Object b : m_kWebLayoutMap.get(a).keySet()) {
+                            m_kWebLayout = m_kWebLayoutMap.get(a).get(b);
+                            m_kWebLayout.removeView(m_kWebView);
+                            m_kWebView.destroy();
+                            m_kWebView = null;
+                        }
+                    }
+                }
+                
+                getGLSurfaceView().requestFocus();
+            }
+        }
+    });
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;四、IOS实现&lt;/p&gt;
+
+&lt;p&gt;//============ ODUIWebView_IOS.h ==================&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#pragma once
+&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;#import &amp;lt;Foundation/Foundation.h&amp;gt;
+&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;@interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ODUIWebView_IOS&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;NSObject&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UIWebViewDelegate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;UIWebView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m_webview&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ShowWebView_x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;widht&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;UpdateURL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;RemoveWebView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;@end&lt;/span&gt;   
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;//============ ODUIWebView_IOS.mm ==================&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#import &quot;ODUIWebView_IOS.h&quot;
+#include &quot;cocos2d.h&quot;
+#import &quot;platform/ios/CCEAGLView-ios.h&quot;
+&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;@implementation&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ODUIWebView_IOS&lt;/span&gt;
+
+
+&lt;span class=&quot;k&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;ShowWebView_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;widht&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;height&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m_webview&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;m_webview&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UIWebView&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;alloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;initWithFrame&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CGRectMake&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;widht&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)];&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m_webview&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setDelegate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;auto&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;view&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cocos2d&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Director&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getOpenGLView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;CCEAGLView&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;eaglview&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CCEAGLView&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getEAGLView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+        
+        &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;eaglview&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;addSubview&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m_webview&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m_webview&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;release&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+        
+        &lt;span class=&quot;n&quot;&gt;m_webview&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;backgroundColor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UIColor&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;clearColor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;m_webview&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;opaque&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;m_webview&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scalesPageToFit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;YES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        
+        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UIView&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;aView&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m_webview&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;subviews&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;  
+        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;aView&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;isKindOfClass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UIScrollView&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]])&lt;/span&gt;  
+            &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+                &lt;span class=&quot;n&quot;&gt;UIScrollView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;scView&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UIScrollView&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;aView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+                
+                &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scView&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setShowsHorizontalScrollIndicator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;NO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+
+                &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UIView&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shadowView&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;aView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;subviews&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  
+                &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shadowView&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;isKindOfClass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UIImageView&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]])&lt;/span&gt; 
+                    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+                        &lt;span class=&quot;n&quot;&gt;shadowView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hidden&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;YES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+                    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+                &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;  
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;UpdateURL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;url&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;NSString&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSString&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;stringWithUTF8String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m_webview&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;loadRequest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSURLRequest&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;requestWithURL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSURL&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;URLWithString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; 
+                                            &lt;span class=&quot;nf&quot;&gt;cachePolicy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSURLRequestReloadIgnoringLocalCacheData&lt;/span&gt; 
+                                        &lt;span class=&quot;nf&quot;&gt;timeoutInterval&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;60&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]];&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m_webview&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setScalesPageToFit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;YES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;RemoveWebView&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m_webview&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m_webview&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;stopLoading&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m_webview&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setDelegate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m_webview&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;removeFromSuperview&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;//[m_webview setDelegate:nil];
+&lt;/span&gt;        &lt;span class=&quot;n&quot;&gt;m_webview&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dealloc&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;NSLog&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&quot;Web view dealloc&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;super&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;dealloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;cp&quot;&gt;#pragma mark - WebView
+&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;BOOL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;webView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UIWebView&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;webView&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;shouldStartLoadWithRequest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSURLRequest&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;navigationType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UIWebViewNavigationType&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;navigationType&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;webViewDidStartLoad&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UIWebView&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;webView&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;CCLOG&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;webViewDidStartLoad&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;webViewDidFinishLoad&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UIWebView&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;webView&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;CCLOG&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;webViewDidFinishLoad&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;webView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UIWebView&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;webView&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;didFailLoadWithError&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSError&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;error&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;CCLOG&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;didFailLoadWithError&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;@end&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Tue, 13 Dec 2016 00:00:00 +0800</pubDate>
+        <link>zhongjiawu888.github.io/blog/2016/12/13/android_ios_webview.html</link>
+        <guid isPermaLink="true">zhongjiawu888.github.io/blog/2016/12/13/android_ios_webview.html</guid>
+        
+        <category>Functions</category>
+        
+      </item>
+    
+      <item>
+        <title>C++调用Android应用集合</title>
+        <description>&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;作者: MrZhong
+时间: 2016年12月07日
+版本: 0.0.1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;一、拨打电话&lt;/p&gt;
+
+&lt;p&gt;1.c++ 调用 Java&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;string PlatformAndroid::onCallPhone()
+{
+    std::string str = &quot;&quot;;
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+
+    JniMethodInfo t;
+    jstring i;
+    if (JniHelper::getStaticMethodInfo(t,
+        ANDROID_PACKAGE_NAME,
+        &quot;onCallPhone&quot;,
+        &quot;()Ljava/lang/String;&quot;))
+    {
+        i = (jstring)t.env-&amp;gt;CallStaticObjectMethod(t.classID, t.methodID);
+        str = JniHelper::jstring2string(i);
+        t.env-&amp;gt;DeleteLocalRef(t.classID);
+    }
+#endif
+    return str;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;2.java 代码实现&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;（1）声明
+	public final static int HANDLER_GOTO_PHONENUM = 101;//
+	public static Handler mWXHandler = null;
+	public static Activity m_pkActInstance; = null;
+ （2）实现
+	在主activity的onCreate方法中监听handle
+
+	mWXHandler = new Handler(getMainLooper()) {
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case HANDLER_GOTO_PHONENUM:{
+				Intent intent = new Intent(Intent.ACTION_CALL,Uri.parse(&quot;tel:400-006-6363&quot;));  
+				m_pkActInstance.startActivity(intent);          
+				break;
+			}
+
+定义方法 onCallPhone()
+
+public static String onCallPhone()
+{
+    
+    Message msg = new Message(); 
+     msg.what = HANDLER_GOTO_PHONENUM; 
+     mWXHandler.sendMessage(msg);   
+    return &quot;&quot;;
+}   
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;二、调用手机默然浏览器&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public static String openBrowser()
+{
+     Intent intent = new Intent();
+     intent.setAction(&quot;android.intent.action.VIEW&quot;);
+     Uri content_url = Uri.parse(&quot;http://www.baidu.com&quot;);
+     intent.setData(content_url);
+     m_pkActInstance.startActivity(intent);
+    return &quot;&quot;;
+} 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Wed, 07 Dec 2016 00:00:00 +0800</pubDate>
+        <link>zhongjiawu888.github.io/blog/2016/12/07/dialing_phone.html</link>
+        <guid isPermaLink="true">zhongjiawu888.github.io/blog/2016/12/07/dialing_phone.html</guid>
+        
+        <category>Functions</category>
+        
+      </item>
+    
+      <item>
+        <title>结构体地址偏移</title>
+        <description>&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;作者: MrZhong
+时间: 2016年11月01日
+版本: 0.0.1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;关于结构体内存对齐（在没有#pragma pack宏的情况下） ：&lt;/p&gt;
+
+&lt;p&gt;原则1、数据成员对齐规则：结构（struct或联合union）的数据成员，第一个数据成员放在offset为0的地方，以后每个数据成员存储的起始位置要从该成员大小的整数倍开始（比如int在32位机为４字节，则要从4的整数倍地址开始存储）。&lt;/p&gt;
+
+&lt;p&gt;原则2、结构体作为成员：如果一个结构里有某些结构体成员，则结构体成员要从其内部最大元素大小的整数倍地址开始存储。（struct a里存有struct b，b里有char，int，double等元素，那b应该从8的整数倍开始存储。）&lt;/p&gt;
+
+&lt;p&gt;原则3、收尾工作：结构体的总大小，也就是sizeof的结果，必须是其内部最大成员的整数倍，不足的要补齐。&lt;/p&gt;
+
+&lt;p&gt;一、没有#pragma pack宏&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#define PRINT_D(intValue)     CCLog(#intValue&quot; is %d\n&quot;, (intValue));
+#define OFFSET(struct,member)  ((char *)&amp;amp;((struct *)0)-&amp;gt;member - (char *)0)
+
+typedef struct
+{
+	char    sex;//0
+	short   score;//2
+	int     age;//4
+	char name;//8 =&amp;gt; size = 8+1+3 = 12
+}student;
+
+
+
+PRINT_D(sizeof(student))
+	PRINT_D(OFFSET(student, sex))
+	PRINT_D(OFFSET(student, score))
+	PRINT_D(OFFSET(student, age))
+
+	PRINT_D(OFFSET(student, name))
+
+
+
+struct A{
+	char c1;//0
+	int i;//4
+	short s;//8
+	int j;//12 =&amp;gt; size = 12+4 = 16
+}a;
+
+
+PRINT_D(sizeof(A))
+	PRINT_D(OFFSET(A, c1))
+	PRINT_D(OFFSET(A, i))
+	PRINT_D(OFFSET(A, s))
+
+	PRINT_D(OFFSET(A, j))
+
+
+
+struct B{
+	int i;//0
+	int j;//4
+	short s;//8
+	char c1;//12
+}b;
+
+
+PRINT_D(sizeof(B))
+	PRINT_D(OFFSET(B, i))
+	PRINT_D(OFFSET(B, j))
+	PRINT_D(OFFSET(B, s))
+
+	PRINT_D(OFFSET(B, c1))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;输出结果：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sizeof(student) is 12
+
+OFFSET(student, sex) is 0
+
+OFFSET(student, score) is 2
+
+OFFSET(student, age) is 4
+
+OFFSET(student, name) is 8
+
+
+
+sizeof(A) is 16
+
+OFFSET(A, c1) is 0
+
+OFFSET(A, i) is 4
+
+OFFSET(A, s) is 8
+
+OFFSET(A, j) is 12
+
+
+
+sizeof(B) is 12
+
+OFFSET(B, i) is 0
+
+OFFSET(B, j) is 4
+
+OFFSET(B, s) is 8
+
+OFFSET(B, c1) is 10
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;二、有#pragma pack宏定义：&lt;/p&gt;
+
+&lt;p&gt;#pragma pack(2)&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;define PRINT_D(intValue)     CCLog(#intValue&quot; is %d\n&quot;, (intValue));
+#define OFFSET(struct,member)  ((char *)&amp;amp;((struct *)0)-&amp;gt;member - (char *)0)
+
+
+typedef struct
+{
+	char    sex;//0
+	short   score;//前一个成员偏移量0+前一个成员大小1+填充1 = 偏移量2 （填充的大小 要使得最后的偏移量是定义的宏2的整数倍）
+	int     age;//前一个偏移量2+前一个成员大小2 = 偏移量4
+	char name;//前一个偏移量4+前一个成员大小4 = 偏移量8 ，所以size =最后一个成员偏移量8+最后一个成员大小1 +填充1 = 10
+}student;
+
+
+
+PRINT_D(sizeof(student))
+	PRINT_D(OFFSET(student, sex))
+	PRINT_D(OFFSET(student, score))
+	PRINT_D(OFFSET(student, age))
+
+	PRINT_D(OFFSET(student, name))
+
+
+
+struct A{
+	char c1;//0
+	int i;//2
+	short s;//6
+	int j;//8 =&amp;gt; size = 8+4 = 12
+}a;
+
+
+PRINT_D(sizeof(A))
+	PRINT_D(OFFSET(A, c1))
+	PRINT_D(OFFSET(A, i))
+	PRINT_D(OFFSET(A, s))
+
+	PRINT_D(OFFSET(A, j))
+
+
+
+struct B{
+	int i;//0
+	int j;//4
+	short s;//8
+	char c1;//10 + 1 + 1 = 12
+}b;
+
+
+PRINT_D(sizeof(B))
+	PRINT_D(OFFSET(B, i))
+	PRINT_D(OFFSET(B, j))
+	PRINT_D(OFFSET(B, s))
+
+	PRINT_D(OFFSET(B, c1))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+</description>
+        <pubDate>Tue, 01 Nov 2016 00:00:00 +0800</pubDate>
+        <link>zhongjiawu888.github.io/blog/2016/11/01/struct_address_offest.html</link>
+        <guid isPermaLink="true">zhongjiawu888.github.io/blog/2016/11/01/struct_address_offest.html</guid>
+        
+        <category>C++</category>
+        
+      </item>
+    
+      <item>
+        <title>Project9</title>
+        <description>&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;作者: MrZhong
+时间: 2016年10月17日
+版本: 0.0.1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;hr /&gt;
+
+</description>
+        <pubDate>Mon, 17 Oct 2016 00:00:00 +0800</pubDate>
+        <link>zhongjiawu888.github.io/blog/2016/10/17/ddzLua.html</link>
+        <guid isPermaLink="true">zhongjiawu888.github.io/blog/2016/10/17/ddzLua.html</guid>
+        
+        <category>Projects</category>
+        
+      </item>
+    
+      <item>
+        <title>Cocos2d-x 3.12环境搭建整理</title>
+        <description>&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;作者: MrZhong
+时间: 2016年10月14日
+版本: 0.0.1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;cocos2d-x-312-pc&quot;&gt;一、Cocos2d-x 3.12 PC环境搭建和创建工程&lt;/h1&gt;
+
+&lt;p&gt;下载Cocos2d-x引擎后，运行build 中 .sln工程&lt;/p&gt;
+
+&lt;h1 id=&quot;cocos2d-x-312-android&quot;&gt;一、Cocos2d-x 3.12 Android环境搭建和创建工程&lt;/h1&gt;
+
+&lt;p&gt;需要配置下面四个环境变量：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;•COCOS_CONSOLE_ROOT: 
+cocos控制台路径，用于新建、构建和发行工程。&lt;/li&gt;
+  &lt;li&gt;•NDK_ROOT:NDK根目录&lt;/li&gt;
+  &lt;li&gt;•ANDROID_SDK_ROOT:  SDK根目录&lt;/li&gt;
+  &lt;li&gt;•ANT_ROOT:  注意path里面也要加&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;这些变量可以通过引擎根目录的setup.py来配置，打开引擎根目录，运行setup.py，一步步输入下面路径：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    -&amp;gt;COCOS_CONSOLE_ROOT : 
+    F:\Cocos2d-x\tools\cocos2d-console\bin
+     -&amp;gt;NDK_ROOT : F:\Android\android-ndk-r9b
+     -&amp;gt;ANDROID_SDK_ROOT :  F:\Android\sdk
+     -&amp;gt;ANT_ROOT :  F:\Android\ant\bin
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;配置好之后就可以在环境变量看到添加了这些NDK_ROOT等路径&lt;/p&gt;
+
+&lt;p&gt;使用cocos2d-console这个工具来创建和构建工程，这个工具提供了下面几个功能：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;•new 创建一个新的工程&lt;/li&gt;
+  &lt;li&gt;•compile 编译当前工程，生成二进制文件&lt;/li&gt;
+  &lt;li&gt;•deploy 发布程序到一个平台&lt;/li&gt;
+  &lt;li&gt;•run 编译和发布，和运行程序&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;打开cmd，输入cocos new 项目名 -p 包名 -l cpp -d 存放路径&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cocos new test -p com.odao.test -l cpp -d F:\work
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;这里为了方便，将创建工程的命令写成一个批处理文件：&lt;/p&gt;
+
+&lt;p&gt;下载Python&lt;/p&gt;
+
+&lt;p&gt;安装python，我的安装路径是：C:\Program Files (x86)\Python27
+配置python环境变量&lt;/p&gt;
+
+&lt;p&gt;在path环境变量中添加安装路径C:\Program Files (x86)\Python27&lt;/p&gt;
+
+&lt;p&gt;单击“开始”—&amp;gt;“运行”—&amp;gt;输入：cmd命令，在CMD窗口中输入：python 
+   出现如下界面，就表示安装成功：&lt;/p&gt;
+
+&lt;p&gt;新建一个txt文本，打开，拷贝下面的代码到文本中&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    01.@echo off  
+    02.set /p projectName=please input project name:  
+    03.set /p packageName=please input package name:  
+    04.@echo cocos new %projectName% -p %packageName% -l cpp -d F:\Cocos2d-x\project  
+    05.cocos new %projectName% -p %packageName% -l cpp -d F:\Cocos2d-x\project  
+    06.@echo Create Success!!!  
+    07.pause  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;保存并重命名为create_project.bat，放到引擎根目录F:\Cocos2d-x中，以后要创建工程了，直接打开，输入项目名和包名即可，项目存放路径我默认的是F:\Cocos2d-x\project，你可以自己修改&lt;/p&gt;
+
+&lt;p&gt;先给自己科普一下, Android sdk 是给Java开发者用的,  咱C++开发者用的是android ndk, 所以就是使用ndk来编译cocos2dx程序了&lt;/p&gt;
+
+&lt;p&gt;使用命令行创建一个项目, 我这里创建的是一个lua项目:cocos new lua_proj2 -p com.company_name.program_name -l lua -d d:\xxx\xxx
+ 此时创建了一个DEMO程序, 此时就可以使用cocos命令生成一个apk包, 进入到目录lua_proj2\frameworks\runtime-src下面,  在此目录下面执行命令&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    cocos compile -p android 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;就会生成一个apk包, 把这个拖到genymotion上面, 就安装跑起来了. 
+ 上面说的是不使用eclipse的方式来生成一个apk包,  下面记录一下在eclipse中加载lua_proj2这个项目, 并生成apk包的过程.   为什么一定要将cocos2dx项目导入到eclipse中来生成apk包呢, 因为在eclipse中可以连接AVD来调试android程序,  再者, eclipse可以运行在Linux环境下面, 后面我打算在linux进行开发, 所以这一步是一定要跨出去的&lt;/p&gt;
+
+&lt;p&gt;导入一个新的android工程后，创建一个新的builder，在Properties
+创建一个新的builder&lt;/p&gt;
+
+&lt;p&gt;第一个红框是builder名称, 随便填写, 第二个红框框是NDK生成工具, 即, 使用此工具来编译C++项目, 第三个红框框是工作目录, 此处我使用lua_proj2项目目录作为工作目录, 切换到Environment选项卡, 新建一个在此生成器中使用的环境变量NDK_MODULE_PATH, 值是……\lua_proj2\frameworks\cocos2d-x\cocos;……\lua_proj2\frameworks\cocos2d-x;……\lua_proj2\frameworks\cocos2d-x\external,  前面的…….是绝对目录的省略, 这里要输入绝对路径名称,  在此我就不写绝对路径了.一路OK下去&lt;/p&gt;
+
+&lt;p&gt;这个就新建立的builder, Project-&amp;gt;Build Project&lt;/p&gt;
+
+&lt;p&gt;出现大量的error: ‘override’ does not name a type错误, 这是由于NDK的版本太低了,  override是C++11中才有的关键字, 而到NDKr10才支持C++11, 所以要使用NDKr10&lt;/p&gt;
+
+&lt;p&gt;我很想使用clang来编译, 但是现阶段我还不会配置, 就用GCC吧, x86-4.6  &amp;amp; x86-4.8两个版本的GCC, 4.8的支持C++11&lt;/p&gt;
+
+&lt;p&gt;在Application.mk中添加一句NDK_TOOLCHAIN_VERSION = 4.8 就是指定使用GCC4.8来编译cocos2dx项目, 跑起来了, 下面是eclipse跑起来的console输出&lt;/p&gt;
+
+&lt;p&gt;跟命令行下执行&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    cocos compile -p android 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;跑出来的是一样的,  都是在编译程序.&lt;/p&gt;
+
+&lt;p&gt;下面进入到在eclipse下面调试程序&lt;/p&gt;
+
+&lt;p&gt;在cmd命令方式下输入：ant -version&lt;/p&gt;
+
+&lt;p&gt;出现问题：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  1）Unable to locate tools.jar. Expected to find it in C:\Program Files\Java\jre6\lib
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;命令行敲ant命令后提示：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; “Unable to locate tools.jar. Expected to find it in C:\Program Files\Java\jre6\lib”；
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;ANT_HOME环境变量已经配置；&lt;/p&gt;
+
+&lt;p&gt;解决途径：将“C:\Program Files\Java\jdk1.6.0_16\lib”目录下的tools.jar文件拷贝到“C:\Program Files\Java\jre6\lib”目录下，重新运行命令ant，运行正常，问题解决。&lt;/p&gt;
+
+&lt;p&gt;2）在cmd命令中：输入ant，如果输出：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    Buildfile:build.xml does not exist!
+ 
+    Build failed
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;说明ant安装成功。&lt;/p&gt;
+
+&lt;p&gt;PS：tools.jar 在jdk下的lib中。先说一下jdk和jre的区别：Jre是运行环境，及编译后的java程序运行时只需要jre就行了；jdk是开发环境，当你开发java程序时需要用jdk。Jdk包括了jre，及 java程序运行有jre或jdk都可以，但jdk包括了在开发过程中需要的工具。如果只是运行java程序，只要jre就行了，因为jre要比jdk省空间。 我在配置java环境时一般都将D:\jdk6\bin目录直接加入环境变量就可以了，这对java编译环境已经可以满足要求。但ant需要tools.jar最好是配置环境变量时：&lt;/p&gt;
+
+&lt;p&gt;JAVA_HOME =C:\Program Files\Java\jdk1.6.0_10 classpath =.;%JAVA_HOME%\lib;%JAVA_HOME%\lib\tools.jar&lt;/p&gt;
+
+&lt;p&gt;这样在运行ant编译程序时就不会出问题。&lt;/p&gt;
+
+&lt;h1 id=&quot;cocos2d-x&quot;&gt;cocos2d-x环境&lt;/h1&gt;
+
+&lt;p&gt;ANDROID_SDK_ROOT
+D:\soft\adt-bundle-windows-x86_64-20140702\adt-bundle-windows-x86_64-20140702\sdk&lt;/p&gt;
+
+&lt;p&gt;ANT_ROOT
+D:\soft\apache-ant-1.9.6-bin\apache-ant-1.9.6\bin&lt;/p&gt;
+
+&lt;p&gt;COCOS_CONSOLE_ROOT
+F:\proeject\cocos2d-x-3.12\cocos2d-x-3.12\tools\cocos2d-console\bin&lt;/p&gt;
+
+&lt;p&gt;COCOS_TEMPLATES_ROOT
+F:\proeject\cocos2d-x-3.12\cocos2d-x-3.12\templates&lt;/p&gt;
+
+&lt;p&gt;COCOS_X_ROOT
+F:\proeject\cocos2d-x-3.12\cocos2d-x-3.12&lt;/p&gt;
+
+&lt;p&gt;COCOS2DX_ROOT
+F:\proeject\cocos2d-x-2.2.6\cocos2d-x-2.2.6\cocos2dx&lt;/p&gt;
+
+&lt;p&gt;NDK_ROOT
+D:\soft\android-ndk-r10c&lt;/p&gt;
+
+&lt;hr /&gt;
+
+</description>
+        <pubDate>Fri, 14 Oct 2016 00:00:00 +0800</pubDate>
+        <link>zhongjiawu888.github.io/blog/2016/10/14/cocos2d3.12.html</link>
+        <guid isPermaLink="true">zhongjiawu888.github.io/blog/2016/10/14/cocos2d3.12.html</guid>
+        
+        <category>Cocos2d-x</category>
+        
+      </item>
+    
+      <item>
+        <title>github+jekyll博客搭建</title>
+        <description>&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;作者: MrZhong
+时间: 2010年10月4日
+版本: 0.0.1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;githubjekyll&quot;&gt;一、github与jekyll&lt;/h1&gt;
+
+&lt;p&gt;github是一个具有版本管理功能的代码仓库，每个项目都有一个主页，列出项目的源文件，github设计了Pages功能，允许用户自定义项目首页，用来替代默认的源码列表。所以，github Pages可以被认为是用户编写的、托管在github上的静态网页。github提供模板，允许站内生成网页，但也允许用户自己编写网页，然后上传。这种上传并不是单纯的上传，而是会经过Jekyll程序的再处理。&lt;/p&gt;
+
+&lt;p&gt;Jekyll是一个静态站点生成器，它会根据网页源码生成静态文件。它提供了模板、变量、插件等功能，所以实际上可以用来编写整个网站。&lt;/p&gt;
+
+&lt;p&gt;在本地编写符合Jekyll规范的网站源码，然后上传到github，由github生成并托管整个网站。
+这种做法的好处是：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;免费，无限流量。
+享受git的版本管理功能，不用担心文章遗失。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;你只要用自己喜欢的编辑器写文章就可以了，其他事情一概不用操心，都由github处理。
+它的缺点是：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;有一定技术门槛，你必须要懂一点git和网页开发。
+它生成的是静态网页，添加动态功能必须使用外部服务，
+比如评论功能就只能用disqus。
+它不适合大型网站，因为没有用到数据库，每运行一次都
+必须遍历全部的文本文件，网站越大，生成时间越长。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;section&quot;&gt;二、环境搭建&lt;/h1&gt;
+
+&lt;p&gt;1.在github 上 Create a new Repository,&lt;strong&gt;注意 Repository name必须是username.github.io&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;2.安装git.exe,生成SSH KEY,打开C:\Users\Administrator.ssh\id_rsa.pub全选复制，在github上增加SSH key。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/studyRes/39.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;3.jekylly 安装&lt;/p&gt;
+
+&lt;p&gt;下载了一个ruby git devkit工具包，运行setpath.cmd，并配置下系统环境&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/studyRes/40.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;命令行下输入ruby -v 检测是否安装成功：接下来运行&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ruby dk.rb install。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;最后在cmd 窗口中，进入到username.github.io目录，输入命令开始安装&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	gem install Jekyll 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;国内的网络环境需要耐心等待会儿，如果一直不行，求助于万能的淘宝，http://ruby.taobao.org/是淘宝搭建的ruby gems镜像。：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~ $ gem sources --remove https://rubygems.org/
+~ $ gem sources -a https://ruby.taobao.org/
+~ $ gem sources -l
+	*** CURRENT SOURCES ***
+	https://ruby.taobao.org
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;2.clone代码：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~ $ git clone https://github.com/username/username.github.io
+
+https://github.com/Mr-Zhong/zhongjiawu.github.io.git
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;进入到刚才clone的目录，写一个hello world，或者下载模版代码&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~ $ cd username.github.io
+~ $ echo &quot;Hello World&quot; &amp;gt; index.html
+~ $ git add --all
+~ $ git commit -m &quot;Initial commit&quot;
+~ $ git push -u origin master
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;3.浏览器里访问一下：http://username.github.io&lt;/p&gt;
+
+&lt;p&gt;4.如果是在本地测试开发，cmd命令窗口进入项目目录username.github.io中，运行&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jekyll build 编译会生成一个新目录文件夹_site
+jekyll server 启动本地服务器
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;最后浏览器里访问一下：http://localhost:4000&lt;/p&gt;
+
+&lt;h1 id=&quot;section-1&quot;&gt;三、遇到的问题&lt;/h1&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jekyll 3.2.1 | Error:  Only one usage of each
+socket address (protocol/network
+ddress/port) is normally permitted. - bind(2)
+这是因为4000端口号被占用，解决方法
+Cmd命令：
+netstat -ano，列出所有端口的情况 找到pid 4000
+tasklist|findstr &quot;4000&quot;，回车，查看是哪个进程或者程序
+占用了4000端口，结果是：svchost.exe
+打开任务管理，结束进程即可。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;section-2&quot;&gt;四，发布内容。&lt;/h1&gt;
+
+&lt;p&gt;现在，这个简单的Blog就可以发布了。先把所有内容加入本地git库。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;　　$ git add .
+　　$ git commit -m &quot;first post&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;然后，前往github的网站，在网站上创建一个名为jekyll_demo的库。接着，再将本地内容推送到github上你刚创建的库。注意，下面命令中的username，要替换成你的username。&lt;/p&gt;
+
+&lt;p&gt;　　$ git remote add origin https://github.com/username/jekyll_demo.git
+　　$ git push origin gh-pages&lt;/p&gt;
+
+&lt;p&gt;上传成功之后，等10分钟左右，访问http://username.github.com/jekyll_demo/就可以看到Blog已经生成了（将username换成你的用户名）。&lt;/p&gt;
+
+&lt;h1 id=&quot;section-3&quot;&gt;五，绑定域名。&lt;/h1&gt;
+
+&lt;p&gt;如果你不想用http://username.github.com/jekyll_demo/这个域名，可以换成自己的域名。
+具体方法是在repo的根目录下面，新建一个名为CNAME的文本文件，里面写入你要绑定的域名，比如example.com或者xxx.example.com。
+如果绑定的是顶级域名，则DNS要新建一条A记录，指向204.232.175.78。如果绑定的是二级域名，则DNS要新建一条CNAME记录，指向username.github.com（请将username换成你的用户名）。此外，别忘了将_config.yml文件中的baseurl改成根目录”/”。
+至此，最简单的Blog就算搭建完成了。&lt;/p&gt;
+
+&lt;h1 id=&quot;section-4&quot;&gt;六、参考文档&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html&quot;&gt;http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html&quot;&gt;http://jekyll.com.cn/&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+</description>
+        <pubDate>Tue, 04 Oct 2016 00:00:00 +0800</pubDate>
+        <link>zhongjiawu888.github.io/blog/2016/10/04/blog-build.html</link>
+        <guid isPermaLink="true">zhongjiawu888.github.io/blog/2016/10/04/blog-build.html</guid>
+        
+        <category>Other</category>
+        
+      </item>
+    
+      <item>
+        <title>android微信登录SDK接入笔记</title>
+        <description>&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;作者: MrZhong
+时间: 2016年8月11日
+版本: 0.0.1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;从微信开发官网下载demo后，里面有自带一个签名key:debug.keystore，密码是:android，使用demo的签名包可以正常登录，分享到朋友圈发送数据，可供调试。官网文档也比较清楚。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&amp;amp;t=resource/res_list&amp;amp;verify=1&amp;amp;id=open1419317851&amp;amp;token=&amp;amp;lang=zh_CN&quot;&gt;官网开发文档链接&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;移动应用微信登录是基于OAuth2.0协议标准构建的微信OAuth2.0授权登录系统。&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;一、基本流程：&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;1、首先需要注册微信开放平台，然后获取开发者认证。审批通过之后再创建一个移动应用同样还是需要审批。通过之后就可以给这个应用添加微信授权登陆以及相应功能了。这里移动应用审批通过之后会给你两个参数，一个叫AppId，一个叫Secret。这两个参数在后面用的到。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;2、应用签名&lt;/p&gt;
+&lt;/blockquote&gt;
+
+ 		&lt;img src=&quot;/images/studyRes/1.jpg&quot; alt=&quot;&quot; /&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;3、在需要微信授权的项目中导入微信的第三方JAR包&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;4、尤其注意在包名相应目录下新建一个wxapi目录。说的是在包名相应目录下建一个wxapi目录。也就是是包名目录的子目录，千万不要直接在src下面建个包就完了。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/studyRes/2.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;二、关于第三方登录&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://wiki.mob.com/%e7%ac%ac%e4%b8%89%e6%96%b9%e7%99%bb%e5%bd%95/&quot;&gt;参考文档链接&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;1、第三方登录的定义&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;1.所谓的第三方登录，就是利用用户在第三方平台上已有的账号来快速完成自己应用的登录或者注册的功能。而这里的第三方平台，一般是已经有大量用户的平台，如国内的新浪微博、QQ空间，微信，外国的Facebook、twitter等等。第三方登录不是一个具体的接口，而是一种思想或者一套步骤。
+要实现第三方登录，首先你需要选择一个第三方平台。新浪微博和QQ空间都是好的选择，这些平台拥有大量的用户，而且还开放了API，供我们调用接入。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;2、具备获取用户资料或至少可以进行授权验证,其实ShareSDK已经支持了超过20种这样子的平台，完全足够你选择使用。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;2、第三方登录实现方法&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;选择好平台以后，现在思考下面的问题：
+你的应用是否具备独立账户系统？
+这个问题是第三方登录时接口选择的重要标准。如果你选择“是”，则意味着你的应用只是需要第三方平台的用户，而不是他们的账户验证功能——也就是“要数据，不要功能”。而如果你选择“否”，则表示你实际上是’“要功能，不要数据（用户）”’。对于ShareSDK来说，前者你的入口方法是showUser(null)，而后者是authorize()。那么下面我分情况解释两种接入方式的步骤。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;要数据，不要功能
+如果你的应用拥有用户系统，就是说你的应用自己就有注册和登录功能，使用第三方登录只是为了拥有更多用户，那么你可以依照下面的步骤来做：&lt;/p&gt;
+
+&lt;p&gt;1、用户触发第三方登录事件&lt;/p&gt;
+
+&lt;p&gt;2、showUser(null)请求授权用户的资料（这个过程中可能涉及授权操作）&lt;/p&gt;
+
+&lt;p&gt;3、如果onComplete()方法被回调，&amp;gt; 将其参数Hashmap代入你应用的Login流程&lt;/p&gt;
+
+&lt;p&gt;4、否则提示错误，调用removeAccount()方法，删除可能的授权缓存数据&lt;/p&gt;
+
+&lt;p&gt;5、Login时客户端发送用户资料中的用户ID给服务端&lt;/p&gt;
+
+&lt;p&gt;6、服务端判定用户是已注册用户，则引导用户进入系统，否则返回特定错误码&lt;/p&gt;
+
+&lt;p&gt;7、客户端收到“未注册用户”错误码以后，代入用户资料到你应用的Register流程&lt;/p&gt;
+
+&lt;p&gt;8、Register时在用户资料中挑选你应用的注册所需字段，并提交服务端注册&lt;/p&gt;
+
+&lt;p&gt;9、服务端完成用户注册，成功则反馈客户端引导用户进入系统&lt;/p&gt;
+
+&lt;p&gt;10、否则提示错误，调用removeAccount()方法，删除可能的授权缓存数据&lt;/p&gt;
+
+&lt;p&gt;要功能，不要数据,如果你的应用不具备用户系统，而且也不打算维护这个系统，那么你可以依照下面的步骤来做：&lt;/p&gt;
+
+&lt;p&gt;1、用户触发第三方登录事件&lt;/p&gt;
+
+&lt;p&gt;2、调用platfor&amp;gt; m.getDb().getUserId()请求用户在此平台上的ID&lt;/p&gt;
+
+&lt;p&gt;3、如果用户ID存&amp;gt; 在，则认为用户是合法用户，允许进入系统；否则调用authorize()&lt;/p&gt;
+
+&lt;p&gt;4、authorize()方&amp;gt; 法将引导用户在授权页面输入帐号密码，然后目标平台将验证此用户&lt;/p&gt;
+
+&lt;p&gt;5、如果onComplete(&amp;gt; )方法被回调，表示授权成功，引导用户进入系统&lt;/p&gt;
+
+&lt;p&gt;6、否则提示错误，调用&amp;gt; removeAccount()方法，删除可能的授权缓存数据&lt;/p&gt;
+
+&lt;p&gt;实例代码&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	private void authorize&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Platform plat&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;plat &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; null&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	popupOthers&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;plat.isValid&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+	String userId &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; plat.getDb&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;.getUserId&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;;
+
+	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;userId !&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; null&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+	UIHandler.sendEmptyMessage&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;MSG_USERID_FOUND, this&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;;
+
+	login&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;plat.getName&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;, userId, null&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;;
+
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;;
+
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+	plat.setPlatformActionListener&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;this&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;;
+
+	// true不使用SSO授权，false使用SSO授权
+
+	plat.SSOSetting&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;;
+
+	plat.showUser&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;null&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;;
+
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;上面的代码是当用户触发第三方登录按钮的时候的处理。plat.isValid()判断指定平台是否已经完成授权，如果已经完成授
+权，ShareSDK的用户数据库应该已经存在userId，因此代码尝试获取userId，如果得到的为null，当作为授权，否则用此ID来执行登
+录。如果此平台没有完成授权，则调用plat.showUser(null)方法来获取用户资料。&lt;/p&gt;
+
+&lt;p&gt;获取用户资料以后，并不能立刻用来注册，因为可能只是因为授权时间太久导致AccessToken过期，因此完成授权以后需要先将userId发送给你应用的服务端进行检查，如果服务端发现确实没有注册过，才引导客户端进入注册页面。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://yunpan.cn/c6DkA88RrRMPV&quot;&gt;Demo项目下载地址（提取码：61d4）&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+</description>
+        <pubDate>Thu, 11 Aug 2016 00:00:00 +0800</pubDate>
+        <link>zhongjiawu888.github.io/blog/2016/08/11/android-weixin-login.html</link>
+        <guid isPermaLink="true">zhongjiawu888.github.io/blog/2016/08/11/android-weixin-login.html</guid>
+        
+        <category>Sdk Programming</category>
+        
+      </item>
+    
+      <item>
+        <title>心酸史之随机数和unsign int</title>
+        <description>&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;作者: MrZhong
+时间: 2016年8月3日
+版本: 0.0.1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;这两天写个if都不知如何敲起，if不下去，&lt;/p&gt;
+
+&lt;p&gt;不是不在状态，而是我蒸滴脑袋卡壳了o(╯□╰)o&lt;/p&gt;
+
+&lt;p&gt;有一个功能，类似要写一个这样的算法：
+在一个长度为n(6)的数组里随机选出 其m（4）个不相同的值，并且这些值不能为数组中的某个值(K)。
+例如：
+int arr[6]={1,2,3,4,5,6}，随机生成里面的4个值，生成的这4个值不能是K=3.&lt;/p&gt;
+
+&lt;p&gt;刚开始也是正常的思路：
+首先随机出一个值randomNum1，放入到vector中，循环比较vector中的值是否等于arr[i]并且不等于K，如果是，则重新随机，如果不是，则放入到vector中，直到vector的size为4跳出循环。&lt;/p&gt;
+
+&lt;p&gt;按照这种思路，用whlie 或for，里面的逻辑不管怎么改，怎么改，发现虽然循环的长度不是很大，才6，但是每次好久才能得到随出最后的值，效率很低。&lt;/p&gt;
+
+&lt;p&gt;纠结了好久，发现使用标准库random_shuffle的随机打乱排序，就选其前4个值作为随机的4个值，然后将A与这4个值比较，如果相等，则将第5个值（当然可以是第四个后的任意一个）直接替换它，就得到了最终要的4个值。效率非常快。以下代码：&lt;/p&gt;
+
+&lt;p&gt;```sh
+    std::vector&lt;int&gt; vArr;
+    for (int i = 0;i&amp;lt;6;i++)
+    {
+        vArr.push_back(i);
+    }
+    random_shuffle(vArr.begin(), vArr.end());&lt;/int&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;int awrdIdx = 3;//即K
+for(int i = 0;i&amp;lt;4;i++)
+{
+    if (vArr[i] == awrdIdx)
+    {
+        vArr[i] = vArr[5];
+    }
+    CCLog(&quot;%d&quot;,vArr[i]);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;```
+  例外个很坑问题搞了我2个小时。之前无符号和有符号整形一直不太注意，被忽视，今天终于尝尽苦头。结算积分的时候有正负，我把3个变量直接相加的表达式作为一个函数参数，3个变量中有unsign int 和 int，结果纳闷算出来的值18446744，一直想想想不知道错在哪了。真的是百爪挠心。日了狗了。以下是修正后的代码截图，算是留个原罪吧。
+&lt;img src=&quot;/images/studyRes/3.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+</description>
+        <pubDate>Wed, 03 Aug 2016 00:00:00 +0800</pubDate>
+        <link>zhongjiawu888.github.io/blog/2016/08/03/random-unsign-int.html</link>
+        <guid isPermaLink="true">zhongjiawu888.github.io/blog/2016/08/03/random-unsign-int.html</guid>
+        
+        <category>Programming Life</category>
+        
+      </item>
+    
+  </channel>
+</rss>

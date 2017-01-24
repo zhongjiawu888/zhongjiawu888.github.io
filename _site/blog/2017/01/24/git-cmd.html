@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="description" content="MrZhong's Blog">
+  <meta name="author" content="zhongjiawu">
+  <meta name="keywords" content="git 命令, MrZhong's Blog, git 命令 - MrZhong's Blog">
+  <title>git 命令 - MrZhong's Blog</title>
+  <link rel="icon" href="/res/img/shortimg.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/res/img/shortimg.ico" type="image/x-icon">
+  <link rel="canonical" href="zhongjiawu888.github.io/blog/2017/01/24/git-cmd.html">
+  <link rel="stylesheet" href="/res/css/public.css">
+  <link rel="stylesheet" href="/res/css/life.css">
+  <link rel="stylesheet" href="/res/css/pygments.css">
+
+</head>
+<body>
+  <div class="main">
+    <div class="title">git 命令</div>
+    <div class="post-info"><i class="fa fa-clock-o"></i>&nbsp;2017-01-24 转载请注明出处：<a href = "http://www.zhongjiawu.com">http://www.zhongjiawu.com</a> </div>
+    <div class="content">
+    <div class="highlighter-rouge"><pre class="highlight"><code>作者: MrZhong
+时间: 2017-01-24
+版本: 0.0.1
+</code></pre>
+</div>
+
+<hr />
+<h1 id="section">一、克隆仓库</h1>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	$ git clone https://github.com/zhongjiawu888/zhongjiawu888.github.io.git
+</code></pre>
+</div>
+
+<h1 id="git-">二、 git 批量删除文件夹和文件</h1>
+
+<p>硬盘删除文件后，执行</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	$ git status
+</code></pre>
+</div>
+
+<p>会提示你仍然需要</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	$ git rm &lt;文件&gt;
+</code></pre>
+</div>
+
+<p>此时如果是要删除大批量文件，这么一个一个命令下去不得累死人啊</p>
+
+<p>其实可以这样（不管之前有没有已经本地物理删除）</p>
+
+<p>执行</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code> 	$ git rm * -r
+</code></pre>
+</div>
+
+<p>（记得，cd 到你要删除的目录下。当然 * 可以换成指定目录）</p>
+
+<p>这时删除文件已经进入本地缓存区，</p>
+
+<p>接下来就是正常的提交操作了</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	$ git add . 
+	$ git commit -m "clear"
+	$ git push origin master
+</code></pre>
+</div>
+
+<hr />
+
+
+    </div>
+    <style>#ds-reset .ds-avatar img{border-radius:50%;}</style>
+<div class="comments">
+  <div class="ds-thread" data-title="git 命令" data-thread-key="/blog/2017/01/24/git-cmd" data-url="zhongjiawu888.github.io/blog/2017/01/24/git-cmd.html"></div>
+  <script type="text/javascript">var duoshuoQuery = {short_name:"zhongjiawu"};(function(){var ds = document.createElement('script');ds.type = 'text/javascript';ds.async = true;ds.src = '/res/js/embed.js';ds.charset = 'UTF-8';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);})();</script>
+
+  <script src="/statics/js/tongji.js" defer></script>
+</div>
+
+  </div>
+  <div id="top"><a id="rocket" href="javascript:;" title="返回顶部"><i></i></a></div>
+  <script src="/res/js/light.js"></script>
+  
+</body>
+</html>

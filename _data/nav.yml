@@ -2,13 +2,13 @@
   icon: fa fa-clock-o
   title: 学习轴
 
-- href: /life/index.html
-  icon: fa fa-eyedropper
-  title: 生活戳
-
 - href: /page/category.html
+  icon: fa fa-eyedropper
+  title: 分类浏览
+
+- href: /life/index.html
   icon: fa fa-tags
-  title: 文章分类
+  title: 生活戳
 
 
 

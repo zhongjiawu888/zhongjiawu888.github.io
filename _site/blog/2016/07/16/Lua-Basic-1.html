@@ -1,0 +1,312 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="description" content="MrZhong's Blog">
+  <meta name="author" content="zhongjiawu">
+  <meta name="keywords" content="Lua基础, MrZhong's Blog, Lua基础 - MrZhong's Blog">
+  <title>Lua基础 - MrZhong's Blog</title>
+  <link rel="icon" href="/res/img/shortimg.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/res/img/shortimg.ico" type="image/x-icon">
+  <link rel="canonical" href="zhongjiawu888.github.io/blog/2016/07/16/Lua-Basic-1.html">
+  <link rel="stylesheet" href="/res/css/public.css">
+  <link rel="stylesheet" href="/res/css/life.css">
+  <link rel="stylesheet" href="/res/css/pygments.css">
+
+</head>
+<body>
+  <div class="main">
+    <div class="title">Lua基础</div>
+    <div class="post-info"><i class="fa fa-clock-o"></i>&nbsp;2016-07-16 转载请注明出处：<a href = "http://www.zhongjiawu.com">http://www.zhongjiawu.com</a> </div>
+    <div class="content">
+    <div class="highlighter-rouge"><pre class="highlight"><code>作者: MrZhong
+时间: 2016年7月16日
+版本: 0.0.1
+</code></pre>
+</div>
+
+<hr />
+
+<h1 id="section">业于勤而荒于嬉,行于思而毁于随。</h1>
+
+<h3 id="lua">一、lua基础</h3>
+
+<p>1、lua命名</p>
+
+<p>A.常量用全大写和下划线：MY_CONSTTANT</p>
+
+<p>B.全局变量第一个字母用小写g标识:gMyGlobal</p>
+
+<p>C.函数名第一个字母大写：function MyFunction()</p>
+
+<p>2、注释</p>
+
+<p>A.行注释：–</p>
+
+<p>B.块注释：–[[–]]</p>
+
+<p>3.变量</p>
+
+<p>A.变量的5种类型：nil,Boolean,string,Number,table</p>
+
+<p>a. nil:如果给一个变量赋值nil,则表示删除该变量的意思。</p>
+
+<p>b. Boolean:只有2种值：true或false</p>
+
+<p>c. string</p>
+
+<p>d. Number:指的是双精度浮点数，没有整数类型。</p>
+
+<p>eg.myNumber= 7 myNumber = 0.756</p>
+
+<p>e.  table:</p>
+
+<p>B.type函数可以判断变量的类型</p>
+
+<p>eg.myValue = 7</p>
+
+<p>print(type(myValue))</p>
+
+<p>C.lua变量默认是全局的。</p>
+
+<p>D.运算符</p>
+
+<p>a.算术运算符:+ - * /</p>
+
+<p>b.关系运算符：&lt; = &gt;</p>
+
+<p>c.逻辑运算符： and ,or,not</p>
+
+<p>eg. a and b</p>
+
+<p>若a是false ,则返回a；否则返回b的值。</p>
+
+<p>eg. a or b</p>
+
+<p>若a是true,则返回a,否则返回b。</p>
+
+<p>4.控制结构</p>
+
+<p>A.if</p>
+
+<p>B.while 和 repeat until</p>
+
+<p>C.for</p>
+
+<p>D.break</p>
+
+<h2 id="lua-1">二、lua深入</h2>
+
+<p>1、函数</p>
+
+<p>A.不定长参数  (…)</p>
+
+<p>eg.</p>
+
+<p>function HowMany(…)
+    if arg.n &gt; 0 then
+        for idx = 1,arg.n do
+            local myString = string.format(“%s%d”,”Argument”,idx,”:”)
+            print(myString,arg(idx))
+        end
+    else
+        print(“no variables entered.”)
+    end
+end</p>
+
+<p>说明：arg表中保存了所有的值，arg.n中保存了参数的数量值。</p>
+
+<p>2、标准库</p>
+
+<p>A.asert(myValue)() 传入指向编译后的代码的变量，然后立刻被执行。</p>
+
+<p>B.dofile(filename) 用它载入定义函数的文件以备调用。</p>
+
+<p>C.数学运算函数 LuagLue接口，调用C标准库，存放在“math”表中</p>
+
+<p>a.math.floor() 向下取整，即舍去小数部分，+0.5得到四舍五入</p>
+
+<p>b.math.random()</p>
+
+<p>c.math.min()…</p>
+
+<p>3、字符处理</p>
+
+<p>A.类型转换</p>
+
+<p>a.tonumber 字符转数字</p>
+
+<p>myStr = “1234”
+myNum = tonumber(myStr) –1234</p>
+
+<p>b.tostring 数字转字符</p>
+
+<p>c.string.len(myString)</p>
+
+<p>d.string.sub(myString,start,end)
+当start为负数如-5时，返回字符串最后5位</p>
+
+<p>e.string.format()</p>
+
+<p>d.string.find(sourceString,findString)
+如果找到了返回开始和结束位置，否则返回nil</p>
+
+<p>eg.myString = “My name is Mr Zhong”
+start,end = string.find(myString,”name”) – 3 6</p>
+
+<p>e.string.gsub(sourceString,pattem,replacementString)
+返回一个字符串，sourceString中满足pattern格式的字符都会被替换成replacementString参数的值。</p>
+
+<p>string.gsub(sourceString,pattem,replacementString,num)
+num = 2:最后的参数num表示指定的次数，只替换最先找到的2个字符串</p>
+
+<p>f.string.gfind(sourceString,patterm)
+一旦找到符合指定格式的字符串就返回该字符串</p>
+
+<p>4、table 数据结构</p>
+
+<p>A.table内建函数</p>
+
+<p>a.tabele.getn(myTable)</p>
+
+<p>b.table.insert(myTable,position,value)</p>
+
+<p>c.table.remove(myTable,postion)</p>
+
+<p>B.table 数组和引用</p>
+
+<p>myData = {}</p>
+
+<p>a.pairs(myTable) 遍历table中的每一个值</p>
+
+<p>5、I/0</p>
+
+<p>A.生成一个Lua文件</p>
+
+<p>myFile = io.open(“test.lua”,”w”)
+if myFile -= nil then
+    myFile:write(“–test lua file”)
+    myFile:write(string.char(10))
+    myFile:write(string.format(“%s”,os.date()))
+    myFile:close(myFile)
+end</p>
+
+<p>6、lua与c++</p>
+
+<p>A.LuaGlue c++函数接口
+#include <string.h>
+extern 'C'
+{
+    #include <lua.h>
+    #include <lualib.h>
+    #include <lauxlib.h>
+}</lauxlib.h></lualib.h></lua.h></string.h></p>
+
+<p>extern ‘C’ int _Version(lua_State *L)
+{
+    puts(“This is version 1.0 of the CP”)
+    return 0;
+}</p>
+
+<p>static luaL_reg ConsoleGlue[] =
+{
+    {“Version”, _Version},
+    {NULL,NULL}
+}
+B.创建lua运行环境</p>
+
+<p>a.lua环境初始化</p>
+
+<p>lua_State *pLuaState = lua_open()
+luaopen_base(pLuaState)
+lua_iolibopen(pLuaState)
+lua_strlibopen(pLuaState)
+lua_mathlibopen(pLuaState)
+lua_dblibopen(pLuaState)</p>
+
+<p>C.添加LuaGlue函数,让c++函数可以被Lua调用
+for(int i=0;Console[i].name;i++)
+{
+    lua_register(pLuaState,ConsoleGlue[i].name,ConsoleGlue[i].func);
+}</p>
+
+<p>D.cLua 对象</p>
+
+<p>struct lua_State
+#define LuaGlue extern “C” int
+extern “C”
+{
+    typedef int (*LuaFunctionType)(struct lua_State *pLuaState);
+};
+class cLua
+{
+    public:
+        cLua();
+        virtual ~cLua();
+        bool RunScript(const char *pFilename);
+        bool RunScript(const char *pCommand);
+        bool AddFunction(const char *pFilename,LuaFunctionType pFunction);</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>private:
+    lua_State *m_pScriptContext;        
+</code></pre>
+</div>
+
+<p>};</p>
+
+<p>eg. 
+void main(void)
+{
+    cLua *pLua = new cLua;
+    pLua-&gt;AddFunction(“Version”,_Version)</p>
+
+<p>}</p>
+
+<p>7、事件驱动编程</p>
+
+<p>c++ LuaGlue函数：</p>
+
+<p>#define EVENT_SAMPLE 1000
+std::string g_strEventHander=””;
+extern “C” int _RegisterEvent(lua_State *L)
+{
+    g_strEventHander = g_pLua-&gt;GetStringArgument(1,””);
+}
+void FireEvent(int id)
+{
+    if(g_strEventHandle != “”)
+    {
+        char buf[254];
+        sprintf(buf,”%s(%d)”,g_strEventHandle,id);
+        lua_dostring(buf);
+    }
+}</p>
+
+<p>lua代码：
+function EventHandler(id,…)
+{
+    if(id == EVENT_SAMPLE)
+        print(“Sample Event”)
+    end
+}
+EventHandler(EVENT_SAMPLE,100,”arg1”)</p>
+
+<hr />
+
+
+    </div>
+    <style>#ds-reset .ds-avatar img{border-radius:50%;}</style>
+<div class="comments">
+  <div class="ds-thread" data-title="Lua基础" data-thread-key="/blog/2016/07/16/Lua-Basic-1" data-url="zhongjiawu888.github.io/blog/2016/07/16/Lua-Basic-1.html"></div>
+  <script type="text/javascript">var duoshuoQuery = {short_name:"zhongjiawu"};(function(){var ds = document.createElement('script');ds.type = 'text/javascript';ds.async = true;ds.src = '/res/js/embed.js';ds.charset = 'UTF-8';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);})();</script>
+
+  <script src="/statics/js/tongji.js" defer></script>
+</div>
+
+  </div>
+  <div id="top"><a id="rocket" href="javascript:;" title="返回顶部"><i></i></a></div>
+  <script src="/res/js/light.js"></script>
+  
+</body>
+</html>

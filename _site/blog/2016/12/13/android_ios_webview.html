@@ -1,0 +1,649 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="description" content="MrZhong's Blog">
+  <meta name="author" content="zhongjiawu">
+  <meta name="keywords" content="android ios内嵌网页, MrZhong's Blog, android ios内嵌网页 - MrZhong's Blog">
+  <title>android ios内嵌网页 - MrZhong's Blog</title>
+  <link rel="icon" href="/res/img/shortimg.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/res/img/shortimg.ico" type="image/x-icon">
+  <link rel="canonical" href="zhongjiawu888.github.io/blog/2016/12/13/android_ios_webview.html">
+  <link rel="stylesheet" href="/res/css/public.css">
+  <link rel="stylesheet" href="/res/css/life.css">
+  <link rel="stylesheet" href="/res/css/pygments.css">
+
+</head>
+<body>
+  <div class="main">
+    <div class="title">android ios内嵌网页</div>
+    <div class="post-info"><i class="fa fa-clock-o"></i>&nbsp;2016-12-13 转载请注明出处：<a href = "http://www.zhongjiawu.com">http://www.zhongjiawu.com</a> </div>
+    <div class="content">
+    <div class="highlighter-rouge"><pre class="highlight"><code>作者: MrZhong
+时间: 2016年12月13日
+版本: 0.0.1
+</code></pre>
+</div>
+
+<hr />
+
+<p>源码整理</p>
+
+<p>一、创建一个cocos界面</p>
+
+<p>//————–  ActivityLayer.h  ———————-</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>class ActivityLayer:public Layer
+{
+public:
+    ActivityLayer();
+    virtual ~ActivityLayer();
+    static ActivityLayer *create();
+
+
+private:
+    virtual bool init();
+
+    virtual void onEnter();
+    virtual void onExit();
+
+    void handleCloseEvent(Ref* pSender);
+    CCRect changeRectToPhone(const CCRect &amp;rt);
+
+private:
+    //活动内嵌网页
+    ODUIWebView *m_pActivityWebView;
+
+};
+</code></pre>
+</div>
+
+<p>//————–  ActivityLayer.cpp ———————-</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>ActivityLayer::ActivityLayer()
+{
+}
+
+ActivityLayer::~ActivityLayer()
+{
+}
+
+ 
+
+bool ActivityLayer::init()
+{
+
+    auto keyboardListener = EventListenerKeyboard::create();
+    keyboardListener-&gt;onKeyReleased = CC_CALLBACK_2(ActivityLayer::onKeyReleased, this);
+    _eventDispatcher-&gt;addEventListenerWithSceneGraphPriority(keyboardListener, this);
+
+    //标题
+    auto rootNode = CSLoader::createNode("ActivityLayer.csb");
+    addChild(rootNode);
+
+    auto webPanel = static_cast&lt;Layout*&gt;(rootNode-&gt;getChildByName("PanelWeb"));
+    auto m_pBtnClose = static_cast&lt;Button*&gt;(rootNode-&gt;getChildByName("ButtonBack"));
+    m_pBtnClose-&gt;addClickEventListener(CC_CALLBACK_1(ActivityLayer::handleCloseEvent, this));
+
+
+    m_pActivityWebView = new ODUIWebView();
+    CCRect rtWeb = CCRect(webPanel-&gt;getPosition(), webPanel-&gt;getContentSize());
+    rtWeb = changeRectToPhone(rtWeb);
+    m_pActivityWebView-&gt;ShowWebView("www.baidui.com"
+        , rtWeb.origin.x, rtWeb.origin.y, rtWeb.size.width, rtWeb.size.height);
+
+
+    return true;
+}
+
+void ActivityLayer::handleCloseEvent(Ref* pSender)
+{
+    m_pActivityWebView-&gt;RemoveWebView();
+    delete m_pActivityWebView;
+    m_pActivityWebView = NULL;
+
+}
+
+CCRect ActivityLayer::changeRectToPhone(const CCRect &amp;rt)
+{
+    CCSize winSize = CCDirector::sharedDirector()-&gt;getWinSize();
+    float xScale = CCDirector::sharedDirector()-&gt;getOpenGLView()-&gt;getScaleX();
+    float yScale = CCDirector::sharedDirector()-&gt;getOpenGLView()-&gt;getScaleY();
+
+    return CCRect(rt.origin.x*xScale, (winSize.height - (rt.origin.y + rt.size.height))*yScale, rt.size.width*xScale, rt.size.height*yScale);
+}
+
+void ActivityLayer::onEnter()
+{
+    Layer::onEnter();
+}
+
+void ActivityLayer::onExit()
+{
+    if (m_pActivityWebView)
+    {
+        m_pActivityWebView-&gt;RemoveWebView();
+        delete m_pActivityWebView;
+        m_pActivityWebView = NULL;
+    }
+}
+</code></pre>
+</div>
+
+<p>二、平台封装</p>
+
+<p>//————–  ODUIWebView.h ———————-</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>#pragma once
+
+#include "cocos2d.h"
+
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    #include "../Platform/WebViewClass.h"
+#endif
+
+USING_NS_CC;
+
+class ODUIWebView
+{
+public:
+    ODUIWebView();
+
+    virtual ~ODUIWebView();
+
+    void ShowWebView(const char* pcUrl, float x, float y, float f32Width, float f32Height, int nLoadCache = 0);
+
+    void UpdateUrl(const char* pcUrl, int nLoadCache = 0, const char* orPcUrl = NULL);
+
+    void RemoveWebView(const char* orPcUrl = NULL);
+
+    bool IsShowWebView();
+
+private:
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    CWebView* m_pkIosWebView;
+#endif
+    bool m_bIsShowWeb;
+};
+</code></pre>
+</div>
+
+<p>//————–  ODUIWebView.cpp ———————-</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>#include "ODUIWebView.h"
+#define ANDROID_PACKAGE_NAME "com/odao/fish/AdaoFish"
+
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+#include "platform\android\jni\JniHelper.h"
+#include &lt;jni.h&gt;
+#endif
+
+ODUIWebView::ODUIWebView() : m_bIsShowWeb(false)
+{
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    m_pkIosWebView = nullptr;
+    if (!m_pkIosWebView) {
+        m_pkIosWebView = new CWebView;
+    }
+#endif
+}
+
+ODUIWebView::~ODUIWebView()
+{
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    if (m_pkIosWebView) {
+        delete m_pkIosWebView;
+        m_pkIosWebView = nullptr;
+    }
+#endif
+}
+
+void ODUIWebView::ShowWebView( const char* pcUrl, float x, float y, float f32Width, float f32Height, int nLoadCache)
+{
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+
+    JniMethodInfo t;
+    jobject activityObj;
+
+    if (JniHelper::getStaticMethodInfo(t, ANDROID_PACKAGE_NAME, "GetJavaActivity", "()Ljava/lang/Object;"))
+    {
+        activityObj = t.env-&gt;CallStaticObjectMethod(t.classID, t.methodID);
+    }
+
+    if (JniHelper::getMethodInfo(t, ANDROID_PACKAGE_NAME, "DisplayWebView", "(IIIIIJLjava/lang/String;)V"))
+    {
+        int jX = (int)x;
+        jint jY = (int)y;
+        jint jWidth = (int)f32Width;
+        jint jHeight = (int)f32Height;
+        jint jLoadCache = nLoadCache;
+        jlong jaddress = (unsigned long)this;
+
+        jstring jmsg2 = t.env-&gt;NewStringUTF(pcUrl);
+
+        t.env-&gt;CallVoidMethod(activityObj, t.methodID, jX, jY, jWidth, jHeight, jLoadCache, jaddress, jmsg2);
+    }
+
+    if (JniHelper::getMethodInfo(t, ANDROID_PACKAGE_NAME, "UpdateURL", "(Ljava/lang/String;IJLjava/lang/String;)V"))
+    {
+        jstring jmsg = t.env-&gt;NewStringUTF(pcUrl);
+        jint jLoadCache = nLoadCache;
+        jlong jaddress2 = (unsigned long)this;
+        t.env-&gt;CallVoidMethod(activityObj, t.methodID, jmsg, nLoadCache, jaddress2, jmsg);
+    }
+#endif
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) 
+
+#endif
+
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    float winX = Director::getInstance()-&gt;getWinSize().width;
+    float winY = Director::getInstance()-&gt;getWinSize().height;
+
+    if ((winX == 960 &amp;&amp; winY == 640) ||
+        (winX == 1136 &amp;&amp; winY == 640) ||
+        (winX == 2048 &amp;&amp; winY == 1536))
+    {
+        x /= 2.0f;
+        y /= 2.0f;
+        f32Width /= 2.0f;
+        f32Height /= 2.0f;
+    }
+    m_pkIosWebView-&gt;ShowWebView(pcUrl, x, y, f32Width, f32Height);
+#endif
+    m_bIsShowWeb = true;
+}
+
+void ODUIWebView::UpdateUrl( const char* pcUrl, int nLoadCache, const char* orPcUrl)
+{
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+    JniMethodInfo t;
+    jobject activityObj;
+
+    if (JniHelper::getStaticMethodInfo(t, ANDROID_PACKAGE_NAME, "GetJavaActivity", "()Ljava/lang/Object;"))
+    {
+        activityObj = t.env-&gt;CallStaticObjectMethod(t.classID, t.methodID);
+    }
+
+    if (JniHelper::getMethodInfo(t, ANDROID_PACKAGE_NAME, "UpdateURL", "(Ljava/lang/String;IJLjava/lang/String;)V"))
+    {
+        jstring jmsg = t.env-&gt;NewStringUTF(pcUrl);
+        jint jLoadCache = nLoadCache;
+        jstring jmsg2 = t.env-&gt;NewStringUTF(orPcUrl);
+        jlong jaddress = (unsigned long)this;
+        t.env-&gt;CallVoidMethod(activityObj, t.methodID, jmsg, nLoadCache, jaddress, jmsg2);
+    }
+#endif
+
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    m_pkIosWebView-&gt;UpdateUrl(pcUrl);
+#endif
+}
+
+void ODUIWebView::RemoveWebView(const char* orPcUrl)
+{
+    if (m_bIsShowWeb)
+    {
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+        JniMethodInfo t;
+        jobject activityObj;
+
+        if (JniHelper::getStaticMethodInfo(t, ANDROID_PACKAGE_NAME, "GetJavaActivity", "()Ljava/lang/Object;"))
+        {
+            activityObj = t.env-&gt;CallStaticObjectMethod(t.classID, t.methodID);
+        }
+
+        if (JniHelper::getMethodInfo(t, ANDROID_PACKAGE_NAME, "RemoveWebView", "(JLjava/lang/String;)V"))
+        {
+            jstring jmsg = t.env-&gt;NewStringUTF(orPcUrl);
+            jlong jaddress = (unsigned long)this;
+            t.env-&gt;CallVoidMethod(activityObj, t.methodID, jaddress, jmsg);
+        }
+#endif
+
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+        m_pkIosWebView-&gt;RemoveWebView();
+#endif
+        m_bIsShowWeb = false;
+    }
+}
+
+bool ODUIWebView::IsShowWebView()
+{
+    return m_bIsShowWeb;
+}   
+</code></pre>
+</div>
+
+<p>三、Android实现</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>public static Activity m_pkActInstance;
+private LinearLayout m_kWebLayout = null;
+private WebView m_kWebView = null;
+private Map&lt;Long, Map&lt;String, WebView&gt; &gt; m_kWebViewMap;
+private Map&lt;Long, Map&lt;String, LinearLayout&gt; &gt; m_kWebLayoutMap;
+
+
+onCreate方法：
+m_pkActInstance = this;
+m_kWebViewMap = new HashMap&lt;Long, Map&lt;String,WebView&gt; &gt;();
+m_kWebLayoutMap  = new HashMap&lt;Long, Map&lt;String, LinearLayout&gt; &gt;();
+
+public static Object GetJavaActivity() {
+    Log.d("What", "GetJavaActivity");
+    return m_pkActInstance;
+}
+
+public void DisplayWebView(final int x, final int y, final int width, final int height, final int nLoadCache, final long address, final String url) {
+    
+    this.runOnUiThread(new Runnable() {
+        public void run() {
+            
+            //Map&lt;Integer, Map&lt;String, WebView&gt; &gt;
+            Map&lt;String, WebView&gt; valueMap = m_kWebViewMap.get(address);
+            Map&lt;String, LinearLayout&gt; valueLayoutMap = m_kWebLayoutMap.get(address);
+            
+            if(null == valueLayoutMap) {
+                m_kWebLayout = new LinearLayout(m_pkActInstance);
+                m_pkActInstance.addContentView(m_kWebLayout, new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.FILL_PARENT));
+                valueLayoutMap = new HashMap&lt;String, LinearLayout&gt;();
+                valueLayoutMap.put(url, m_kWebLayout);
+                m_kWebLayoutMap.put(address, valueLayoutMap);
+            }
+            else {
+                LinearLayout weblayout = valueLayoutMap.get(url);
+                
+                if(null == weblayout) {
+                    m_kWebLayout = new LinearLayout(m_pkActInstance);
+                    m_pkActInstance.addContentView(m_kWebLayout, new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.FILL_PARENT));
+                    valueLayoutMap.put(url, m_kWebLayout);
+                }
+                else {
+                    m_kWebLayout = weblayout;
+                }
+            }
+            
+        
+            if(null == valueMap) {
+                m_kWebView = new WebView(m_pkActInstance);
+                m_kWebLayout.addView(m_kWebView);
+                
+                valueMap = new HashMap&lt;String, WebView&gt;();
+                valueMap.put(url, m_kWebView);
+                
+                m_kWebViewMap.put(address, valueMap);
+            }
+            else {
+                WebView webView = valueMap.get(url);
+                
+                if(null == webView) {
+                    m_kWebView = new WebView(m_pkActInstance);
+                    valueMap.put(url, m_kWebView);
+                    m_kWebLayout.addView(m_kWebView);
+                }
+                else {
+                    m_kWebView = webView;
+                }
+            }
+            
+            Log.d("DisplayWebView-----", url);
+            
+            LinearLayout.LayoutParams linearParams = (LinearLayout.LayoutParams) m_kWebView.getLayoutParams();
+            linearParams.leftMargin = x;
+            linearParams.topMargin = y;
+            linearParams.width = width;
+            linearParams.height = height;
+            
+            m_kWebView.setBackgroundColor(0);
+        
+            int screenDensity = getResources().getDisplayMetrics().densityDpi ;   
+            WebSettings.ZoomDensity zoomDensity = WebSettings.ZoomDensity.FAR ;   
+            switch (screenDensity){   
+            case DisplayMetrics.DENSITY_LOW :  
+                zoomDensity = WebSettings.ZoomDensity.CLOSE;  
+                break;  
+            case DisplayMetrics.DENSITY_MEDIUM:  
+                zoomDensity = WebSettings.ZoomDensity.MEDIUM;  
+                break;  
+            case DisplayMetrics.DENSITY_HIGH:  
+                zoomDensity = WebSettings.ZoomDensity.FAR;  
+                break ;  
+            default:
+                 zoomDensity = WebSettings.ZoomDensity.FAR;  
+                break ;  
+            }  
+            //m_kWebView.getSettings().setDefaultZoom( WebSettings.ZoomDensity.MEDIUM);  
+            m_kWebView.getSettings().setDefaultZoom( zoomDensity); 
+            
+            m_kWebView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+            m_kWebView.getSettings().setAppCacheEnabled(false);
+            m_kWebView.getSettings().setUseWideViewPort(true); 
+            m_kWebView.getSettings().setLoadWithOverviewMode(true);
+            m_kWebView.getSettings().setJavaScriptEnabled(true);
+            m_kWebView.getSettings().setLayoutAlgorithm(LayoutAlgorithm.NORMAL); 
+            
+            m_kWebView.setLayoutParams(linearParams);
+            
+            m_kWebView.setBackgroundColor(0); // 设置背景色  
+            Drawable a = m_kWebView.getBackground();
+            
+            if(a != null) {
+                a.setAlpha(0); // 设置填充透明度 范围：0-255
+            }
+            else {
+                Log.d("What", "null null null null null!");
+            }
+            m_kWebView.setWebViewClient(new WebViewClient(){
+                @Override
+                public boolean shouldOverrideUrlLoading(WebView view, String url)
+                {
+                    Log.d("What", "url: "+url);
+                    return false;  
+                }
+                
+            });
+        }
+    });
+}
+
+public void UpdateURL(final String url, final int nLoadCache, final long address, final String orUrl) {
+    this.runOnUiThread(new Runnable() {
+        public void run() {
+            if(null != orUrl &amp;&amp; !orUrl.isEmpty()) {
+                Map&lt;String, WebView&gt; valueMap = m_kWebViewMap.get(address);
+                
+                if(null != valueMap) {
+                    WebView webView = valueMap.get(orUrl);
+                    if(null != webView) {
+                        m_kWebView = webView;
+                        m_kWebView.loadUrl(url);
+                    }
+                }
+            }
+            else
+            {
+                m_kWebView.loadUrl(url);
+            }
+        }
+    });
+}
+
+public void RemoveWebView() {
+    this.runOnUiThread(new Runnable() {
+        public void run() {
+            if (m_kWebView != null)
+            {
+                for(Object a : m_kWebLayoutMap.keySet()){  
+                    for(Object b : m_kWebLayoutMap.get(a).keySet()) {
+                        m_kWebLayout = m_kWebLayoutMap.get(a).get(b);
+                        for(Object o : m_kWebViewMap.keySet()){  
+                            for(Object u : m_kWebViewMap.get(o).keySet()) {
+                                m_kWebLayout.removeView(m_kWebViewMap.get(o).get(u));  
+                                m_kWebViewMap.get(o).get(u).destroy();
+                                if(m_kWebViewMap.get(o).get(u) == m_kWebView) {
+                                    m_kWebView = null;
+                                }
+                            }  
+                        }
+                    }
+                }
+                
+                m_kWebViewMap.clear();
+                
+                if (m_kWebView != null)
+                {
+                    for(Object a : m_kWebLayoutMap.keySet()){  
+                        for(Object b : m_kWebLayoutMap.get(a).keySet()) {
+                            m_kWebLayout = m_kWebLayoutMap.get(a).get(b);
+                            m_kWebLayout.removeView(m_kWebView);
+                            m_kWebView.destroy();
+                            m_kWebView = null;
+                        }
+                    }
+                }
+                
+                getGLSurfaceView().requestFocus();
+            }
+        }
+    });
+}
+</code></pre>
+</div>
+
+<p>四、IOS实现</p>
+
+<p>//============ ODUIWebView_IOS.h ==================</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">#pragma once
+</span>
+<span class="cp">#import &lt;Foundation/Foundation.h&gt;
+</span>
+<span class="k">@interface</span> <span class="nc">ODUIWebView_IOS</span> <span class="p">:</span> <span class="nc">NSObject</span> <span class="o">&lt;</span><span class="n">UIWebViewDelegate</span><span class="o">&gt;</span>
+<span class="p">{</span>
+    <span class="n">UIWebView</span><span class="o">*</span> <span class="n">m_webview</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">ShowWebView_x</span><span class="o">:</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="n">x</span> <span class="n">y</span><span class="o">:</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="n">y</span> <span class="n">width</span><span class="o">:</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span> <span class="n">widht</span> <span class="n">height</span><span class="o">:</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="n">height</span><span class="p">;</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">UpdateURL</span><span class="p">:(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="nv">url</span><span class="p">;</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">RemoveWebView</span><span class="p">;</span>
+
+<span class="k">@end</span>   
+</code></pre>
+</div>
+
+<p>//============ ODUIWebView_IOS.mm ==================</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">#import "ODUIWebView_IOS.h"
+#include "cocos2d.h"
+#import "platform/ios/CCEAGLView-ios.h"
+</span>
+<span class="k">@implementation</span> <span class="nc">ODUIWebView_IOS</span>
+
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">ShowWebView_x</span><span class="p">:(</span><span class="kt">float</span><span class="p">)</span><span class="nv">x</span> <span class="nf">y</span><span class="p">:(</span><span class="kt">float</span><span class="p">)</span><span class="nv">y</span> <span class="nf">width</span><span class="p">:(</span><span class="kt">float</span><span class="p">)</span> <span class="n">widht</span> <span class="n">height</span><span class="o">:</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="nv">height</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">m_webview</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">m_webview</span> <span class="o">=</span> <span class="p">[[</span><span class="n">UIWebView</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithFrame</span><span class="p">:</span><span class="n">CGRectMake</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">widht</span><span class="p">,</span> <span class="n">height</span><span class="p">)];</span>
+        <span class="p">[</span><span class="n">m_webview</span> <span class="nf">setDelegate</span><span class="p">:</span><span class="n">self</span><span class="p">];</span>
+
+        <span class="k">auto</span> <span class="n">view</span> <span class="o">=</span> <span class="n">cocos2d</span><span class="o">::</span><span class="n">Director</span><span class="o">::</span><span class="n">getInstance</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getOpenGLView</span><span class="p">();</span>
+        <span class="n">CCEAGLView</span> <span class="o">*</span><span class="n">eaglview</span> <span class="o">=</span> <span class="p">(</span><span class="n">CCEAGLView</span> <span class="o">*</span><span class="p">)</span><span class="n">view</span><span class="o">-&gt;</span><span class="n">getEAGLView</span><span class="p">();</span>
+        
+        <span class="p">[</span><span class="n">eaglview</span> <span class="nf">addSubview</span><span class="p">:</span><span class="n">m_webview</span><span class="p">];</span>
+        <span class="p">[</span><span class="n">m_webview</span> <span class="nf">release</span><span class="p">];</span>
+        
+        <span class="n">m_webview</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIColor</span> <span class="nf">clearColor</span><span class="p">];</span>
+        <span class="n">m_webview</span><span class="p">.</span><span class="n">opaque</span> <span class="o">=</span> <span class="nb">NO</span><span class="p">;</span>
+        <span class="n">m_webview</span><span class="p">.</span><span class="n">scalesPageToFit</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span>
+        
+        <span class="k">for</span> <span class="p">(</span><span class="n">UIView</span> <span class="o">*</span><span class="n">aView</span> <span class="k">in</span> <span class="p">[</span><span class="n">m_webview</span> <span class="nf">subviews</span><span class="p">])</span>  
+        <span class="p">{</span> 
+            <span class="k">if</span> <span class="p">([</span><span class="n">aView</span> <span class="nf">isKindOfClass</span><span class="p">:[</span><span class="n">UIScrollView</span> <span class="nf">class</span><span class="p">]])</span>  
+            <span class="p">{</span> 
+                <span class="n">UIScrollView</span><span class="o">*</span> <span class="n">scView</span> <span class="o">=</span> <span class="p">(</span><span class="n">UIScrollView</span> <span class="o">*</span><span class="p">)</span><span class="n">aView</span><span class="p">;</span>
+                
+                <span class="p">[</span><span class="n">scView</span> <span class="nf">setShowsHorizontalScrollIndicator</span><span class="p">:</span><span class="nb">NO</span><span class="p">];</span>
+
+                <span class="k">for</span> <span class="p">(</span><span class="n">UIView</span> <span class="o">*</span><span class="n">shadowView</span> <span class="k">in</span> <span class="n">aView</span><span class="p">.</span><span class="n">subviews</span><span class="p">)</span>  
+                <span class="p">{</span>
+                    <span class="k">if</span> <span class="p">([</span><span class="n">shadowView</span> <span class="nf">isKindOfClass</span><span class="p">:[</span><span class="n">UIImageView</span> <span class="nf">class</span><span class="p">]])</span> 
+                    <span class="p">{</span> 
+                        <span class="n">shadowView</span><span class="p">.</span><span class="n">hidden</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span>
+                    <span class="p">}</span> 
+                <span class="p">}</span> 
+            <span class="p">}</span> 
+        <span class="p">}</span>  
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">UpdateURL</span><span class="p">:(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="nv">url</span>
+<span class="p">{</span>
+    <span class="n">NSString</span> <span class="o">*</span><span class="n">request</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSString</span> <span class="nf">stringWithUTF8String</span><span class="p">:</span><span class="n">url</span><span class="p">];</span>
+    <span class="p">[</span><span class="n">m_webview</span> <span class="nf">loadRequest</span><span class="p">:[</span><span class="n">NSURLRequest</span> <span class="nf">requestWithURL</span><span class="p">:[</span><span class="n">NSURL</span> <span class="nf">URLWithString</span><span class="p">:</span><span class="n">request</span><span class="p">]</span> 
+                                            <span class="nf">cachePolicy</span><span class="p">:</span><span class="n">NSURLRequestReloadIgnoringLocalCacheData</span> 
+                                        <span class="nf">timeoutInterval</span><span class="p">:</span><span class="mi">60</span><span class="p">]];</span>
+    <span class="p">[</span><span class="n">m_webview</span> <span class="nf">setScalesPageToFit</span><span class="p">:</span><span class="nb">YES</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">RemoveWebView</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">m_webview</span> <span class="o">!=</span> <span class="nb">nil</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="p">[</span><span class="n">m_webview</span> <span class="nf">stopLoading</span><span class="p">];</span>
+        <span class="p">[</span><span class="n">m_webview</span> <span class="nf">setDelegate</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+        <span class="p">[</span><span class="n">m_webview</span> <span class="nf">removeFromSuperview</span><span class="p">];</span>
+        <span class="c1">//[m_webview setDelegate:nil];
+</span>        <span class="n">m_webview</span> <span class="o">=</span> <span class="nb">nil</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">dealloc</span>
+<span class="p">{</span>
+    <span class="n">NSLog</span><span class="p">(</span><span class="s">@"Web view dealloc"</span><span class="p">);</span>
+    <span class="p">[</span><span class="n">super</span> <span class="nf">dealloc</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="cp">#pragma mark - WebView
+</span><span class="o">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="n">webView</span><span class="o">:</span><span class="p">(</span><span class="n">UIWebView</span> <span class="o">*</span><span class="p">)</span><span class="n">webView</span> <span class="n">shouldStartLoadWithRequest</span><span class="o">:</span><span class="p">(</span><span class="n">NSURLRequest</span> <span class="o">*</span><span class="p">)</span><span class="n">request</span> <span class="n">navigationType</span><span class="o">:</span><span class="p">(</span><span class="n">UIWebViewNavigationType</span><span class="p">)</span><span class="n">navigationType</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">webViewDidStartLoad</span><span class="o">:</span><span class="p">(</span><span class="n">UIWebView</span> <span class="o">*</span><span class="p">)</span><span class="n">webView</span>
+<span class="p">{</span>
+    <span class="n">CCLOG</span><span class="p">(</span><span class="s">"webViewDidStartLoad"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">webViewDidFinishLoad</span><span class="o">:</span><span class="p">(</span><span class="n">UIWebView</span> <span class="o">*</span><span class="p">)</span><span class="n">webView</span>
+<span class="p">{</span>
+    <span class="n">CCLOG</span><span class="p">(</span><span class="s">"webViewDidFinishLoad"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">webView</span><span class="o">:</span><span class="p">(</span><span class="n">UIWebView</span> <span class="o">*</span><span class="p">)</span><span class="n">webView</span> <span class="n">didFailLoadWithError</span><span class="o">:</span><span class="p">(</span><span class="n">NSError</span> <span class="o">*</span><span class="p">)</span><span class="n">error</span>
+<span class="p">{</span>
+    <span class="n">CCLOG</span><span class="p">(</span><span class="s">"didFailLoadWithError"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">@end</span> 
+</code></pre>
+</div>
+
+    </div>
+    <style>#ds-reset .ds-avatar img{border-radius:50%;}</style>
+<div class="comments">
+  <div class="ds-thread" data-title="android ios内嵌网页" data-thread-key="/blog/2016/12/13/android_ios_webview" data-url="zhongjiawu888.github.io/blog/2016/12/13/android_ios_webview.html"></div>
+  <script type="text/javascript">var duoshuoQuery = {short_name:"zhongjiawu"};(function(){var ds = document.createElement('script');ds.type = 'text/javascript';ds.async = true;ds.src = '/res/js/embed.js';ds.charset = 'UTF-8';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);})();</script>
+
+  <script src="/statics/js/tongji.js" defer></script>
+</div>
+
+  </div>
+  <div id="top"><a id="rocket" href="javascript:;" title="返回顶部"><i></i></a></div>
+  <script src="/res/js/light.js"></script>
+  
+</body>
+</html>

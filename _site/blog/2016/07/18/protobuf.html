@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="description" content="MrZhong's Blog">
+  <meta name="author" content="zhongjiawu">
+  <meta name="keywords" content="前后端网络数据交换方式, MrZhong's Blog, 前后端网络数据交换方式 - MrZhong's Blog">
+  <title>前后端网络数据交换方式 - MrZhong's Blog</title>
+  <link rel="icon" href="/res/img/shortimg.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/res/img/shortimg.ico" type="image/x-icon">
+  <link rel="canonical" href="zhongjiawu888.github.io/blog/2016/07/18/protobuf.html">
+  <link rel="stylesheet" href="/res/css/public.css">
+  <link rel="stylesheet" href="/res/css/life.css">
+  <link rel="stylesheet" href="/res/css/pygments.css">
+
+</head>
+<body>
+  <div class="main">
+    <div class="title">前后端网络数据交换方式</div>
+    <div class="post-info"><i class="fa fa-clock-o"></i>&nbsp;2016-07-18 转载请注明出处：<a href = "http://www.zhongjiawu.com">http://www.zhongjiawu.com</a> </div>
+    <div class="content">
+    <div class="highlighter-rouge"><pre class="highlight"><code>作者: MrZhong
+时间: 2016年7月18日
+版本: 0.0.1
+</code></pre>
+</div>
+
+<hr />
+
+<p>网络前后端的数据交换常用2种，一种内存映射，一种protobuf。
+都是 Socket字符流。</p>
+
+<p>一、内存映射</p>
+
+<p>A.最直接的前后端数据交换方式</p>
+
+<p>e.g.客户端处理一条服务器加倍消息：
+协议数据为</p>
+
+<p><img src="/images/studyRes/25.jpg" alt="" /></p>
+
+<p>以下收包处理流程：</p>
+
+<p><img src="/images/studyRes/26.jpg" alt="" /></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	void NetworkTickThread::OnGameServerMessage(ODEInt32 nMsgID, ODEChar8 *buffer, ODEInt32 length)
+	{
+	         ODE_AUTO_LOCK_MUTEX(m_kMutex);
+	         switch (nMsgID)
+	         {
+	             case SC_TASK_UPDATE_NTF:
+	              HandleAddBasePointServerMsg(buffer,length);
+	              break;
+	             case KEEP_ALIVE_MSG:
+	             //等等协议处理
+	          }
+	}
+</code></pre>
+</div>
+
+<p><img src="/images/studyRes/27.jpg" alt="" /></p>
+
+<p><img src="/images/studyRes/28.jpg" alt="" /></p>
+
+<p>到此得到客户端想要的数据了。
+B.尤其注意的是不定长的数组的处理。</p>
+
+<p><img src="/images/studyRes/29.png" alt="" /></p>
+
+<p><img src="/images/studyRes/30.jpg" alt="" /></p>
+
+<p>二、protobuf的数据化方式</p>
+
+<p>A.protocolbuffer是google的一个开源项目，它是一种二进制的数据交换格式，google提供了多种语言的实现：java、c#、c++、go 和 python，每一种实现都包含了相应语言的编译器以及库文件。</p>
+
+<p>B.序列化/反序列化API</p>
+
+<p>bool ParseFromString(const string&amp; data);
+bool SerializeToString(string* output) const:</p>
+
+<p>a.ParseFromString() 函数是protobuf 提供的一个C++ API，它的功能就是将string 里面的数据反序列化(解析)到指定的消息结构类中。它其实是一个消息结构类的成员函数，反序列化之后，该消息结构类中的数据成员将会被填充，且有效。</p>
+
+<p>b.SerializeToString() 函数是protobuf 提供的一个C++ API，它的功能与parseFromString() 函数相对应，是将消息结构的数据序列化(填充)到output 所指向的string  对象中。在string 对象中以二进制的形式存储。</p>
+
+<p>e.g.处理服务器发过来的任务SCGetTaskInfoRsp消息：
+协议数据为</p>
+
+<p><img src="/images/studyRes/31.jpg" alt="" /></p>
+
+<p>SCGetTaskInfoRsp的父类为：</p>
+
+<p><img src="/images/studyRes/32.png" alt="" /></p>
+
+<p>2个函数实现为：</p>
+
+<p><img src="/images/studyRes/33.jpg" alt="" /></p>
+
+<p><img src="/images/studyRes/34.jpg" alt="" /></p>
+
+<p>SCGetTaskInfoRsp的xml文件为：</p>
+
+<p><img src="/images/studyRes/35.jpg" alt="" /></p>
+
+<p>接下来为收到服务器包的处理：</p>
+
+<p><img src="/images/studyRes/36.jpg" alt="" /></p>
+
+<p>m_pTaskProgressItem就是客户端需要的数据。</p>
+
+<p>然后在看客户端发包处理流程：</p>
+
+<p><img src="/images/studyRes/37.jpg" alt="" /></p>
+
+<p><img src="/images/studyRes/38.jpg" alt="" /></p>
+
+<p>Okay，以上，整个流程结束。
+下班回家~(^o^)(^o^)</p>
+
+<hr />
+
+
+    </div>
+    <style>#ds-reset .ds-avatar img{border-radius:50%;}</style>
+<div class="comments">
+  <div class="ds-thread" data-title="前后端网络数据交换方式" data-thread-key="/blog/2016/07/18/protobuf" data-url="zhongjiawu888.github.io/blog/2016/07/18/protobuf.html"></div>
+  <script type="text/javascript">var duoshuoQuery = {short_name:"zhongjiawu"};(function(){var ds = document.createElement('script');ds.type = 'text/javascript';ds.async = true;ds.src = '/res/js/embed.js';ds.charset = 'UTF-8';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);})();</script>
+
+  <script src="/statics/js/tongji.js" defer></script>
+</div>
+
+  </div>
+  <div id="top"><a id="rocket" href="javascript:;" title="返回顶部"><i></i></a></div>
+  <script src="/res/js/light.js"></script>
+  
+</body>
+</html>

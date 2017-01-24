@@ -1,0 +1,223 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="description" content="MrZhong's Blog">
+  <meta name="author" content="zhongjiawu">
+  <meta name="keywords" content="c++web和js互调, MrZhong's Blog, c++web和js互调 - MrZhong's Blog">
+  <title>c++web和js互调 - MrZhong's Blog</title>
+  <link rel="icon" href="/res/img/shortimg.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/res/img/shortimg.ico" type="image/x-icon">
+  <link rel="canonical" href="zhongjiawu888.github.io/blog/2016/07/28/c++_js.html">
+  <link rel="stylesheet" href="/res/css/public.css">
+  <link rel="stylesheet" href="/res/css/life.css">
+  <link rel="stylesheet" href="/res/css/pygments.css">
+
+</head>
+<body>
+  <div class="main">
+    <div class="title">c++web和js互调</div>
+    <div class="post-info"><i class="fa fa-clock-o"></i>&nbsp;2016-07-28 转载请注明出处：<a href = "http://www.zhongjiawu.com">http://www.zhongjiawu.com</a> </div>
+    <div class="content">
+    <div class="highlighter-rouge"><pre class="highlight"><code>作者: MrZhong
+时间: 2016年07月28日
+版本: 0.0.1
+</code></pre>
+</div>
+
+<hr />
+
+<p>第一步、c++创建一个Node节点，添加到层里。例如WebNode，</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>WebNode : public CCNode
+{
+public:
+	WebNode()
+	~WebNode();
+	void showWeb(const char* pcUrl, float x, float y, float f32Width, float f32Height );
+	void removeWeb();
+}
+</code></pre>
+</div>
+
+<p>第二步、通过showWeb()调用android的WebView控件</p>
+
+<p>1.在andorid里实例化WebView控件，并添加DisplayWebView()方法</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>public class LandLord extends Cocos2dxActivity
+{
+	public static Activity m_pkActInstance;
+	private LinearLayout m_kWebLayout;
+
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+		m_pkActInstance = this;
+
+		m_kWebLayout = new LinearLayout(this);
+		m_pkActInstance.addContentView(m_kWebLayout, new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.FILL_PARENT));
+
+
+
+		}
+
+	public void DisplayWebView(final int x, final int y, final int width, final int height) 
+	{
+    		m_pkActivity.runOnUiThread(new Runnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+
+            	m_kWebView = new WebView(m_pkActInstance);
+            	m_kWebLayout.addView(m_kWebView);
+            	m_kWebView.requestFocus();
+            	
+            	LinearLayout.LayoutParams linearParams = (LinearLayout.LayoutParams) m_kWebView.getLayoutParams();
+            	linearParams.leftMargin = x;
+            	linearParams.topMargin = y;
+            	linearParams.width = width;
+            	linearParams.height = height;
+            	            	
+            	m_kWebView.setBackgroundColor(0);
+            	
+            	int screenDensity = getResources().getDisplayMetrics().densityDpi ;   
+            	WebSettings.ZoomDensity zoomDensity = WebSettings.ZoomDensity.FAR ;   
+            	switch (screenDensity){   
+            	case DisplayMetrics.DENSITY_LOW :  
+            	    zoomDensity = WebSettings.ZoomDensity.CLOSE;  
+            	    break;  
+            	case DisplayMetrics.DENSITY_MEDIUM:  
+            	    zoomDensity = WebSettings.ZoomDensity.MEDIUM;  
+            	    break;  
+            	case DisplayMetrics.DENSITY_HIGH:  
+            	    zoomDensity = WebSettings.ZoomDensity.FAR;  
+            	    break ;  
+            	default:
+            		 zoomDensity = WebSettings.ZoomDensity.FAR;  
+             	    break ;  
+            	}  
+ 
+            	m_kWebView.getSettings().setDefaultZoom( zoomDensity);      	
+            	m_kWebView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+            	m_kWebView.getSettings().setAppCacheEnabled(false);
+            	m_kWebView.getSettings().setUseWideViewPort(true); 
+            	m_kWebView.getSettings().setLoadWithOverviewMode(true);
+            	m_kWebView.getSettings().setJavaScriptEnabled(true);
+            	m_kWebView.getSettings().setLayoutAlgorithm(LayoutAlgorithm.NORMAL);   	
+            	m_kWebView.setLayoutParams(linearParams);
+            	m_kWebView.setWebViewClient(new WebViewClient()
+            	{
+                    @Override
+                    public boolean shouldOverrideUrlLoading(WebView view, String url)
+                    {
+                         return false;  
+                    }
+                    
+                });
+			}
+		});
+    }
+
+    void RemoveWebView()
+    {
+	    this.runOnUiThread(new Runnable() {
+	     public void run() {
+        	if (m_kWebView != null)
+        	{
+        		m_kWebLayout.removeView(m_kWebView);
+            	m_kWebView.destroy();
+            	m_kWebView = null;
+            	getSurfaceView().requestFocus();
+        	}
+	        }
+	    });
+    }
+
+}
+</code></pre>
+</div>
+
+<p>3.C++调用java，加载android的WebView</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>void WebNode::showWeb(const char* pcUrl, float x, float y, float f32Width, float f32Height )
+{
+	#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+
+	if (JniHelper::getMethodInfo(t, ANDROID_PACKAGE_NAME, "DisplayWebView", "(IIII)V"))
+	{
+		int jX = (int)x;
+		jint jY = (int)y;
+		jint jWidth = (int)f32Width;
+		jint jHeight = (int)f32Height;
+
+		t.env-&gt;CallVoidMethod(activityObj, t.methodID, jX, jY, jWidth, jHeight);
+	}
+
+	if (JniHelper::getMethodInfo(t, ANDROID_PACKAGE_NAME, "UpdateURL", "(Ljava/lang/String;)V"))
+	{
+		jstring jmsg = t.env-&gt;NewStringUTF(pcUrl);
+		t.env-&gt;CallVoidMethod(activityObj, t.methodID, jmsg);
+	}
+	#endif
+} //同理，通过removeWeb释放网页控件。
+</code></pre>
+</div>
+
+<p>第三步、以上实现c++调用android网页流程后,开始网页事件调用c++流程：</p>
+
+<p>1.js调用android本地方法</p>
+
+<p>在LandLord类中添加方法</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code> void JaveScriptCall(final int x, final int y, final int width, final int height)
+ {
+
+ 	DisplayWebView(x,  y, width, height);
+
+	m_pkActivity.runOnUiThread(new Runnable() {
+		
+		@Override
+		public void run() {
+			
+			// TODO Auto-generated method stub
+			m_kWebView.addJavascriptInterface(new Object() {
+				public void jsCallNative(String functionName, String param)
+				{
+
+					//to do things
+					GameQuikStart();//比如一个java调用c++函数;
+				}
+			}, "InviteModule");
+		}
+	});
+ }
+</code></pre>
+</div>
+
+<p>//说明：jsCallNative是与Web端定义好的。</p>
+
+<p>2.java调用c++代码</p>
+
+<p>在andLord类中声明native GameQuikStart(),无须定义的。</p>
+
+<p>public native static void GameQuikStart();</p>
+
+<p>以上，实现c++调用android网页，网页再调用c++的流程。</p>
+
+    </div>
+    <style>#ds-reset .ds-avatar img{border-radius:50%;}</style>
+<div class="comments">
+  <div class="ds-thread" data-title="c++web和js互调" data-thread-key="/blog/2016/07/28/c++_js" data-url="zhongjiawu888.github.io/blog/2016/07/28/c++_js.html"></div>
+  <script type="text/javascript">var duoshuoQuery = {short_name:"zhongjiawu"};(function(){var ds = document.createElement('script');ds.type = 'text/javascript';ds.async = true;ds.src = '/res/js/embed.js';ds.charset = 'UTF-8';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);})();</script>
+
+  <script src="/statics/js/tongji.js" defer></script>
+</div>
+
+  </div>
+  <div id="top"><a id="rocket" href="javascript:;" title="返回顶部"><i></i></a></div>
+  <script src="/res/js/light.js"></script>
+  
+</body>
+</html>

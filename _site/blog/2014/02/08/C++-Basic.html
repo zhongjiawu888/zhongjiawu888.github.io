@@ -1,0 +1,632 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="description" content="MrZhong's Blog">
+  <meta name="author" content="zhongjiawu">
+  <meta name="keywords" content="你可能不知道的 C++(-)（转载）, MrZhong's Blog, 你可能不知道的 C++(-)（转载） - MrZhong's Blog">
+  <title>你可能不知道的 C++(-)（转载） - MrZhong's Blog</title>
+  <link rel="icon" href="/res/img/shortimg.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/res/img/shortimg.ico" type="image/x-icon">
+  <link rel="canonical" href="zhongjiawu888.github.io/blog/2014/02/08/C++-Basic.html">
+  <link rel="stylesheet" href="/res/css/public.css">
+  <link rel="stylesheet" href="/res/css/life.css">
+  <link rel="stylesheet" href="/res/css/pygments.css">
+
+</head>
+<body>
+  <div class="main">
+    <div class="title">你可能不知道的 C++(-)（转载）</div>
+    <div class="post-info"><i class="fa fa-clock-o"></i>&nbsp;2014-02-08 转载请注明出处：<a href = "http://www.zhongjiawu.com">http://www.zhongjiawu.com</a> </div>
+    <div class="content">
+    <div class="highlighter-rouge"><pre class="highlight"><code>作者: MrZhong
+时间: 2016年10月1日 modify
+版本: 0.0.1
+</code></pre>
+</div>
+
+<hr />
+
+<p>此为《你可能不知道的 C++》的第二部分，讨论 类型，内联 &amp; 模板。</p>
+
+<p>类型</p>
+
+<p>我们不讨论原始类型（int, double, etc.）和结构。原始类型比较简单，而结构其实就是类。</p>
+
+<p>本节包含以下几个方面：</p>
+
+<p>联合
+类
+指针和引用
+常量
+转型</p>
+
+<p>联合</p>
+
+<p>联合（union）的元素共用同一块内存空间，联合的大小就是最大元素的大小。联合里所存对象的类型，编译器是不知道的，所以虽然它可以有成员函数，也没有多大意义。</p>
+
+<p>用联合来统一接口</p>
+
+<p>在 Win32 里，特定于消息（message）的数据通过两个 32 位的参数来传递：WPARAM 和 LPARAM。</p>
+
+<p>LRESULT MsgProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);</p>
+
+<p>用户得记住每一种消息所对应的 WPARAM 和 LPARAM 的含义，这样非常不便。下面是 Win32 消息处理函数的典型写法：</p>
+
+<p>{
+  switch (msg) {
+  case WM_USER:
+    if (lParam == WM_RBUTTONUP) { /<em>…</em>/ }
+      break;</p>
+
+<p>case WM_COMMAND:
+    switch (LOWORD(wParam)) {
+    case IDM_EXIT:
+      SendMessage(hwnd, WM_CLOSE, 0, 0);
+      break;
+    case IDM_CREATE:
+      create();
+      break;
+    //…
+    }
+  // …
+  }
+}</p>
+
+<p>而 Xlib 通过联合，既保证了类型安全，又方便了使用。每一种事件（event，等价于 Win32 下的消息），都封装在一个结构中，比如XKeyEvent，XButtonEvent，等等，它们各有其自身特定的字段，但是开头几个字段是公共的，叫XAnyEvent。Xlib 把这些结构统一在联合XEvent中：</p>
+
+<p>typedef union _XEvent {
+  XAnyEvent xany; // 公共字段
+  XKeyEvent xkey;
+  XButtonEvent xbutton;
+  XMotionEvent xmotion;
+  …
+} XEvent;</p>
+
+<p>第一个公共字段为type，记录事件类型：</p>
+
+<p>struct XAnyEvent {
+  int type;
+  // …
+}</p>
+
+<p>接下来，事件处理的代码清晰易懂：</p>
+
+<p>{
+  switch (evt.xany.type) {
+  case <按钮事件>:
+    // 通过 evt.xbutton 访问按钮事件的特定字段
+    break;</按钮事件></p>
+
+<p>case <键盘事件>:
+    // 通过 evt.xkey 访问键盘事件的特定字段
+    break;</键盘事件></p>
+
+<p>// …
+  }
+}</p>
+
+<p>两相比较，高下自见分晓。</p>
+
+<p>用联合测试大小端</p>
+
+<p>联合最著名最巧妙的应用就是测试大端（bit endian）小端（little endian），Linux 内核就是这么做的：</p>
+
+<p>static union { char c[4]; unsigned long mylong; } endian_test = { { ‘l’, ‘?’, ‘?’, ‘b’ } };
+#define ENDIANNESS ((char)endian_test.mylong)</p>
+
+<p>用法：</p>
+
+<p>if (ENDIANNESS == ‘l’) /* little endian <em>/
+if (ENDIANNESS == ‘b’) /</em> big endian */</p>
+
+<p>类</p>
+
+<p>访问控制</p>
+
+<p>第一点：访问控制作用于类而非对象。</p>
+
+<p>怎么理解？看一个例子。</p>
+
+<p>class foo {
+public:
+  int bar(foo* f) {
+    return a + f-&gt;a;
+  }</p>
+
+<p>private:
+  int a;
+};</p>
+
+<p>虽然 a 是私有成员，但在成员函数 bar() 里依然可以访问 f-&gt;a。</p>
+
+<p>反过来考虑，如果访问控制作用于对象级别，那么一切都得是public才行，否则像拷贝构造函数这样的操作就没办法实现了。</p>
+
+<p>留一个问题，下面的代码可以通过编译吗？</p>
+
+<p>class B {
+protected:
+    int a;
+};</p>
+
+<p>class D : public B {
+public:
+    int f(B* b) {
+        return a + b-&gt;a; // ？
+    }
+};</p>
+
+<p>第二点：访问控制作用于编译时而非运行时。</p>
+
+<p>还是来看一个例子。</p>
+
+<p>class Node {
+public:
+  Node() : value(0) {
+  }</p>
+
+<p>int getValue() const {
+    return value;
+  }</p>
+
+<p>private:
+  int value;
+};</p>
+
+<p>虽然成员变量value是私有的，且没有提供setValue()方法，但是只要“知道”它的地址，仍然可以改变它：</p>
+
+<p>Node node;
+<em>reinterpret_cast&lt;int</em>&gt;(&amp;node) = 1;  // value被改成了1</p>
+
+<p>我们断定value的地址就是Node对象的地址，如果Node有虚函数或基类，value的地址就难说了。</p>
+
+<p>成员函数指针</p>
+
+<p>成员函数指针可能不单单是一个指针（指向成员函数代码的起始地址），它可能是一个小型的结构，编码了很多额外的信息，比如函数是否虚拟（virtual）、是否多继承，等等。</p>
+
+<p>成员函数指针自身不可提领（dereferenced），必须借助具体的对象才能调用。</p>
+
+<p>假设有一个图形库，基类为Graphic：</p>
+
+<p>class Graphic {
+public:
+  virtual void draw() {}
+};</p>
+
+<p>成员函数draw()的指针记为:</p>
+
+<p>void (Graphic::*draw)() = &amp;Graphic::draw;</p>
+
+<p>注意取址符 &amp; 是不能省略的，这一点跟正常的函数指针不太一样。</p>
+
+<p>可以用typedef让类型更清晰一些：</p>
+
+<p>typedef void (Graphic::*draw_t)();
+draw_t draw = &amp;Graphic::draw;</p>
+
+<p>要提领成员函数指针，必须借助一个对象，这个对象也就充当了this指针的作用。</p>
+
+<p>Graphic g;  // 定义一个对象
+(g.*draw)();  // 在这个对象上调用函数指针</p>
+
+<p>如果成员函数没有访问对象的成员变量，甚至可以通过NULL来提领。</p>
+
+<p>((Graphic<em>)NULL)-&gt;</em>draw();</p>
+
+<p>但是这种情况非常少见，也没什么意义。不过 Linux 内核的链表就是基于这一点来实现的，宏list_entry根据结点的字段反推结点的地址:</p>
+
+<p>#define list_entry(ptr, type, member)\
+  ((type *)((char *)(ptr)-(unsigned long)(&amp;((type *)0)-&gt;member)))</p>
+
+<p>其中，&amp;((type *)0)-&gt;member即是在空对象上访问字段member，再取址从而得到member字段相对于结构的地址偏移。</p>
+
+<p>扯远了，回归正题。提领成员函数指针的语法还是挺让人困惑的，可以定义一个宏来辅助：</p>
+
+<p>#define CALL_MEMBER_FN(obj, mfp) ((obj).*(mfp))</p>
+
+<p>CALL_MEMBER_FN(g, draw);</p>
+
+<p>成员函数指针的大小跟一般指针也不一样。再看几个图形库的类：</p>
+
+<p>// 直线
+class Line : public Graphic {
+public:
+  virtual void draw() {}
+};</p>
+
+<p>class Listener {
+};</p>
+
+<p>// 垂线
+class OrthoLine : public Graphic, public Listener {
+public:
+  virtual void draw() {}
+};</p>
+
+<p>在 GCC 和 MSVC 上的测试结果（32位）：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>                                               GCC	MSVC sizeof (&amp;Graphic::draw)           	8	4 sizeof (&amp;Line::draw)                 	8	4 sizeof (&amp;OrthoLine::draw)	        8	8
+</code></pre>
+</div>
+
+<p>在类的继承结构中使用成员函数指针，不可避免的需要转型，直接使用static_cast即可。</p>
+
+<p>从子类转到基类：</p>
+
+<p>typedef void (Graphic::*graphic_draw_t)();
+graphic_draw_t draw = static_cast<graphic_draw_t>(&amp;Line::draw);</graphic_draw_t></p>
+
+<p>从基类转到子类：</p>
+
+<p>typedef void (Line::*line_draw_t)();
+line_draw_t draw = static_cast<line_draw_t>(&amp;Graphic::draw);</line_draw_t></p>
+
+<p>在界面框架里，比如 wxWidgets 和 MFC，成员函数指针一般指向事件（消息）处理函数，存放在消息映射表里。</p>
+
+<p>指针和引用</p>
+
+<p>先来读个程序吧，能猜到输出吗？
+（1987 年第四届 IOCCC，最佳单行程序，David Korn）</p>
+
+<p>main() { printf(&amp;unix[“\021%six\012\0”],(unix)[“have”]+”fun”-0x60);}</p>
+
+<p>猜不到？
+好吧，给点提示，下面这些表达式结果都一样：</p>
+
+<p>x[3] *(x+3) *(3+x) 3[x]</p>
+
+<p>还是猜不到？好吧，更多提示：http://www.ioccc.org/1987/korn.hint</p>
+
+<p>指针的加减</p>
+
+<p>给定类型T的指针（T不为void）：</p>
+
+<p>T* p;</p>
+
+<p>p + 1就等价于：</p>
+
+<p>static_cast&lt;char*&gt;(p) + sizeof(T)
+static_cast<uintptr_t>(p) + sizeof(T)
+static_cast<size_t>(p) + sizeof(T)</size_t></uintptr_t></p>
+
+<p>对void*做加减没有任何意义，且不能编译：</p>
+
+<p>void* p;
+// …
+++p; // 不能编译！
+p = p + 1;  // 不能编译！</p>
+
+<p>两个指针相减，所得差值可以保存在ptrdiff_t或intptr_t类型的变量中：</p>
+
+<p>int *p1, *p2;
+ptrdiff_t d = p2 - p1; // or intptr_t d = …</p>
+
+<p>ptrdiff_t和intptr_t这两个类型与size_t类似，在表达指针差值方面，既正确又可移植。</p>
+
+<p>最后，给定T的两个变量：</p>
+
+<p>T a, b;</p>
+
+<p>可以得出结论：</p>
+
+<p>(&amp;a - &amp;b) * sizeof(T) == (ptrdiff_t)((uintptr_t)&amp;a - (uintptr_t)&amp;b)</p>
+
+<p>引用</p>
+
+<p>这段代码能编译吗？</p>
+
+<p>void pump1(int&amp; i) { }
+void pump2(const int&amp; i) { }</p>
+
+<p>long lval = 24;
+pump1(lval); // ?
+pump2(lval); // ?</p>
+
+<p>这是 Stanley Lippman 在某次演讲中用过的例子，在此就不详细解释了，动手试试就知道。</p>
+
+<p>C++ 为什么要引入引用？
+其实大多数人都没想过这个问题，就算想了，也摸不清重点。</p>
+
+<p>我们来看一个例子。
+给定一个表示矩阵的类Matrix，现在想实现 + 操作符，如果没有引用，那只能这样：</p>
+
+<p>Matrix operator+(Matrix m1, Matrix m2);</p>
+
+<p>我们都知道这会有性能问题，因为参数是“传值”的，每次调用都会有临时对象的构造和销毁。对一个3D程序来说，这种矩阵运算每秒钟可能有上万次，这种不必要的浪费会导致严重的性能问题。</p>
+
+<p>参数使用指针，可以避免性能问题：</p>
+
+<p>Matrix operator+(Matrix* m1, Matrix* m2);</p>
+
+<p>但是指针的语法并不直观（non-intuitive，指针本质上就是一个间接层），也容易出错。</p>
+
+<p>不直观这一点是无法接受的，因为操作符重载背后的思想，就是为了让类对象的使用变得直观。</p>
+
+<p>此外，指针的语法，也不能阻止程序员写出这样的代码：</p>
+
+<p>Matrix d = &amp;a + &amp;b + &amp;c; // Oops!</p>
+
+<p>这种连加操作根本不能编译，&amp;a + &amp;b返回的是值，无法再与&amp;c相加，如果改成返回指针，又有内存管理的问题。</p>
+
+<p>Matrix* operator+(Matrix* m1, Matrix* m2);</p>
+
+<p>正因为此，C++ 之父才决定引入引用。引用解决了对象语法的性能短板，在保留指针的高效、避免对象拷贝开销的同时，提供了对象操作的直观的语法。</p>
+
+<p>常量</p>
+
+<p>const was a useful alternative to macros for representing constants only if global consts were implicitly local to their compilation unit. Only in that case could the compiler easily deduce that their value really didn’t change.</p>
+
+<p>（Bjarne Stroustrup,《C++ 的设计和演化》, 3.8）</p>
+
+<p>这里的常量，特指以const关键字修饰的变量。</p>
+
+<p>两个编译单元里的常量，即使包含自同一个头文件，也互不干扰。</p>
+
+<p>// const.h</p>
+
+<p>const int INT = 1;</p>
+
+<p>// test_1.cc</p>
+
+<p>#include “const.h”
+const void* get_int_address_1() { return &amp;INT; }</p>
+
+<p>// test_2.cc</p>
+
+<p>#include “const.h”
+const void* get_int_address_2() { return &amp;INT; }</p>
+
+<p>// main.cc</p>
+
+<p>extern const void* get_int_address_1();
+extern const void* get_int_address_2();</p>
+
+<p>int main() {
+  // 地址不一样，说明各有一份
+  assert(get_int_address_1() != get_int_address_2());
+}</p>
+
+<p>编译单元test_1.cc和test_2.cc都包含了const.h里的常量INT，但其实它们各有一份自己的INT，互不干扰。</p>
+
+<p>如果头文件里定义的常量不是int，double这种原始类型，必须加上关键字static，否则多个编译单元在链接（link）时，会报错说有重复定义。</p>
+
+<p>// const.h</p>
+
+<p>static const std::string STR = “test”;</p>
+
+<p>转型</p>
+
+<p>C++ 提供了四个转型操作符。</p>
+
+<p>static_cast中的static是指编译时，转型失败的话就不能编译。
+dynamic_cast中的dynamic是指运行时，转型失败的话会返回NULL（转指针时）或引发std::bad_cast异常（转引用时）。
+reinterpret_cast意为重新解释，转型时不做任何检查。
+const_cast只是去掉常量性。</p>
+
+<p>下面说说常用的其它两种转型，取自 Google Chrome 的源码。</p>
+
+<p>implicit_cast</p>
+
+<p>template&lt;typename To, typename From&gt;
+inline To implicit_cast(From const &amp;f) {
+  return f;
+}</p>
+
+<p>用法：</p>
+
+<p>double d = 3.14;
+int i = 3;
+std::min(d, implicit_cast<double>(i));</double></p>
+
+<p>你可能会有两个问题:</p>
+
+<p>能不能之间用std::min(d, i)?
+为什么不用static_cast?</p>
+
+<p>答案</p>
+
+<p>implicit_cast只在特殊情况下才有必要，即当一个表达式的类型必须被精确控制时，比如说，为了避免重载（overload）。
+implicit_cast相较于其它转型的好处是，读代码的人可以立即就明白，这只是一个简单的隐式转换，不是一个潜在的危险的转型（不完全正确，见下文）。</p>
+
+<p>如下代码：</p>
+
+<p>int t = d; // 警告：可能有数据损失
+std::min(t, i);</p>
+
+<p>就等价于：</p>
+
+<p>std::min(implicit_cast<int>(d), i); // 警告：可能有数据损失</int></p>
+
+<p>可见，implicit_cast简化了隐式转型的用法。</p>
+
+<p>直接用static_cast或 C 风格强转是很危险的，因为编译器不再警告。</p>
+
+<p>std::min(static_cast<int>(d), i); // 没有警告
+std::min((int)d, i); // 没有警告</int></p>
+
+<p>再看一个例子：枚举间的转型。</p>
+
+<p>enum E1 { e1_0, e1_1, e1_2 };
+enum E2 { e2_0, e2_1, e2_2 };</p>
+
+<p>E1 e = static_cast<E1>(e2_0);</E1></p>
+
+<p>有些编译器不喜欢枚举到枚举的转型，因此我们先implicit_cast到int：</p>
+
+<p>E1 e = static_cast<E1>(implicit_cast<int>(e2_0));</int></E1></p>
+
+<p>down_cast</p>
+
+<p>down_cast是在继承结构中往下转型，这也正是down的含义，它是用来替代dynamic_cast的，没有运行时检查，直接用static_cast来做转型，从而提高性能。当然，使用场景也就受了限制，只有当你 100% 确定 From 和 To 的关系时，才能使用，否则后果自负。</p>
+
+<p>template&lt;typename To, typename From&gt;
+inline To down_cast(From* f) {
+  if (false) {
+    implicit_cast&lt;From*, To&gt;(0);
+  }</p>
+
+<p>#if !defined(NDEBUG) &amp;&amp; !defined(GOOGLE_PROTOBUF_NO_RTTI)
+  assert(f == NULL || dynamic_cast<To>(f) != NULL);  // RTTI: debug mode only!
+#endif
+  return static_cast<To>(f);
+}</To></To></p>
+
+<p>down_cast的实现巧妙的使用了implicit_cast，让编译器帮助做了类型检查，而 if (false) 条件保证了最终肯定会被编译器优化掉，所以对性能没有任何影响。</p>
+
+<p>内联 &amp; 模板</p>
+
+<p>一些原则：</p>
+
+<p>如果一个编译单元使用了某个内联（inline），那么它就必须要能够看到这个内联的定义。
+模板在实例化（instantiation）时必须要能够看到这个模板的定义。
+如果一个编译单元使用了某个模板的（完整）特例化，那么它不必看到这个特例化的定义，只要看到声明就可以了，一如非模板的情况。（如果特例化是在头文件中，它便总是内联的。）</p>
+
+<p>模板 vs. 宏</p>
+
+<p>应该尽可能避免使用宏。怎么做？用模板和内联，模板提供泛型（genericity），内联提供效率（efficiency）。</p>
+
+<p>举个例子，宏：</p>
+
+<p>#define MIN(a, b) ((a) &lt; (b) ? (a) : (b))</p>
+
+<p>可以替换为：</p>
+
+<p>template <typename T="">
+inline T min(const T&amp; a, const T&amp; b) {
+  return a &lt; b ? a : b;
+}</typename></p>
+
+<p>如果你需要拼接符号（tokens）的能力，那么就必须用宏，无可替代：</p>
+
+<p>比如用宏来初始化一个结构体：</p>
+
+<p>struct image_info {
+  std::string file;     // 图片的文件名
+  unsigned char* img2c; // 缺省使用的图片（一块内存）
+  size_t img2c_len;     // img2c数组的大小
+};</p>
+
+<p>#define _PNG(name) #name “.png”, name##_png, sizeof(name##_png)</p>
+
+<p>还有那个 Linux 内核链表的例子，除了宏也不可能：</p>
+
+<p>#define list_entry(ptr, type, member) \
+    ((type *)((char *)(ptr)-(unsigned long)(&amp;((type *)0)-&gt;member)))</p>
+
+<p>模板特例化</p>
+
+<p>模板特例化（template specialization）可以理解成一种静态派（static dispath）发机制。</p>
+
+<p>注意: 本文不会讨论模板偏特化（partial specialization）。</p>
+
+<p>函数的特例化</p>
+
+<p>STL 里的模板函数swap针对vector做了特例化，直接调用vector自己的swap成员函数，从而避免了拷贝和复制。</p>
+
+<p>template <class T="">
+void swap(T&amp; a, T&amp; b) { T tmp = a; a = b; b = tmp; }</class></p>
+
+<p>template <class T="">
+void swap&lt;vector<T> &gt;(vector<T>&amp; a, vector<T>&amp; b) { a.swap(b); }</T></T></T></class></p>
+
+<p>模板特例化 &amp; 模板重载</p>
+
+<p>模板特例化和模板重载（template overloading）是两回事。</p>
+
+<p>template &lt;class Base, class Exponent&gt;
+Base pow(Base b, Exponent e);</p>
+
+<p>template &lt;&gt;
+int pow(int b, int e); // 特例化</p>
+
+<p>template <class Base="">
+Base pow(Base b, int); // 重载</class></p>
+
+<p>类的特例化</p>
+
+<p>举一个不太好的例子，vector针对bool的特例化，达到节省内存的目的：一个bool只用一个 bit。</p>
+
+<p>template <typename T="">
+class vector {
+  T* vec_data;
+  // ...
+};</typename></p>
+
+<p>template &lt;&gt;
+class vector<bool> {
+  unsigned int *vector_data;
+  // ...
+};</bool></p>
+
+<p>关于 vector<bool> 的问题，值得另写一篇文章了。</bool></p>
+
+<p>Type traits</p>
+
+<p>详见 Boost 库的头文件：boost/type_traits/remove_pointer.hpp</p>
+
+<p>template<typename T=""> struct remove_pointer {
+  typedef T type;
+};
+template<typename T=""> struct remove_pointer&lt;T*&gt; {
+  typedef T type;
+};
+template<typename T=""> struct remove_pointer&lt;T* const&gt; {
+  typedef T type;
+};</typename></typename></typename></p>
+
+<p>用法：</p>
+
+<p>remove_pointer<int>::type i = 1;
+remove_pointer&lt;int*&gt;::type j = 2;</int></p>
+
+<p>Google Chromium IPC uses template specialization to define how a data type is read, written and logged in the IPC system.</p>
+
+<p>template <class P=""> struct ParamTraits {
+};</class></p>
+
+<p>template &lt;&gt;
+struct ParamTraits<bool> {
+  typedef bool param_type;
+  static void Write(Message* m, const param_type&amp; p);
+  static bool Read(const Message* m, void** iter, param_type* r);
+  static void Log(const param_type&amp; p, std::string* l);
+};</bool></p>
+
+<p>template &lt;&gt;
+struct ParamTraits<int> {
+  typedef int param_type;
+  static void Write(Message* m, const param_type&amp; p);
+  static bool Read(const Message* m, void** iter, param_type* r);
+  static void Log(const param_type&amp; p, std::string* l);
+};</int></p>
+
+<p>template &lt;&gt;
+struct ParamTraits<std::string> {
+  typedef std::string param_type;
+  static void Write(Message* m, const param_type&amp; p);
+  static bool Read(const Message* m, void** iter, param_type* r);
+  static void Log(const param_type&amp; p, std::string* l);
+};</std::string></p>
+
+<p>全文完</p>
+
+<hr />
+<hr />
+
+
+    </div>
+    <style>#ds-reset .ds-avatar img{border-radius:50%;}</style>
+<div class="comments">
+  <div class="ds-thread" data-title="你可能不知道的 C++(-)（转载）" data-thread-key="/blog/2014/02/08/C++-Basic" data-url="zhongjiawu888.github.io/blog/2014/02/08/C++-Basic.html"></div>
+  <script type="text/javascript">var duoshuoQuery = {short_name:"zhongjiawu"};(function(){var ds = document.createElement('script');ds.type = 'text/javascript';ds.async = true;ds.src = '/res/js/embed.js';ds.charset = 'UTF-8';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);})();</script>
+
+  <script src="/statics/js/tongji.js" defer></script>
+</div>
+
+  </div>
+  <div id="top"><a id="rocket" href="javascript:;" title="返回顶部"><i></i></a></div>
+  <script src="/res/js/light.js"></script>
+  
+</body>
+</html>
