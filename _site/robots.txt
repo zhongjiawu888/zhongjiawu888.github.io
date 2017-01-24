@@ -1,4 +1,0 @@
-User-Agent: *
-
-Sitemap: http://zhongjiawu888.github.io/sitemap.txt
-
