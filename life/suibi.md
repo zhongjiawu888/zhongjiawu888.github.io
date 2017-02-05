@@ -27,7 +27,7 @@ title: 随笔
 	  </thead>
 	  <tbody>
 		<tr>
-		  <td style="text-align: center"><a href="/life/essay/2016-10-27.html">猿猿的快乐</a></td>	  
+		  <td style="text-align: center"><a href="/life/essay/2016-10-27.html">快乐</a></td>	  
 		  <td style="text-align: center"><code class="highlighter-rouge">2016-10-27 18:06</code></td>
 		  <td style="text-align: center"><code class="highlighter-rouge">公司</code></td>			  
 		</tr>

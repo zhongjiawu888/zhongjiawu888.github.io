@@ -20,11 +20,10 @@
     <div class="title">github+jekyll博客搭建</div>
     <div class="post-info"><i class="fa fa-clock-o"></i>&nbsp;2016-10-04 转载请注明出处：<a href = "http://www.zhongjiawu.com">http://www.zhongjiawu.com</a> </div>
     <div class="content">
-    <div class="highlighter-rouge"><pre class="highlight"><code>作者: MrZhong
+    <pre><code>作者: MrZhong
 时间: 2010年10月4日
 版本: 0.0.1
 </code></pre>
-</div>
 
 <hr />
 
@@ -37,21 +36,19 @@
 <p>在本地编写符合Jekyll规范的网站源码，然后上传到github，由github生成并托管整个网站。
 这种做法的好处是：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>免费，无限流量。
+<pre><code>免费，无限流量。
 享受git的版本管理功能，不用担心文章遗失。
 </code></pre>
-</div>
 
 <p>你只要用自己喜欢的编辑器写文章就可以了，其他事情一概不用操心，都由github处理。
 它的缺点是：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>有一定技术门槛，你必须要懂一点git和网页开发。
+<pre><code>有一定技术门槛，你必须要懂一点git和网页开发。
 它生成的是静态网页，添加动态功能必须使用外部服务，
 比如评论功能就只能用disqus。
 它不适合大型网站，因为没有用到数据库，每运行一次都
 必须遍历全部的文本文件，网站越大，生成时间越长。
 </code></pre>
-</div>
 
 <h1 id="section">二、环境搭建</h1>
 
@@ -69,58 +66,52 @@
 
 <p>命令行下输入ruby -v 检测是否安装成功：接下来运行</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>ruby dk.rb install。
+<pre><code>ruby dk.rb install。
 </code></pre>
-</div>
 
-<p>最后在cmd 窗口中，进入到username.github.io目录，输入命令开始安装</p>
+<p>最后在cmd 窗口中，进入到username.github.io目录，输入命令开始安装 </p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>	gem install Jekyll 
+<pre><code>	gem install Jekyll 
 </code></pre>
-</div>
 
 <p>国内的网络环境需要耐心等待会儿，如果一直不行，求助于万能的淘宝，http://ruby.taobao.org/是淘宝搭建的ruby gems镜像。：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>~ $ gem sources --remove https://rubygems.org/
+<pre><code>~ $ gem sources --remove https://rubygems.org/
 ~ $ gem sources -a https://ruby.taobao.org/
 ~ $ gem sources -l
 	*** CURRENT SOURCES ***
 	https://ruby.taobao.org
 </code></pre>
-</div>
 
 <p>2.clone代码：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>~ $ git clone https://github.com/username/username.github.io
+<pre><code>~ $ git clone https://github.com/username/username.github.io
 
 https://github.com/Mr-Zhong/zhongjiawu.github.io.git
 </code></pre>
-</div>
 
 <p>进入到刚才clone的目录，写一个hello world，或者下载模版代码</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>~ $ cd username.github.io
+<pre><code>~ $ cd username.github.io
 ~ $ echo "Hello World" &gt; index.html
 ~ $ git add --all
 ~ $ git commit -m "Initial commit"
 ~ $ git push -u origin master
 </code></pre>
-</div>
 
 <p>3.浏览器里访问一下：http://username.github.io</p>
 
 <p>4.如果是在本地测试开发，cmd命令窗口进入项目目录username.github.io中，运行</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>jekyll build 编译会生成一个新目录文件夹_site
+<pre><code>jekyll build 编译会生成一个新目录文件夹_site
 jekyll server 启动本地服务器
 </code></pre>
-</div>
 
 <p>最后浏览器里访问一下：http://localhost:4000</p>
 
 <h1 id="section-1">三、遇到的问题</h1>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>jekyll 3.2.1 | Error:  Only one usage of each
+<pre><code>jekyll 3.2.1 | Error:  Only one usage of each
 socket address (protocol/network
 ddress/port) is normally permitted. - bind(2)
 这是因为4000端口号被占用，解决方法
@@ -130,16 +121,14 @@ tasklist|findstr "4000"，回车，查看是哪个进程或者程序
 占用了4000端口，结果是：svchost.exe
 打开任务管理，结束进程即可。
 </code></pre>
-</div>
 
 <h1 id="section-2">四，发布内容。</h1>
 
 <p>现在，这个简单的Blog就可以发布了。先把所有内容加入本地git库。</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>　　$ git add .
+<pre><code>　　$ git add .
 　　$ git commit -m "first post"
 </code></pre>
-</div>
 
 <p>然后，前往github的网站，在网站上创建一个名为jekyll_demo的库。接着，再将本地内容推送到github上你刚创建的库。注意，下面命令中的username，要替换成你的username。</p>
 

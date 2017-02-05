@@ -20,11 +20,10 @@
     <div class="title">千鸟游戏引擎</div>
     <div class="post-info"><i class="fa fa-clock-o"></i>&nbsp;2012-06-29 转载请注明出处：<a href = "http://www.zhongjiawu.com">http://www.zhongjiawu.com</a> </div>
     <div class="content">
-    <div class="highlighter-rouge"><pre class="highlight"><code>作者: MrZhong
+    <pre><code>作者: MrZhong
 时间: 2016年10月1日 modify
 版本: 0.0.2
 </code></pre>
-</div>
 
 <hr />
 
@@ -54,13 +53,12 @@
 
 <p>本引擎中所使用的游戏最基本的流程框架如图1所示</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>		 图1 游戏最基本的流程框架
+<pre><code>		 图1 游戏最基本的流程框架
 </code></pre>
-</div>
 
 <p>2.2.2 构成游戏的要素</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>1）资源。资源制作分工人员图如图2所示
+<pre><code>1）资源。资源制作分工人员图如图2所示
 		   1.也可以成为Asset数据
 			2.构成游戏各部件的数据组
 			3.美工人员都是使用DCC工具进行制作
@@ -70,13 +68,12 @@
 
 2）3D模型。3D模型如图3所示
 </code></pre>
-</div>
 
 <p>图3  3D模型图</p>
 
 <p>3）执行文件。执行文件如图4所示</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>		   	1.驱动游戏内容的引擎
+<pre><code>		   	1.驱动游戏内容的引擎
 
 			2.所有一切从游戏访问这个文件开始
 
@@ -85,17 +82,15 @@
  
 						图4	 执行文件图
 </code></pre>
-</div>
 
 <p>4）游戏引擎的构成与使用者的关系。游戏引擎的构成与使用者的关系如图5所示</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>					图5  游戏引擎的构成与使用者的关系图
+<pre><code>					图5  游戏引擎的构成与使用者的关系图
 </code></pre>
-</div>
 
 <p>2.2.3 引擎各模块之间的协同操作</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>引擎各模块之间的协同操作如图6所示 
+<pre><code>引擎各模块之间的协同操作如图6所示 
 
 					图6  引擎各模块之间的协同操作 ##3 游戏策划与实现
  
@@ -103,15 +98,13 @@
 
 3.1.1.1 游戏的简要介绍
 </code></pre>
-</div>
 
 <p>这是一款操作简单的3D乒乓球游戏，游戏中你可以选择喜爱的国家参加比赛，通过移动画面上球拍的位置，从不同角度击回对方打过来的乒乓球。该款游戏的画面较为简洁，游戏自始至终停留在一个“三维”的平面中，给人一种空间意识。该游戏没许多的音效，当乒乓球撞击到自己和对方的球拍，或者球桌时，会有撞击响声，赢球后有观众的欢呼声，在进入游戏时有背景音乐，并可设置开关。整体上是一款非常不错的休闲体育类游戏。</p>
 
 <p>3.1.2 项目概述</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>				项目概述如表1所示
+<pre><code>				项目概述如表1所示
 </code></pre>
-</div>
 
 <p>项目名称：	3D乒乓球游戏	开发平台：	PC平台
 游戏类型：	体育类	屏幕尺寸：	1280*720
@@ -120,9 +113,8 @@
 适合玩家群体：	适合所有玩家群体
 上手难度：	上手容易，上手时间在2分钟</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>							表1  项目概述表
+<pre><code>							表1  项目概述表
 </code></pre>
-</div>
 
 <p>3.1.3 游戏进度表</p>
 
@@ -159,17 +151,15 @@
 
 <p>3.1.4 游戏WBS设计</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>							图7   WBS图 3.1.5 游戏美工需求表
+<pre><code>							图7   WBS图 3.1.5 游戏美工需求表
 </code></pre>
-</div>
 
 <p>表3  美工需求表</p>
 
 <p>3.1.6 游戏运行环境</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Windows 64位 并有千鸟引擎程序库环境
+<pre><code>Windows 64位 并有千鸟引擎程序库环境
 </code></pre>
-</div>
 
 <p>3.2 游戏实现</p>
 
@@ -208,26 +198,24 @@
 <p>游戏中运用到碰撞主要是乒乓球与球桌、球拍以及球网上。在3D模型制作时，需用碰撞网格（CollisionMesh）完全包裹住模型，以提供判断模型是否碰撞的网格数据。
 碰撞检测类必须实现ICollType接口，球体类可继承CCollSphere,球桌和球网以及球拍可视为长方体，因此可继承CCollBoxAABB类即可。CTransform类决定了碰撞对象的位置和角度，给碰撞对象传递一个Ctransform指针使用。代码如下：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>CTransform transform; 
+<pre><code>CTransform transform; 
 ICollType* pColl = ****; 
 pColl-&gt;setTransform( &amp;transform ); 
 transform.setTranslate( CVector4( 100.f, 50.f, -40.f ) );
 CCollSphere的使用方法：用函数setRadius()
 </code></pre>
-</div>
 
 <p>设置半径，用transform改变状态,代码如下：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>CTransform transform;
+<pre><code>CTransform transform;
 CCollSphere sphere( NULL, &amp;transform ); //将半径设成20 sphere.setRadius( 20.f ); //球体的中心设成( 10, -10, 0 ) transform.setTranslate( CVector4( 10.f, -10.f, 0.f ) );
 </code></pre>
-</div>
 
 <p>CCollBoxAABB的使用方法：用函数setDimension()</p>
 
 <p>设置半径，用transform改变状态,代码如下：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>CTransform transform;
+<pre><code>CTransform transform;
 CCollBoxAABB aabb( NULL, &amp;transform ); 
 aabb.setDimension( CVector4( 40.f, 30.f, 20.f ) ); transform.setTranslate( CVector4( 10.f, -10.f, 0.f ) );
 
@@ -238,20 +226,18 @@ uint32 nMeshuNum = pModel-&gt;getCollisionMeshNumber();
 //获取CollisionMesh 
 CCollisionMesh* pMesh = Model-&gt;getCollisionMesh( index );
 </code></pre>
-</div>
 
 <p>碰撞测试则使用函数isCheckType(),代码如下：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>CTransform trA,trB; //含有碰撞网格的模型 
+<pre><code>CTransform trA,trB; //含有碰撞网格的模型 
 CModel* pModel = ****; //也可以用构造函数设置transform ICollType* pCollA = new CCollSphere( NULL, &amp;trA ); ICollType* pCollB = new CCollMesh( pModel, &amp;trB ); CVector4 vHitPos; bool isHit = CollA-&gt;isCheckColl( pCollB, vHitPos );
 </code></pre>
-</div>
 
 <ol>
   <li>音效的载入</li>
 </ol>
 
-<p>音效的作业流程如图10所示，</p>
+<p>音效的作业流程如图10所示， </p>
 
 <p>图10   音效的作业流程</p>
 
@@ -266,7 +252,7 @@ CModel* pModel = ****; //也可以用构造函数设置transform ICollType* pCol
 		Sound&amp; Application::getSound() {
 		return *m_pSound; }</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>	//数据登录
+<pre><code>	//数据登录
 	Sound::setSETable( SmartPointer&lt;void&gt; ) //登录SE的表格数据
 	Sound::registGroup( uint32, SmartPointer&lt;void&gt;) //在音效（Sound）用的缓存中登录音源数据,第一参数为群组编号
 				
@@ -277,7 +263,6 @@ CModel* pModel = ****; //也可以用构造函数设置transform ICollType* pCol
 	PROXY.STOP( 0.5F );//获取现在的音效状态 
 	STATE() ; (ISOUND::PLAY : 播放中, ISOUND::PAUSE :暂停中)
 </code></pre>
-</div>
 
 <ol>
   <li>球的轨迹分析</li>
@@ -304,7 +289,7 @@ CModel* pModel = ****; //也可以用构造函数设置transform ICollType* pCol
 
 <p>详细分析：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>a.受力：
+<pre><code>a.受力：
 假设球与地面做完全弹性碰撞，碰撞前后系统动能守恒，没有能量损失。
 球于地面发生碰撞分为两个阶段：
 压缩阶段：球与地面开始碰撞时，球体发生形变，由形变实际上弹性恢复力使两球的速度发生变化，直到球的速度减为0。
@@ -312,7 +297,6 @@ CModel* pModel = ****; //也可以用构造函数设置transform ICollType* pCol
 b.速度：
 从压缩状态开始，到恢复状态结束，y轴方向的速度反向。
 </code></pre>
-</div>
 
 <p>3)	抛物线运动</p>
 
@@ -320,7 +304,7 @@ b.速度：
 抽象成代码:</p>
 
 <p>BallPosition.x += BallVelocity.x;
-BallPosition.z += BallVelocity.z;</p>
+BallPosition.z += BallVelocity.z; </p>
 
 <p>图12  抛物线受力分析图</p>
 

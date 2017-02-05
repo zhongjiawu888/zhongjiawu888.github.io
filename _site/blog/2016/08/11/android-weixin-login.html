@@ -20,11 +20,10 @@
     <div class="title">android微信登录SDK接入笔记</div>
     <div class="post-info"><i class="fa fa-clock-o"></i>&nbsp;2016-08-11 转载请注明出处：<a href = "http://www.zhongjiawu.com">http://www.zhongjiawu.com</a> </div>
     <div class="content">
-    <div class="highlighter-rouge"><pre class="highlight"><code>作者: MrZhong
+    <pre><code>作者: MrZhong
 时间: 2016年8月11日
 版本: 0.0.1
 </code></pre>
-</div>
 
 <hr />
 
@@ -118,39 +117,38 @@
 
 <p>实例代码</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>	private void authorize<span class="o">(</span>Platform plat<span class="o">)</span> <span class="o">{</span>
-	<span class="k">if</span> <span class="o">(</span>plat <span class="o">==</span> null<span class="o">)</span> <span class="o">{</span>
-	popupOthers<span class="o">()</span>;
-	<span class="k">return</span>;
-	<span class="o">}</span>
+<pre><code class="language-sh">	private void authorize(Platform plat) {
+	if (plat == null) {
+	popupOthers();
+	return;
+	}
 
-	<span class="k">if</span><span class="o">(</span>plat.isValid<span class="o">())</span> <span class="o">{</span>
+	if(plat.isValid()) {
 
-	String userId <span class="o">=</span> plat.getDb<span class="o">()</span>.getUserId<span class="o">()</span>;
+	String userId = plat.getDb().getUserId();
 
-	<span class="k">if</span> <span class="o">(</span>userId !<span class="o">=</span> null<span class="o">)</span> <span class="o">{</span>
+	if (userId != null) {
 
-	UIHandler.sendEmptyMessage<span class="o">(</span>MSG_USERID_FOUND, this<span class="o">)</span>;
+	UIHandler.sendEmptyMessage(MSG_USERID_FOUND, this);
 
-	login<span class="o">(</span>plat.getName<span class="o">()</span>, userId, null<span class="o">)</span>;
+	login(plat.getName(), userId, null);
 
-	<span class="k">return</span>;
+	return;
 
-	<span class="o">}</span>
+	}
 
-	<span class="o">}</span>
+	}
 
-	plat.setPlatformActionListener<span class="o">(</span>this<span class="o">)</span>;
+	plat.setPlatformActionListener(this);
 
 	// true不使用SSO授权，false使用SSO授权
 
-	plat.SSOSetting<span class="o">(</span><span class="nb">true</span><span class="o">)</span>;
+	plat.SSOSetting(true);
 
-	plat.showUser<span class="o">(</span>null<span class="o">)</span>;
+	plat.showUser(null);
 
-	<span class="o">}</span>
+	}
 </code></pre>
-</div>
 <p>上面的代码是当用户触发第三方登录按钮的时候的处理。plat.isValid()判断指定平台是否已经完成授权，如果已经完成授
 权，ShareSDK的用户数据库应该已经存在userId，因此代码尝试获取userId，如果得到的为null，当作为授权，否则用此ID来执行登
 录。如果此平台没有完成授权，则调用plat.showUser(null)方法来获取用户资料。</p>

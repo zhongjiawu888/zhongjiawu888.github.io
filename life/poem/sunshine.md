@@ -2,7 +2,7 @@
 layout: essay
 duoshuo: true
 cssbg: life1.css
-title: 斑马线
+title: 阳光欺骗
 ---
 
 ----------

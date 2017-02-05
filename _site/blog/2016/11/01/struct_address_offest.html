@@ -20,11 +20,10 @@
     <div class="title">结构体地址偏移</div>
     <div class="post-info"><i class="fa fa-clock-o"></i>&nbsp;2016-11-01 转载请注明出处：<a href = "http://www.zhongjiawu.com">http://www.zhongjiawu.com</a> </div>
     <div class="content">
-    <div class="highlighter-rouge"><pre class="highlight"><code>作者: MrZhong
+    <pre><code>作者: MrZhong
 时间: 2016年11月01日
 版本: 0.0.1
 </code></pre>
-</div>
 
 <hr />
 
@@ -38,7 +37,7 @@
 
 <p>一、没有#pragma pack宏</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>#define PRINT_D(intValue)     CCLog(#intValue" is %d\n", (intValue));
+<pre><code>#define PRINT_D(intValue)     CCLog(#intValue" is %d\n", (intValue));
 #define OFFSET(struct,member)  ((char *)&amp;((struct *)0)-&gt;member - (char *)0)
 
 typedef struct
@@ -92,11 +91,10 @@ PRINT_D(sizeof(B))
 
 	PRINT_D(OFFSET(B, c1))
 </code></pre>
-</div>
 
 <p>输出结果：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sizeof(student) is 12
+<pre><code>sizeof(student) is 12
 
 OFFSET(student, sex) is 0
 
@@ -130,13 +128,12 @@ OFFSET(B, s) is 8
 
 OFFSET(B, c1) is 10
 </code></pre>
-</div>
 
 <p>二、有#pragma pack宏定义：</p>
 
-<p>#pragma pack(2)</p>
+<h1 id="pragma-pack2">pragma pack(2)</h1>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>define PRINT_D(intValue)     CCLog(#intValue" is %d\n", (intValue));
+<pre><code>define PRINT_D(intValue)     CCLog(#intValue" is %d\n", (intValue));
 #define OFFSET(struct,member)  ((char *)&amp;((struct *)0)-&gt;member - (char *)0)
 
 
@@ -191,7 +188,6 @@ PRINT_D(sizeof(B))
 
 	PRINT_D(OFFSET(B, c1))
 </code></pre>
-</div>
 
 
     </div>

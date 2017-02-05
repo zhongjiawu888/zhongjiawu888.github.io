@@ -20,11 +20,10 @@
     <div class="title">C++调用Android应用集合</div>
     <div class="post-info"><i class="fa fa-clock-o"></i>&nbsp;2016-12-07 转载请注明出处：<a href = "http://www.zhongjiawu.com">http://www.zhongjiawu.com</a> </div>
     <div class="content">
-    <div class="highlighter-rouge"><pre class="highlight"><code>作者: MrZhong
+    <pre><code>作者: MrZhong
 时间: 2016年12月07日
 版本: 0.0.1
 </code></pre>
-</div>
 
 <hr />
 
@@ -32,7 +31,7 @@
 
 <p>1.c++ 调用 Java</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>string PlatformAndroid::onCallPhone()
+<pre><code>string PlatformAndroid::onCallPhone()
 {
     std::string str = "";
 
@@ -53,11 +52,10 @@
     return str;
 }
 </code></pre>
-</div>
 
 <p>2.java 代码实现</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>（1）声明
+<pre><code>（1）声明
 	public final static int HANDLER_GOTO_PHONENUM = 101;//
 	public static Handler mWXHandler = null;
 	public static Activity m_pkActInstance; = null;
@@ -84,11 +82,10 @@ public static String onCallPhone()
     return "";
 }   
 </code></pre>
-</div>
 
 <p>二、调用手机默然浏览器</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>public static String openBrowser()
+<pre><code>public static String openBrowser()
 {
      Intent intent = new Intent();
      intent.setAction("android.intent.action.VIEW");
@@ -98,7 +95,6 @@ public static String onCallPhone()
     return "";
 } 
 </code></pre>
-</div>
 
     </div>
     <style>#ds-reset .ds-avatar img{border-radius:50%;}</style>

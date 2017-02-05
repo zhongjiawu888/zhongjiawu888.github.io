@@ -20,11 +20,10 @@
     <div class="title">你可能不知道的 C++(-)（转载）</div>
     <div class="post-info"><i class="fa fa-clock-o"></i>&nbsp;2014-02-08 转载请注明出处：<a href = "http://www.zhongjiawu.com">http://www.zhongjiawu.com</a> </div>
     <div class="content">
-    <div class="highlighter-rouge"><pre class="highlight"><code>作者: MrZhong
+    <pre><code>作者: MrZhong
 时间: 2016年10月1日 modify
 版本: 0.0.1
 </code></pre>
-</div>
 
 <hr />
 
@@ -216,14 +215,14 @@ draw_t draw = &amp;Graphic::draw;</p>
 
 <p>但是这种情况非常少见，也没什么意义。不过 Linux 内核的链表就是基于这一点来实现的，宏list_entry根据结点的字段反推结点的地址:</p>
 
-<p>#define list_entry(ptr, type, member)\
-  ((type *)((char *)(ptr)-(unsigned long)(&amp;((type *)0)-&gt;member)))</p>
+<h1 id="define-listentryptr-type-member">define list_entry(ptr, type, member)\</h1>
+<p>((type *)((char *)(ptr)-(unsigned long)(&amp;((type *)0)-&gt;member)))</p>
 
 <p>其中，&amp;((type *)0)-&gt;member即是在空对象上访问字段member，再取址从而得到member字段相对于结构的地址偏移。</p>
 
 <p>扯远了，回归正题。提领成员函数指针的语法还是挺让人困惑的，可以定义一个宏来辅助：</p>
 
-<p>#define CALL_MEMBER_FN(obj, mfp) ((obj).*(mfp))</p>
+<h1 id="define-callmemberfnobj-mfp-objmfp">define CALL_MEMBER_FN(obj, mfp) ((obj).*(mfp))</h1>
 
 <p>CALL_MEMBER_FN(g, draw);</p>
 
@@ -246,9 +245,8 @@ public:
 
 <p>在 GCC 和 MSVC 上的测试结果（32位）：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>                                               GCC	MSVC sizeof (&amp;Graphic::draw)           	8	4 sizeof (&amp;Line::draw)                 	8	4 sizeof (&amp;OrthoLine::draw)	        8	8
+<pre><code>                                               GCC	MSVC sizeof (&amp;Graphic::draw)           	8	4 sizeof (&amp;Line::draw)                 	8	4 sizeof (&amp;OrthoLine::draw)	        8	8
 </code></pre>
-</div>
 
 <p>在类的继承结构中使用成员函数指针，不可避免的需要转型，直接使用static_cast即可。</p>
 
@@ -369,13 +367,13 @@ pump2(lval); // ?</p>
 
 <p>// test_1.cc</p>
 
-<p>#include “const.h”
-const void* get_int_address_1() { return &amp;INT; }</p>
+<h1 id="include-consth">include “const.h”</h1>
+<p>const void* get_int_address_1() { return &amp;INT; }</p>
 
 <p>// test_2.cc</p>
 
-<p>#include “const.h”
-const void* get_int_address_2() { return &amp;INT; }</p>
+<h1 id="include-consth-1">include “const.h”</h1>
+<p>const void* get_int_address_2() { return &amp;INT; }</p>
 
 <p>// main.cc</p>
 
@@ -450,11 +448,11 @@ std::min((int)d, i); // 没有警告</int></p>
 <p>enum E1 { e1_0, e1_1, e1_2 };
 enum E2 { e2_0, e2_1, e2_2 };</p>
 
-<p>E1 e = static_cast<E1>(e2_0);</E1></p>
+<p>E1 e = static_cast<e1>(e2_0);</e1></p>
 
 <p>有些编译器不喜欢枚举到枚举的转型，因此我们先implicit_cast到int：</p>
 
-<p>E1 e = static_cast<E1>(implicit_cast<int>(e2_0));</int></E1></p>
+<p>E1 e = static_cast<e1>(implicit_cast<int>(e2_0));</int></e1></p>
 
 <p>down_cast</p>
 
@@ -466,11 +464,11 @@ inline To down_cast(From* f) {
     implicit_cast&lt;From*, To&gt;(0);
   }</p>
 
-<p>#if !defined(NDEBUG) &amp;&amp; !defined(GOOGLE_PROTOBUF_NO_RTTI)
-  assert(f == NULL || dynamic_cast<To>(f) != NULL);  // RTTI: debug mode only!
+<h1 id="if-definedndebug--definedgoogleprotobufnortti">if !defined(NDEBUG) &amp;&amp; !defined(GOOGLE_PROTOBUF_NO_RTTI)</h1>
+<p>assert(f == NULL || dynamic_cast<to>(f) != NULL);  // RTTI: debug mode only!
 #endif
-  return static_cast<To>(f);
-}</To></To></p>
+  return static_cast<to>(f);
+}</to></to></p>
 
 <p>down_cast的实现巧妙的使用了implicit_cast，让编译器帮助做了类型检查，而 if (false) 条件保证了最终肯定会被编译器优化掉，所以对性能没有任何影响。</p>
 
@@ -488,11 +486,11 @@ inline To down_cast(From* f) {
 
 <p>举个例子，宏：</p>
 
-<p>#define MIN(a, b) ((a) &lt; (b) ? (a) : (b))</p>
+<h1 id="define-mina-b-a--b--a--b">define MIN(a, b) ((a) &lt; (b) ? (a) : (b))</h1>
 
 <p>可以替换为：</p>
 
-<p>template <typename T="">
+<p>template <typename t="">
 inline T min(const T&amp; a, const T&amp; b) {
   return a &lt; b ? a : b;
 }</typename></p>
@@ -507,12 +505,13 @@ inline T min(const T&amp; a, const T&amp; b) {
   size_t img2c_len;     // img2c数组的大小
 };</p>
 
-<p>#define _PNG(name) #name “.png”, name##_png, sizeof(name##_png)</p>
+<h1 id="define-pngname-name-png-namepng-sizeofnamepng">define _PNG(name) #name “.png”, name##_png, sizeof(name##_png)</h1>
 
 <p>还有那个 Linux 内核链表的例子，除了宏也不可能：</p>
 
-<p>#define list_entry(ptr, type, member) \
-    ((type *)((char *)(ptr)-(unsigned long)(&amp;((type *)0)-&gt;member)))</p>
+<h1 id="define-listentryptr-type-member-">define list_entry(ptr, type, member) \</h1>
+<pre><code>((type *)((char *)(ptr)-(unsigned long)(&amp;((type *)0)-&gt;member)))
+</code></pre>
 
 <p>模板特例化</p>
 
@@ -524,11 +523,11 @@ inline T min(const T&amp; a, const T&amp; b) {
 
 <p>STL 里的模板函数swap针对vector做了特例化，直接调用vector自己的swap成员函数，从而避免了拷贝和复制。</p>
 
-<p>template <class T="">
+<p>template <class t="">
 void swap(T&amp; a, T&amp; b) { T tmp = a; a = b; b = tmp; }</class></p>
 
-<p>template <class T="">
-void swap&lt;vector<T> &gt;(vector<T>&amp; a, vector<T>&amp; b) { a.swap(b); }</T></T></T></class></p>
+<p>template <class t="">
+void swap&lt;vector<t> &gt;(vector<t>&amp; a, vector<t>&amp; b) { a.swap(b); }</t></t></t></class></p>
 
 <p>模板特例化 &amp; 模板重载</p>
 
@@ -540,14 +539,14 @@ Base pow(Base b, Exponent e);</p>
 <p>template &lt;&gt;
 int pow(int b, int e); // 特例化</p>
 
-<p>template <class Base="">
+<p>template <class base="">
 Base pow(Base b, int); // 重载</class></p>
 
 <p>类的特例化</p>
 
 <p>举一个不太好的例子，vector针对bool的特例化，达到节省内存的目的：一个bool只用一个 bit。</p>
 
-<p>template <typename T="">
+<p>template <typename t="">
 class vector {
   T* vec_data;
   // ...
@@ -565,13 +564,13 @@ class vector<bool> {
 
 <p>详见 Boost 库的头文件：boost/type_traits/remove_pointer.hpp</p>
 
-<p>template<typename T=""> struct remove_pointer {
+<p>template<typename t=""> struct remove_pointer {
   typedef T type;
 };
-template<typename T=""> struct remove_pointer&lt;T*&gt; {
+template<typename t=""> struct remove_pointer&lt;T*&gt; {
   typedef T type;
 };
-template<typename T=""> struct remove_pointer&lt;T* const&gt; {
+template<typename t=""> struct remove_pointer&lt;T* const&gt; {
   typedef T type;
 };</typename></typename></typename></p>
 
@@ -582,7 +581,7 @@ remove_pointer&lt;int*&gt;::type j = 2;</int></p>
 
 <p>Google Chromium IPC uses template specialization to define how a data type is read, written and logged in the IPC system.</p>
 
-<p>template <class P=""> struct ParamTraits {
+<p>template <class p=""> struct ParamTraits {
 };</class></p>
 
 <p>template &lt;&gt;

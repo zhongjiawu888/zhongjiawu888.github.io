@@ -19,19 +19,108 @@ title: 日记
 
 >**吞噬了**
 
-<div class='lifelog'>
-  <h4 id="section-1">2016</h4>
+
+
+
+<div class='2017'>
+	<table>
+  		<h4 id="section-3">2017</h4>
+		<tr>
+		  <th style="text-align: center">TIME</th>
+		  <th style="text-align: center">PLACE</th>
+		</tr>
+
+
+	  	<tr>
+		  <td style="text-align: center"><a href="/life/dairy/2017-02-05.html">2017-02-05</a></td>	  
+		  <td style="text-align: center"><code class="highlighter-rouge">上海</code></td>			  
+		</tr>
+	  	<tr>
+		  <td style="text-align: center"><a href="/life/dairy/2017-02-04.html">2017-02-04</a></td>	  
+		  <td style="text-align: center"><code class="highlighter-rouge">上海</code></td>			  
+		</tr>
+	  	<tr>
+		  <td style="text-align: center"><a href="/life/dairy/2017-02-03.html">2017-02-03</a></td>	  
+		  <td style="text-align: center"><code class="highlighter-rouge">大巴上</code></td>			  
+		</tr>
+	  	<tr>
+		  <td style="text-align: center"><a href="/life/dairy/2017-01-31.html">2017-01-31</a></td>	  
+		  <td style="text-align: center"><code class="highlighter-rouge">泰和</code></td>			  
+		</tr>
+
+	  	<tr>
+		  <td style="text-align: center"><a href="/life/dairy/2017-01-28.html">2017-01-28（正月初一）</a></td>	  
+		  <td style="text-align: center"><code class="highlighter-rouge">老家</code></td>			  
+		</tr>	
+	  	<tr>
+		  <td style="text-align: center"><a href="/life/dairy/2017-01-20.html">2017-01-20（小年）</a></td>	  
+		  <td style="text-align: center"><code class="highlighter-rouge">草堂</code></td>			  
+		</tr>	
+
+	  	<tr>
+		  <td style="text-align: center"><a href="/life/dairy/2017-01-18.html">2017-01-18</a></td>	  
+		  <td style="text-align: center"><code class="highlighter-rouge">虹桥机场</code></td>			  
+		</tr>			
+	  	<tr>
+		  <td style="text-align: center"><a href="/life/dairy/2017-01-16.html">2017-01-16</a></td>	  
+		  <td style="text-align: center"><code class="highlighter-rouge">外婆家</code></td>			  
+		</tr>		
+	  	<tr>
+		  <td style="text-align: center"><a href="/life/dairy/2017-01-14.html">2017-01-14</a></td>	  
+		  <td style="text-align: center"><code class="highlighter-rouge">机上</code></td>			  
+		</tr>
+	  	<tr>
+		  <td style="text-align: center"><a href="/life/dairy/2017-01-13.html">2017-01-13</a></td>	  
+		  <td style="text-align: center"><code class="highlighter-rouge">草堂</code></td>			  
+		</tr>		
+	  	<tr>
+		  <td style="text-align: center"><a href="/life/dairy/2017-01-03.html">2017-1-3</a></td>	  
+		  <td style="text-align: center"><code class="highlighter-rouge">草堂</code></td>			  
+		</tr>
+
+	</tabel>
+</div>
+
+
+
+<div class='2016'>
 	<table>
 	  <thead>
+  		<h4 id="section-2">2016</h4>
 		<tr>
 		  <th style="text-align: center">NAME</th>
 		  <th style="text-align: center">TIME</th>
 		  <th style="text-align: center">PLACE</th>
 		</tr>
 	  </thead>
-	  <tbody>
 
+	  <tr>
+		  <td style="text-align: center"><a href="/life/dairy/2016-12-30.html">搬家</a></td>	  
+		  <td style="text-align: center"><code class="highlighter-rouge">2016-12-30</code></td>
+		  <td style="text-align: center"><code class="highlighter-rouge">草堂</code></td>			  
+		</tr>	  	
 
+	  	<tr>
+		  <td style="text-align: center"><a href="/life/dairy/2016-12-25.html">挂了</a></td>	  
+		  <td style="text-align: center"><code class="highlighter-rouge">2016-12-25</code></td>
+		  <td style="text-align: center"><code class="highlighter-rouge">交大（法华校区）</code></td>			  
+		</tr>	  	
+
+	  	<tr>
+		  <td style="text-align: center"><a href="/life/dairy/2016-12-17.html">释然</a></td>	  
+		  <td style="text-align: center"><code class="highlighter-rouge">2016-12-17</code></td>
+		  <td style="text-align: center"><code class="highlighter-rouge">公司</code></td>			  
+		</tr>
+	  	<tr>
+		  <td style="text-align: center"><a href="/life/dairy/2016-11-30.html">项目解散</a></td>	  
+		  <td style="text-align: center"><code class="highlighter-rouge">2016-11-30</code></td>
+		  <td style="text-align: center"><code class="highlighter-rouge">公司</code></td>			  
+		</tr>
+	  	<tr>
+		  <td style="text-align: center"><a href="/life/dairy/2016-11-28.html">无题</a></td>	  
+		  <td style="text-align: center"><code class="highlighter-rouge">2016-11-28 17:40</code></td>
+		  <td style="text-align: center"><code class="highlighter-rouge">长泰广场</code></td>			  
+		</tr>
 	  	<tr>
 		  <td style="text-align: center"><a href="/life/dairy/2016-11-07.html">反思</a></td>	  
 		  <td style="text-align: center"><code class="highlighter-rouge">2016-11-07 09:25</code></td>
@@ -47,11 +136,7 @@ title: 日记
 		  <td style="text-align: center"><code class="highlighter-rouge">2016-10-31 09:35</code></td>
 		  <td style="text-align: center"><code class="highlighter-rouge">食堂</code></td>			  
 		</tr>
-	  	<tr>
-		  <td style="text-align: center"><a href="/life/dairy/2016-10-28.html">无题</a></td>	  
-		  <td style="text-align: center"><code class="highlighter-rouge">2016-10-28 17:40</code></td>
-		  <td style="text-align: center"><code class="highlighter-rouge">长泰广场</code></td>			  
-		</tr>
+
 	  	<tr>
 		  <td style="text-align: center"><a href="/life/dairy/2016-10-23.html">尘埃落定</a></td>	  
 		  <td style="text-align: center"><code class="highlighter-rouge">2016-10-23 12:13</code></td>
@@ -119,12 +204,35 @@ title: 日记
 		  <td style="text-align: center"><code class="highlighter-rouge">大理</code></td>			  
 		</tr>
 
-	  </tbody>
+		<tr>
+		  <td style="text-align: center"><a href="/life/dairy/2016-05-08.html">母亲节</a></td>	  
+		  <td style="text-align: center"><code class="highlighter-rouge">2016-05-08</code></td>
+		  <td style="text-align: center"><code class="highlighter-rouge">三林</code></td>			  
+		</tr>
+
+		<tr>
+		  <td style="text-align: center"><a href="/life/dairy/2016-02-22.html">生快</a></td>	  
+		  <td style="text-align: center"><code class="highlighter-rouge">2016-02-22</code></td>
+		  <td style="text-align: center"><code class="highlighter-rouge">公司</code></td>			  
+		</tr>
+
+		<tr>
+		  <td style="text-align: center"><a href="/life/dairy/2016-02-02.html">年会</a></td>	  
+		  <td style="text-align: center"><code class="highlighter-rouge">2016-02-02</code></td>
+		  <td style="text-align: center"><code class="highlighter-rouge">博雅酒店</code></td>			  
+		</tr>
+
+		<tr>
+		  <td style="text-align: center"><a href="/life/dairy/2016-01-28.html">领悟</a></td>	  
+		  <td style="text-align: center"><code class="highlighter-rouge">2016-01-28</code></td>
+		  <td style="text-align: center"><code class="highlighter-rouge">地铁</code></td>			  
+		</tr>	
+
 	</table>
 </div>
 
-<div class='lifelog'>
-  <h4 id="section-2">2015~2010</h4>
+<div class='2015-2010'>
+  <h4 id="section-1">2015-2010</h4>
 
     <tbody>
 	<table>
@@ -136,41 +244,11 @@ title: 日记
 	
 
 	  	<tr>
-		  <td style="text-align: center"><a href="/life/dairy/2015-11-28.html">读史</a></td>	  
+		  <td style="text-align: center"><a href="/life/dairy/2015-11-28.html">2015-2010</a></td>	  
 		  <td style="text-align: center"><code class="highlighter-rouge">2015-11-28</code></td>
 		  <td style="text-align: center"><code class="highlighter-rouge">三林</code></td>			  
 		</tr>
-	  	<tr>
-		  <td style="text-align: center"><a href="/life/dairy/2015-11-22.html">2015</a></td>	  
-		  <td style="text-align: center"><code class="highlighter-rouge">2015</code></td>
-		  <td style="text-align: center"><code class="highlighter-rouge">...</code></td>			  
-		</tr>
-	  	<tr>
-		  <td style="text-align: center"><a href="/life/dairy/2014-11-22.html">2014</a></td>	  
-		  <td style="text-align: center"><code class="highlighter-rouge">2014</code></td>
-		  <td style="text-align: center"><code class="highlighter-rouge">...</code></td>			  
-		</tr>
-		<tr>
-		  <td style="text-align: center"><a href="/life/dairy/2013-11-22.html">2013</a></td>	  
-		  <td style="text-align: center"><code class="highlighter-rouge">2013</code></td>
-		  <td style="text-align: center"><code class="highlighter-rouge">...</code></td>			  
-		</tr>
-
-		<tr>
-		  <td style="text-align: center"><a href="/life/dairy/2012-11-22.html">2012</a></td>	  
-		  <td style="text-align: center"><code class="highlighter-rouge">2012</code></td>
-		  <td style="text-align: center"><code class="highlighter-rouge">...</code></td>			  
-		</tr>
-	  	<tr>
-		  <td style="text-align: center"><a href="/life/dairy/2011-11-22.html">2011</a></td>	  
-		  <td style="text-align: center"><code class="highlighter-rouge">2011</code></td>
-		  <td style="text-align: center"><code class="highlighter-rouge">...</code></td>			  
-		</tr>
-	  	<tr>
-		  <td style="text-align: center"><a href="/life/dairy/2010-11-22.html">2010</a></td>	  
-		  <td style="text-align: center"><code class="highlighter-rouge">2010</code></td>
-		  <td style="text-align: center"><code class="highlighter-rouge">...</code></td>			  
-		</tr>
+	  
 
 
 	</tabel>
