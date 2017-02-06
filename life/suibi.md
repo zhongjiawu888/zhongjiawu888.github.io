@@ -16,7 +16,6 @@ title: 随笔
 
 
 <div class='lifelog'>
-  <h4 id="section-1">某年某月的某一天</h4>
 	<table>
 	  <thead>
 		<tr>
