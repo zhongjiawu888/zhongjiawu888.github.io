@@ -33,6 +33,7 @@ title: 钟式换行"诗"
 >>> - [<font color="#4590a3" size = "4px">魔法</font>](/life/poem/magic)
 >>> - [<font color="#4590a3" size = "4px">名字</font>](/life/poem/name)
 >>> - [<font color="#4590a3" size = "4px">虚拟恋人</font>](/life/poem/lover)
+>>> - [<font color="#4590a3" size = "4px">惊情一瞥</font>](/life/poem/2016-09-13)
 >>> - [<font color="#4590a3" size = "4px">卑微的心</font>](/life/poem/2016-09-09)
 
 -----------
