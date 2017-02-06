@@ -22,7 +22,7 @@ title: 随笔
 		  <th style="text-align: center">TIME</th>
 		  <th style="text-align: center">PLACE</th>
 		</tr>
-	  <tbody>
+	
 		<tr>
 		  <td style="text-align: center"><a href="/life/essay/2016-10-27.html">快乐</a></td>	  
 		  <td style="text-align: center"><code class="highlighter-rouge">2016-10-27 18:06</code></td>
@@ -118,7 +118,7 @@ title: 随笔
 		  <td style="text-align: center"><code class="highlighter-rouge">南昌大学</code></td>			  
 		</tr>
 
-	  </tbody>
+	 
 	</table>
 </div>
 
