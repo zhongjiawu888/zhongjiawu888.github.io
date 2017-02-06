@@ -14,54 +14,51 @@ title: 随笔
 > **某年某月的某一天**
 
 
+<table>
+	<h4 id="section-2">某天</h4>
+	<tr>
+	  <th style="text-align: center">NAME</th>
+	  <th style="text-align: center">TIME</th>
+	  <th style="text-align: center">PLACE</th>
+	</tr>
+	<tr>
+	  <td style="text-align: center"><a href="/life/essay/2016-10-27.html">快乐</a></td>	  
+	  <td style="text-align: center"><code class="highlighter-rouge">2016-10-27 18:06</code></td>
+	  <td style="text-align: center"><code class="highlighter-rouge">公司</code></td>			  
+	</tr>
+	<tr>
+	  <td style="text-align: center"><a href="/life/essay/2016-09-23-2.html">一个月</a></td>	  
+	  <td style="text-align: center"><code class="highlighter-rouge">2016-09-23</code></td>
+	  <td style="text-align: center"><code class="highlighter-rouge">万馨</code></td>			  
+	</tr>
 
-<div class='lifelog'>
- <tbody>
-	<table>
-  		<h4 id="section-2">某天</h4>
-		<tr>
-		  <th style="text-align: center">NAME</th>
-		  <th style="text-align: center">TIME</th>
-		  <th style="text-align: center">PLACE</th>
-		</tr>
-		<tr>
-		  <td style="text-align: center"><a href="/life/essay/2016-10-27.html">快乐</a></td>	  
-		  <td style="text-align: center"><code class="highlighter-rouge">2016-10-27 18:06</code></td>
-		  <td style="text-align: center"><code class="highlighter-rouge">公司</code></td>			  
-		</tr>
-		<tr>
-		  <td style="text-align: center"><a href="/life/essay/2016-09-23-2.html">一个月</a></td>	  
-		  <td style="text-align: center"><code class="highlighter-rouge">2016-09-23</code></td>
-		  <td style="text-align: center"><code class="highlighter-rouge">万馨</code></td>			  
-		</tr>
+	<tr>
+	  <td style="text-align: center"><a href="/life/essay/2016-09-23.html">最久的物件</a></td>	  
+	  <td style="text-align: center"><code class="highlighter-rouge">2016-09-23</code></td>
+	  <td style="text-align: center"><code class="highlighter-rouge">万馨</code></td>			  
+	</tr>
+	<tr>
+	  <td style="text-align: center"><a href="/life/essay/2016-09-22.html">怪癖</a></td>	  
+	  <td style="text-align: center"><code class="highlighter-rouge">2016-09-22 </code></td>
+	  <td style="text-align: center"><code class="highlighter-rouge">公司</code></td>			  
+	</tr>
+	<tr>
+	  <td style="text-align: center"><a href="/life/essay/2016-09-20.html">随笔序</a></td>	  
+	  <td style="text-align: center"><code class="highlighter-rouge">2016-09-20 </code></td>
+	  <td style="text-align: center"><code class="highlighter-rouge">万馨</code></td>			  
+	</tr>
+	<tr>
+	  <td style="text-align: center"><a href="/life/essay/2016-09-18-wrong.html">听话</a></td>	  
+	  <td style="text-align: center"><code class="highlighter-rouge">2016-09-18 23:46</code></td>
+	  <td style="text-align: center"><code class="highlighter-rouge">万馨</code></td>			  
+	</tr>
+	<tr>
+	  <td style="text-align: center"><a href="/life/essay/2016-09-17-2.html">散步</a></td>	  
+	  <td style="text-align: center"><code class="highlighter-rouge">2016-09-17 23:28</code></td>
+	  <td style="text-align: center"><code class="highlighter-rouge">万馨</code></td>			  
+	</tr>
 
-		<tr>
-		  <td style="text-align: center"><a href="/life/essay/2016-09-23.html">最久的物件</a></td>	  
-		  <td style="text-align: center"><code class="highlighter-rouge">2016-09-23</code></td>
-		  <td style="text-align: center"><code class="highlighter-rouge">万馨</code></td>			  
-		</tr>
-		<tr>
-		  <td style="text-align: center"><a href="/life/essay/2016-09-22.html">怪癖</a></td>	  
-		  <td style="text-align: center"><code class="highlighter-rouge">2016-09-22 </code></td>
-		  <td style="text-align: center"><code class="highlighter-rouge">公司</code></td>			  
-		</tr>
-		<tr>
-		  <td style="text-align: center"><a href="/life/essay/2016-09-20.html">随笔序</a></td>	  
-		  <td style="text-align: center"><code class="highlighter-rouge">2016-09-20 </code></td>
-		  <td style="text-align: center"><code class="highlighter-rouge">万馨</code></td>			  
-		</tr>
-		<tr>
-		  <td style="text-align: center"><a href="/life/essay/2016-09-18-wrong.html">听话</a></td>	  
-		  <td style="text-align: center"><code class="highlighter-rouge">2016-09-18 23:46</code></td>
-		  <td style="text-align: center"><code class="highlighter-rouge">万馨</code></td>			  
-		</tr>
-		<tr>
-		  <td style="text-align: center"><a href="/life/essay/2016-09-17-2.html">散步</a></td>	  
-		  <td style="text-align: center"><code class="highlighter-rouge">2016-09-17 23:28</code></td>
-		  <td style="text-align: center"><code class="highlighter-rouge">万馨</code></td>			  
-		</tr>
-
-		<tr>
+	<tr>
 		  <td style="text-align: center"><a href="/life/essay/2016-09-17.html">丧事</a></td>	  
 		  <td style="text-align: center"><code class="highlighter-rouge">2016-09-17 14:30</code></td>
 		  <td style="text-align: center"><code class="highlighter-rouge">万馨</code></td>			  
@@ -120,9 +117,9 @@ title: 随笔
 		</tr>
 
 	</table>
- </tbody>
 
-</div>
+
+
 
 
 -----------
