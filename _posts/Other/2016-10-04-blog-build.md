@@ -102,6 +102,7 @@ Jekyll是一个静态站点生成器，它会根据网页源码生成静态文�
 	打开任务管理，结束进程即可。
 
 
+
 如果系统中有一些配置文件在服务器上做了配置修改,然后后续开发又新添加一些配置项的时候,
 
 在发布这个配置文件的时候,会发生代码冲突:
@@ -117,17 +118,11 @@ git pull
 git stash pop
 然后可以使用Git diff -w +文件名 来确认代码自动合并的情况.
 
+每次都需要输入用户名和密码是因为你采用的是 https 方式提交代码， 如果采用的是 ssh 方式只需要在版本库中添加用户的 sha 的key就可以实现提交时无需输入用户名和密码。
 
-
-反过来,如果希望用代码库中的文件完全覆盖本地工作版本. 方法如下:
-
-git reset --hard
-git pull
-其中git reset是针对版本,如果想针对文件回退本地修改,使用
-
-[plain] view plain copy 在CODE上查看代码片派生到我的代码片
-git checkout HEAD file/to/restore
-
+		 1.git remote rm origin
+		 //git remote add origin git@github.com:(用户名)/版本库名
+		 2.git remote add origin git@github.com:zhongjiawu888/zhongjiawu888.github.io.git
 
 # 四，发布内容。
 
