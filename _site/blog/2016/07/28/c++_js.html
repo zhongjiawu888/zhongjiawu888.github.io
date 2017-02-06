@@ -20,16 +20,17 @@
     <div class="title">c++web和js互调</div>
     <div class="post-info"><i class="fa fa-clock-o"></i>&nbsp;2016-07-28 转载请注明出处：<a href = "http://www.zhongjiawu.com">http://www.zhongjiawu.com</a> </div>
     <div class="content">
-    <pre><code>作者: MrZhong
+    <div class="highlighter-rouge"><pre class="highlight"><code>作者: MrZhong
 时间: 2016年07月28日
 版本: 0.0.1
 </code></pre>
+</div>
 
 <hr />
 
 <p>第一步、c++创建一个Node节点，添加到层里。例如WebNode，</p>
 
-<pre><code>WebNode : public CCNode
+<div class="highlighter-rouge"><pre class="highlight"><code>WebNode : public CCNode
 {
 public:
 	WebNode()
@@ -38,12 +39,13 @@ public:
 	void removeWeb();
 }
 </code></pre>
+</div>
 
 <p>第二步、通过showWeb()调用android的WebView控件</p>
 
 <p>1.在andorid里实例化WebView控件，并添加DisplayWebView()方法</p>
 
-<pre><code>public class LandLord extends Cocos2dxActivity
+<div class="highlighter-rouge"><pre class="highlight"><code>public class LandLord extends Cocos2dxActivity
 {
 	public static Activity m_pkActInstance;
 	private LinearLayout m_kWebLayout;
@@ -135,10 +137,11 @@ public:
 
 }
 </code></pre>
+</div>
 
 <p>3.C++调用java，加载android的WebView</p>
 
-<pre><code>void WebNode::showWeb(const char* pcUrl, float x, float y, float f32Width, float f32Height )
+<div class="highlighter-rouge"><pre class="highlight"><code>void WebNode::showWeb(const char* pcUrl, float x, float y, float f32Width, float f32Height )
 {
 	#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 
@@ -160,6 +163,7 @@ public:
 	#endif
 } //同理，通过removeWeb释放网页控件。
 </code></pre>
+</div>
 
 <p>第三步、以上实现c++调用android网页流程后,开始网页事件调用c++流程：</p>
 
@@ -167,7 +171,7 @@ public:
 
 <p>在LandLord类中添加方法</p>
 
-<pre><code> void JaveScriptCall(final int x, final int y, final int width, final int height)
+<div class="highlighter-rouge"><pre class="highlight"><code> void JaveScriptCall(final int x, final int y, final int width, final int height)
  {
 
  	DisplayWebView(x,  y, width, height);
@@ -190,6 +194,7 @@ public:
 	});
  }
 </code></pre>
+</div>
 
 <p>//说明：jsCallNative是与Web端定义好的。</p>
 

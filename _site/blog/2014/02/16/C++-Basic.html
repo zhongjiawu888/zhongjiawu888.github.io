@@ -20,10 +20,11 @@
     <div class="title">你可能不知道的 C++(二)（转载）</div>
     <div class="post-info"><i class="fa fa-clock-o"></i>&nbsp;2014-02-16 转载请注明出处：<a href = "http://www.zhongjiawu.com">http://www.zhongjiawu.com</a> </div>
     <div class="content">
-    <pre><code>作者: MrZhong
+    <div class="highlighter-rouge"><pre class="highlight"><code>作者: MrZhong
 时间: 2016年10月1日 modify
 版本: 0.0.1
 </code></pre>
+</div>
 
 <hr />
 
@@ -85,7 +86,7 @@ case MAX:
 
 <p>而 C 则必须使用宏：</p>
 
-<h1 id="define-max-4">define MAX 4</h1>
+<p>#define MAX 4</p>
 
 <p>引一段《C++ 的设计和演化》的原文：
 （Bjarne Stroustrup, The Design and Evolution Of C++, 3.8）</p>
@@ -101,8 +102,9 @@ case MAX:
 <p>void foo() {
     int ival, *p;</p>
 
-<pre><code>/* … */ }
+<div class="highlighter-rouge"><pre class="highlight"><code>/* … */ }
 </code></pre>
+</div>
 
 <p>而 C++ 的声明，诸如int ival;，其自身就是一个程序语句，也因此可以出现在程序文本中的任何位置。</p>
 

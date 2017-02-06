@@ -20,10 +20,11 @@
     <div class="title">android ios内嵌网页</div>
     <div class="post-info"><i class="fa fa-clock-o"></i>&nbsp;2016-12-13 转载请注明出处：<a href = "http://www.zhongjiawu.com">http://www.zhongjiawu.com</a> </div>
     <div class="content">
-    <pre><code>作者: MrZhong
+    <div class="highlighter-rouge"><pre class="highlight"><code>作者: MrZhong
 时间: 2016年12月13日
 版本: 0.0.1
 </code></pre>
+</div>
 
 <hr />
 
@@ -33,7 +34,7 @@
 
 <p>//————–  ActivityLayer.h  ———————-</p>
 
-<pre><code>class ActivityLayer:public Layer
+<div class="highlighter-rouge"><pre class="highlight"><code>class ActivityLayer:public Layer
 {
 public:
     ActivityLayer();
@@ -56,10 +57,11 @@ private:
 
 };
 </code></pre>
+</div>
 
 <p>//————–  ActivityLayer.cpp ———————-</p>
 
-<pre><code>ActivityLayer::ActivityLayer()
+<div class="highlighter-rouge"><pre class="highlight"><code>ActivityLayer::ActivityLayer()
 {
 }
 
@@ -127,12 +129,13 @@ void ActivityLayer::onExit()
     }
 }
 </code></pre>
+</div>
 
 <p>二、平台封装</p>
 
 <p>//————–  ODUIWebView.h ———————-</p>
 
-<pre><code>#pragma once
+<div class="highlighter-rouge"><pre class="highlight"><code>#pragma once
 
 #include "cocos2d.h"
 
@@ -164,10 +167,11 @@ private:
     bool m_bIsShowWeb;
 };
 </code></pre>
+</div>
 
 <p>//————–  ODUIWebView.cpp ———————-</p>
 
-<pre><code>#include "ODUIWebView.h"
+<div class="highlighter-rouge"><pre class="highlight"><code>#include "ODUIWebView.h"
 #define ANDROID_PACKAGE_NAME "com/odao/fish/AdaoFish"
 
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
@@ -310,10 +314,11 @@ bool ODUIWebView::IsShowWebView()
     return m_bIsShowWeb;
 }   
 </code></pre>
+</div>
 
 <p>三、Android实现</p>
 
-<pre><code>public static Activity m_pkActInstance;
+<div class="highlighter-rouge"><pre class="highlight"><code>public static Activity m_pkActInstance;
 private LinearLayout m_kWebLayout = null;
 private WebView m_kWebView = null;
 private Map&lt;Long, Map&lt;String, WebView&gt; &gt; m_kWebViewMap;
@@ -504,125 +509,128 @@ public void RemoveWebView() {
     });
 }
 </code></pre>
+</div>
 
 <p>四、IOS实现</p>
 
-<p>//============ ODUIWebView_IOS.h ==================    </p>
+<p>//============ ODUIWebView_IOS.h ==================</p>
 
-<pre><code>#pragma once
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">#pragma once
+</span>
+<span class="cp">#import &lt;Foundation/Foundation.h&gt;
+</span>
+<span class="k">@interface</span> <span class="nc">ODUIWebView_IOS</span> <span class="p">:</span> <span class="nc">NSObject</span> <span class="o">&lt;</span><span class="n">UIWebViewDelegate</span><span class="o">&gt;</span>
+<span class="p">{</span>
+    <span class="n">UIWebView</span><span class="o">*</span> <span class="n">m_webview</span><span class="p">;</span>
+<span class="p">}</span>
 
-#import &lt;Foundation/Foundation.h&gt;
+<span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">ShowWebView_x</span><span class="o">:</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="n">x</span> <span class="n">y</span><span class="o">:</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="n">y</span> <span class="n">width</span><span class="o">:</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span> <span class="n">widht</span> <span class="n">height</span><span class="o">:</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="n">height</span><span class="p">;</span>
 
-@interface ODUIWebView_IOS : NSObject &lt;UIWebViewDelegate&gt;
-{
-    UIWebView* m_webview;
-}
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">UpdateURL</span><span class="p">:(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="nv">url</span><span class="p">;</span>
 
-- (void)ShowWebView_x:(float)x y:(float)y width:(float) widht height:(float)height;
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">RemoveWebView</span><span class="p">;</span>
 
-- (void)UpdateURL:(const char*)url;
-
-- (void)RemoveWebView;
-
-@end   
+<span class="k">@end</span>   
 </code></pre>
+</div>
 
-<p>//============ ODUIWebView_IOS.mm ==================      </p>
+<p>//============ ODUIWebView_IOS.mm ==================</p>
 
-<pre><code>#import "ODUIWebView_IOS.h"
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">#import "ODUIWebView_IOS.h"
 #include "cocos2d.h"
 #import "platform/ios/CCEAGLView-ios.h"
+</span>
+<span class="k">@implementation</span> <span class="nc">ODUIWebView_IOS</span>
 
-@implementation ODUIWebView_IOS
 
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">ShowWebView_x</span><span class="p">:(</span><span class="kt">float</span><span class="p">)</span><span class="nv">x</span> <span class="nf">y</span><span class="p">:(</span><span class="kt">float</span><span class="p">)</span><span class="nv">y</span> <span class="nf">width</span><span class="p">:(</span><span class="kt">float</span><span class="p">)</span> <span class="n">widht</span> <span class="n">height</span><span class="o">:</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="nv">height</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">m_webview</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">m_webview</span> <span class="o">=</span> <span class="p">[[</span><span class="n">UIWebView</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithFrame</span><span class="p">:</span><span class="n">CGRectMake</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">widht</span><span class="p">,</span> <span class="n">height</span><span class="p">)];</span>
+        <span class="p">[</span><span class="n">m_webview</span> <span class="nf">setDelegate</span><span class="p">:</span><span class="n">self</span><span class="p">];</span>
 
-- (void)ShowWebView_x:(float)x y:(float)y width:(float) widht height:(float)height
-{
-    if (!m_webview)
-    {
-        m_webview = [[UIWebView alloc] initWithFrame:CGRectMake(x, y, widht, height)];
-        [m_webview setDelegate:self];
-
-        auto view = cocos2d::Director::getInstance()-&gt;getOpenGLView();
-        CCEAGLView *eaglview = (CCEAGLView *)view-&gt;getEAGLView();
+        <span class="k">auto</span> <span class="n">view</span> <span class="o">=</span> <span class="n">cocos2d</span><span class="o">::</span><span class="n">Director</span><span class="o">::</span><span class="n">getInstance</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getOpenGLView</span><span class="p">();</span>
+        <span class="n">CCEAGLView</span> <span class="o">*</span><span class="n">eaglview</span> <span class="o">=</span> <span class="p">(</span><span class="n">CCEAGLView</span> <span class="o">*</span><span class="p">)</span><span class="n">view</span><span class="o">-&gt;</span><span class="n">getEAGLView</span><span class="p">();</span>
         
-        [eaglview addSubview:m_webview];
-        [m_webview release];
+        <span class="p">[</span><span class="n">eaglview</span> <span class="nf">addSubview</span><span class="p">:</span><span class="n">m_webview</span><span class="p">];</span>
+        <span class="p">[</span><span class="n">m_webview</span> <span class="nf">release</span><span class="p">];</span>
         
-        m_webview.backgroundColor = [UIColor clearColor];
-        m_webview.opaque = NO;
-        m_webview.scalesPageToFit = YES;
+        <span class="n">m_webview</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIColor</span> <span class="nf">clearColor</span><span class="p">];</span>
+        <span class="n">m_webview</span><span class="p">.</span><span class="n">opaque</span> <span class="o">=</span> <span class="nb">NO</span><span class="p">;</span>
+        <span class="n">m_webview</span><span class="p">.</span><span class="n">scalesPageToFit</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span>
         
-        for (UIView *aView in [m_webview subviews])  
-        { 
-            if ([aView isKindOfClass:[UIScrollView class]])  
-            { 
-                UIScrollView* scView = (UIScrollView *)aView;
+        <span class="k">for</span> <span class="p">(</span><span class="n">UIView</span> <span class="o">*</span><span class="n">aView</span> <span class="k">in</span> <span class="p">[</span><span class="n">m_webview</span> <span class="nf">subviews</span><span class="p">])</span>  
+        <span class="p">{</span> 
+            <span class="k">if</span> <span class="p">([</span><span class="n">aView</span> <span class="nf">isKindOfClass</span><span class="p">:[</span><span class="n">UIScrollView</span> <span class="nf">class</span><span class="p">]])</span>  
+            <span class="p">{</span> 
+                <span class="n">UIScrollView</span><span class="o">*</span> <span class="n">scView</span> <span class="o">=</span> <span class="p">(</span><span class="n">UIScrollView</span> <span class="o">*</span><span class="p">)</span><span class="n">aView</span><span class="p">;</span>
                 
-                [scView setShowsHorizontalScrollIndicator:NO];
+                <span class="p">[</span><span class="n">scView</span> <span class="nf">setShowsHorizontalScrollIndicator</span><span class="p">:</span><span class="nb">NO</span><span class="p">];</span>
 
-                for (UIView *shadowView in aView.subviews)  
-                {
-                    if ([shadowView isKindOfClass:[UIImageView class]]) 
-                    { 
-                        shadowView.hidden = YES;
-                    } 
-                } 
-            } 
-        }  
-    }
-}
+                <span class="k">for</span> <span class="p">(</span><span class="n">UIView</span> <span class="o">*</span><span class="n">shadowView</span> <span class="k">in</span> <span class="n">aView</span><span class="p">.</span><span class="n">subviews</span><span class="p">)</span>  
+                <span class="p">{</span>
+                    <span class="k">if</span> <span class="p">([</span><span class="n">shadowView</span> <span class="nf">isKindOfClass</span><span class="p">:[</span><span class="n">UIImageView</span> <span class="nf">class</span><span class="p">]])</span> 
+                    <span class="p">{</span> 
+                        <span class="n">shadowView</span><span class="p">.</span><span class="n">hidden</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span>
+                    <span class="p">}</span> 
+                <span class="p">}</span> 
+            <span class="p">}</span> 
+        <span class="p">}</span>  
+    <span class="p">}</span>
+<span class="p">}</span>
 
-- (void)UpdateURL:(const char*)url
-{
-    NSString *request = [NSString stringWithUTF8String:url];
-    [m_webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:request] 
-                                            cachePolicy:NSURLRequestReloadIgnoringLocalCacheData 
-                                        timeoutInterval:60]];
-    [m_webview setScalesPageToFit:YES];
-}
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">UpdateURL</span><span class="p">:(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="nv">url</span>
+<span class="p">{</span>
+    <span class="n">NSString</span> <span class="o">*</span><span class="n">request</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSString</span> <span class="nf">stringWithUTF8String</span><span class="p">:</span><span class="n">url</span><span class="p">];</span>
+    <span class="p">[</span><span class="n">m_webview</span> <span class="nf">loadRequest</span><span class="p">:[</span><span class="n">NSURLRequest</span> <span class="nf">requestWithURL</span><span class="p">:[</span><span class="n">NSURL</span> <span class="nf">URLWithString</span><span class="p">:</span><span class="n">request</span><span class="p">]</span> 
+                                            <span class="nf">cachePolicy</span><span class="p">:</span><span class="n">NSURLRequestReloadIgnoringLocalCacheData</span> 
+                                        <span class="nf">timeoutInterval</span><span class="p">:</span><span class="mi">60</span><span class="p">]];</span>
+    <span class="p">[</span><span class="n">m_webview</span> <span class="nf">setScalesPageToFit</span><span class="p">:</span><span class="nb">YES</span><span class="p">];</span>
+<span class="p">}</span>
 
-- (void)RemoveWebView
-{
-    if (m_webview != nil)
-    {
-        [m_webview stopLoading];
-        [m_webview setDelegate:nil];
-        [m_webview removeFromSuperview];
-        //[m_webview setDelegate:nil];
-        m_webview = nil;
-    }
-}
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">RemoveWebView</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">m_webview</span> <span class="o">!=</span> <span class="nb">nil</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="p">[</span><span class="n">m_webview</span> <span class="nf">stopLoading</span><span class="p">];</span>
+        <span class="p">[</span><span class="n">m_webview</span> <span class="nf">setDelegate</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+        <span class="p">[</span><span class="n">m_webview</span> <span class="nf">removeFromSuperview</span><span class="p">];</span>
+        <span class="c1">//[m_webview setDelegate:nil];
+</span>        <span class="n">m_webview</span> <span class="o">=</span> <span class="nb">nil</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-- (void)dealloc
-{
-    NSLog(@"Web view dealloc");
-    [super dealloc];
-}
+<span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">dealloc</span>
+<span class="p">{</span>
+    <span class="n">NSLog</span><span class="p">(</span><span class="s">@"Web view dealloc"</span><span class="p">);</span>
+    <span class="p">[</span><span class="n">super</span> <span class="nf">dealloc</span><span class="p">];</span>
+<span class="p">}</span>
 
-#pragma mark - WebView
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
-{
-    return true;
-}
+<span class="cp">#pragma mark - WebView
+</span><span class="o">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="n">webView</span><span class="o">:</span><span class="p">(</span><span class="n">UIWebView</span> <span class="o">*</span><span class="p">)</span><span class="n">webView</span> <span class="n">shouldStartLoadWithRequest</span><span class="o">:</span><span class="p">(</span><span class="n">NSURLRequest</span> <span class="o">*</span><span class="p">)</span><span class="n">request</span> <span class="n">navigationType</span><span class="o">:</span><span class="p">(</span><span class="n">UIWebViewNavigationType</span><span class="p">)</span><span class="n">navigationType</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
 
-- (void)webViewDidStartLoad:(UIWebView *)webView
-{
-    CCLOG("webViewDidStartLoad");
-}
+<span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">webViewDidStartLoad</span><span class="o">:</span><span class="p">(</span><span class="n">UIWebView</span> <span class="o">*</span><span class="p">)</span><span class="n">webView</span>
+<span class="p">{</span>
+    <span class="n">CCLOG</span><span class="p">(</span><span class="s">"webViewDidStartLoad"</span><span class="p">);</span>
+<span class="p">}</span>
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView
-{
-    CCLOG("webViewDidFinishLoad");
-}
+<span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">webViewDidFinishLoad</span><span class="o">:</span><span class="p">(</span><span class="n">UIWebView</span> <span class="o">*</span><span class="p">)</span><span class="n">webView</span>
+<span class="p">{</span>
+    <span class="n">CCLOG</span><span class="p">(</span><span class="s">"webViewDidFinishLoad"</span><span class="p">);</span>
+<span class="p">}</span>
 
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
-{
-    CCLOG("didFailLoadWithError");
-}
+<span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">webView</span><span class="o">:</span><span class="p">(</span><span class="n">UIWebView</span> <span class="o">*</span><span class="p">)</span><span class="n">webView</span> <span class="n">didFailLoadWithError</span><span class="o">:</span><span class="p">(</span><span class="n">NSError</span> <span class="o">*</span><span class="p">)</span><span class="n">error</span>
+<span class="p">{</span>
+    <span class="n">CCLOG</span><span class="p">(</span><span class="s">"didFailLoadWithError"</span><span class="p">);</span>
+<span class="p">}</span>
 
-@end 
+<span class="k">@end</span> 
 </code></pre>
+</div>
 
     </div>
     <style>#ds-reset .ds-avatar img{border-radius:50%;}</style>
