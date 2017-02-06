@@ -2,7 +2,7 @@
 layout: life
 duoshuo: true
 cssbg: life1.css
-title: 电影
+title: 喜爱的影视
 ---   
 
 {% include bg.html %}
@@ -15,7 +15,6 @@ title: 电影
 >>> - [<font color="#4590a3" size = "3px">昆汀电影</font>]()
 >>> - [<font color="#4590a3" size = "3px">谍影重重系列</font>]()
 >>> - [<font color="#4590a3" size = "3px">这个杀手不太冷</font>]()
->>> - [<font color="#4590a3" size = "3px">盗梦空间</font>]()
 >>> - [<font color="#4590a3" size = "3px">危情谍战</font>]()
 >>> - [<font color="#4590a3" size = "3px">肖申克的救赎</font>]()
 >>> - [<font color="#4590a3" size = "3px">三日危情</font>]()
@@ -27,6 +26,7 @@ title: 电影
 >>> - [<font color="#4590a3" size = "3px">V字仇杀队</font>]()
 >>> - [<font color="#4590a3" size = "3px">劫匪</font>]()
 >>> - [<font color="#4590a3" size = "3px">盗火线</font>]()
+>>> - [<font color="#4590a3" size = "3px">盗梦空间</font>]()
 >>> - [<font color="#4590a3" size = "3px">空中监狱</font>]()
 >>> - [<font color="#4590a3" size = "3px">变脸</font>]()
 >>> - [<font color="#4590a3" size = "3px">七宗罪</font>]()
