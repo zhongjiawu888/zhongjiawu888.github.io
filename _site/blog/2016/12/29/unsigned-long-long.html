@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="description" content="MrZhong's Blog">
+  <meta name="author" content="zhongjiawu">
+  <meta name="keywords" content="C++新增数据类型long long ,unsigned long long（转）, MrZhong's Blog, C++新增数据类型long long ,unsigned long long（转） - MrZhong's Blog">
+  <title>C++新增数据类型long long ,unsigned long long（转） - MrZhong's Blog</title>
+  <link rel="icon" href="/res/img/shortimg.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/res/img/shortimg.ico" type="image/x-icon">
+  <link rel="canonical" href="zhongjiawu888.github.io/blog/2016/12/29/unsigned-long-long.html">
+  <link rel="stylesheet" href="/res/css/public.css">
+  <link rel="stylesheet" href="/res/css/life.css">
+  <link rel="stylesheet" href="/res/css/pygments.css">
+
+</head>
+<body>
+  <div class="main">
+    <div class="title">C++新增数据类型long long ,unsigned long long（转）</div>
+    <div class="post-info"><i class="fa fa-clock-o"></i>&nbsp;2016-12-29 转载请注明出处：<a href = "http://www.zhongjiawu.com">http://www.zhongjiawu.com</a> </div>
+    <div class="content">
+    <pre><code>作者: MrZhong
+时间: 2016年12月29日
+版本: 0.0.1
+</code></pre>
+
+<hr />
+
+<p>http://blog.csdn.net/rl529014/article/details/50429347</p>
+
+<p>相比于C++98标准，C++11整型的最大改变就是多了long long。但事实上，long long整型本来就离C++标准很近，早在1995年，long long就被提议写入C++98标准，却被C++标准委员会拒绝了。而后来，long long类型却进入了C99标准，而且也事实上也被很多编译器支持。于是辗转地，C++标准委员会又掉头决定将long long纳入C++11标准。</p>
+
+<p>long long整型有两种：long long和unsigned long long。在C++11中，标准要求long long整型可以在不同平台上有不同的长度，但至少有64位。我们在写常数字面量时，可以使用LL后缀（或是ll）标识一个long long类型的字面量，而ULL（或ull、Ull、uLL）表示一个unsigned long long类型的字面量。比如：
+long long int lli = -9000000000000000000LL;
+unsigned long long int ulli = -9000000000000000000ULL;</p>
+
+<p>就定义了一个有符号的long long变量lli和无符号的unsigned long long变量ulli。事实上，在C++11中，还有很多与long long等价的类型。比如对于有符号的，下面的类型是等价的：long long、signed long long、long long int、signed long long int；而unsigned long long和unsigned long long int也是等价的。</p>
+
+<p>同其他的整型一样，要了解平台上long long大小的方法就是查看<climits>（或<limits.h>中的宏）。与long long整型相关的一共有3个：LLONG_MIN、LLONG_MAX和ULLONG_MIN，它们分别代表了平台上最小的long long值、最大的long long值，以及最大的unsigned long long值。可以看看下面这个例子，如代码清单2-5所示。</limits.h></climits></p>
+
+<p>代码清单2-5
+[cpp] view plain copy print?
+#include <climits>  
+#include <cstdio>  
+using namespace std;  </cstdio></climits></p>
+
+<p>int main()<span style="font-family: Arial, Helvetica, sans-serif;">{</span>  
+[cpp] view plain copy print?
+    long long ll_min = LLONG_MIN;  
+    long long ll_max = LLONG_MAX;  
+    unsigned long long ull_max = ULLONG_MAX;  </p>
+
+<pre><code>printf("min of long long: %lld\n", ll_min); // min of long long: -9223372036854775808  
+printf("max of long long: %lld\n", ll_max); // max of long long: 9223372036854775807  
+printf("max of unsigned long long: %llu\n", ull_max);   // max of unsigned long long: 18446744073709551615   }  
+</code></pre>
+
+<p>// 编译选项:g++ -std=c++11 2-2-1.cpp</p>
+
+<p>在代码清单2-5中，将以上3个宏打印了出来，对于printf函数来说，输出有符号的long long类型变量可以用符号%lld，而无符号的unsigned long long则可以采用%llu。18446744073709551615用16进制表示是0xFFFFFFFFFFFFFFFF（16个F），可知在我们的实验机上，long long是一个64位的类型。</p>
+
+    </div>
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=2117013&auto=1&height=66"></iframe>
+
+<style>#ds-reset .ds-avatar img{border-radius:50%;}</style>
+<div class="comments">
+  <div class="ds-thread" data-title="C++新增数据类型long long ,unsigned long long（转）" data-thread-key="/blog/2016/12/29/unsigned-long-long" data-url="zhongjiawu888.github.io/blog/2016/12/29/unsigned-long-long.html"></div>
+  <script type="text/javascript">var duoshuoQuery = {short_name:"zhongjiawu"};(function(){var ds = document.createElement('script');ds.type = 'text/javascript';ds.async = true;ds.src = '/res/js/embed.js';ds.charset = 'UTF-8';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);})();</script>
+
+  <script src="/statics/js/tongji.js" defer></script>
+</div>
+
+  </div>
+  <div id="top"><a id="rocket" href="javascript:;" title="返回顶部"><i></i></a></div>
+  <script src="/res/js/light.js"></script>
+  
+</body>
+</html>

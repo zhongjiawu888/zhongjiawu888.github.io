@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="description" content="MrZhong's Blog">
+  <meta name="author" content="zhongjiawu">
+  <meta name="keywords" content="char *s 与char s[]的区别, MrZhong's Blog, char *s 与char s[]的区别 - MrZhong's Blog">
+  <title>char *s 与char s[]的区别 - MrZhong's Blog</title>
+  <link rel="icon" href="/res/img/shortimg.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/res/img/shortimg.ico" type="image/x-icon">
+  <link rel="canonical" href="zhongjiawu888.github.io/blog/2017/02/06/char-char.html">
+  <link rel="stylesheet" href="/res/css/public.css">
+  <link rel="stylesheet" href="/res/css/life.css">
+  <link rel="stylesheet" href="/res/css/pygments.css">
+
+</head>
+<body>
+  <div class="main">
+    <div class="title">char *s 与char s[]的区别</div>
+    <div class="post-info"><i class="fa fa-clock-o"></i>&nbsp;2017-02-06 转载请注明出处：<a href = "http://www.zhongjiawu.com">http://www.zhongjiawu.com</a> </div>
+    <div class="content">
+    <pre><code>作者: MrZhong
+时间: 2017-02-06
+版本: 0.0.1
+</code></pre>
+
+<hr />
+
+<p>char s1[] = “hello”;     //定义一个字符数组</p>
+
+<p>char *s2 = “hello”;     //定义一个指向字符串常量”hello”的指针</p>
+
+<p>在这里，s1 = &amp;s1[0], s1是个”常量”,始终等于&amp;s1[0],无法更改。s2是个指针变量。</p>
+
+<pre><code>	#include &lt;iostream&gt;  
+	#include &lt;cstdio&gt;  
+	using namespace std;  
+	  
+	int main()  
+	{  
+	    char s1[] = "hello";  
+	    char *s2 = "hello";  
+	    cout &lt;&lt; sizeof(s1) &lt;&lt; endl;           //输出6，表示数组s1所占的字节  
+	    cout &lt;&lt; sizeof(s2) &lt;&lt; endl;           //输出4，表示指针变量s2是4个字节  
+	  
+	    return 0;  
+	}  
+</code></pre>
+
+<p>赋值上，可以这么使用s2 = s1， 但是不能s1 = s2，以为上面说过s1恒等于&amp;s1[0]无法改变，所以不可以这么赋值。
+也可以这么用s1[0] = ‘a’，因为s1本身就是字符数组，可以更改其中的内容。
+但是不可以s2[0] = ‘a’, 因为s2指向一个字符串常量，不可以修改这个常量。</p>
+
+<p>遍历字符串时，可以用<em>s2++,因为指针变量可以修改，但是不能这么</em>s1++遍历字符串，因为上面说了s1恒等于&amp;s1[0],不可以修改。</p>
+
+
+    </div>
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=2117013&auto=1&height=66"></iframe>
+
+<style>#ds-reset .ds-avatar img{border-radius:50%;}</style>
+<div class="comments">
+  <div class="ds-thread" data-title="char *s 与char s[]的区别" data-thread-key="/blog/2017/02/06/char-char[]" data-url="zhongjiawu888.github.io/blog/2017/02/06/char-char.html"></div>
+  <script type="text/javascript">var duoshuoQuery = {short_name:"zhongjiawu"};(function(){var ds = document.createElement('script');ds.type = 'text/javascript';ds.async = true;ds.src = '/res/js/embed.js';ds.charset = 'UTF-8';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);})();</script>
+
+  <script src="/statics/js/tongji.js" defer></script>
+</div>
+
+  </div>
+  <div id="top"><a id="rocket" href="javascript:;" title="返回顶部"><i></i></a></div>
+  <script src="/res/js/light.js"></script>
+  
+</body>
+</html>

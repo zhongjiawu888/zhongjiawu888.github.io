@@ -20,11 +20,10 @@
     <div class="title">心酸史之随机数和unsign int</div>
     <div class="post-info"><i class="fa fa-clock-o"></i>&nbsp;2016-08-03 转载请注明出处：<a href = "http://www.zhongjiawu.com">http://www.zhongjiawu.com</a> </div>
     <div class="content">
-    <div class="highlighter-rouge"><pre class="highlight"><code>作者: MrZhong
+    <pre><code>作者: MrZhong
 时间: 2016年8月3日
 版本: 0.0.1
 </code></pre>
-</div>
 
 <hr />
 
@@ -52,7 +51,7 @@ int arr[6]={1,2,3,4,5,6}，随机生成里面的4个值，生成的这4个值不
     }
     random_shuffle(vArr.begin(), vArr.end());</int></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>int awrdIdx = 3;//即K
+<pre><code>int awrdIdx = 3;//即K
 for(int i = 0;i&lt;4;i++)
 {
     if (vArr[i] == awrdIdx)
@@ -62,7 +61,6 @@ for(int i = 0;i&lt;4;i++)
     CCLog("%d",vArr[i]);
 }
 </code></pre>
-</div>
 
 <p>```
   例外个很坑问题搞了我2个小时。之前无符号和有符号整形一直不太注意，被忽视，今天终于尝尽苦头。结算积分的时候有正负，我把3个变量直接相加的表达式作为一个函数参数，3个变量中有unsign int 和 int，结果纳闷算出来的值18446744，一直想想想不知道错在哪了。真的是百爪挠心。日了狗了。以下是修正后的代码截图，算是留个原罪吧。
@@ -72,7 +70,9 @@ for(int i = 0;i&lt;4;i++)
 
 
     </div>
-    <style>#ds-reset .ds-avatar img{border-radius:50%;}</style>
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=2117013&auto=1&height=66"></iframe>
+
+<style>#ds-reset .ds-avatar img{border-radius:50%;}</style>
 <div class="comments">
   <div class="ds-thread" data-title="心酸史之随机数和unsign int" data-thread-key="/blog/2016/08/03/random-unsign-int" data-url="zhongjiawu888.github.io/blog/2016/08/03/random-unsign-int.html"></div>
   <script type="text/javascript">var duoshuoQuery = {short_name:"zhongjiawu"};(function(){var ds = document.createElement('script');ds.type = 'text/javascript';ds.async = true;ds.src = '/res/js/embed.js';ds.charset = 'UTF-8';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);})();</script>
