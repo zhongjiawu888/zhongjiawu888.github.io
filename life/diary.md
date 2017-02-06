@@ -85,12 +85,12 @@ title: 日记
 
 <div class='2016'>
 	<table>
-  		<h4 id="section-2">2016</h4>
-		<tr>
-		  <th style="text-align: center">NAME</th>
-		  <th style="text-align: center">TIME</th>
-		  <th style="text-align: center">PLACE</th>
-		</tr>
+	<h4 id="section-2">2016</h4>
+	<tr>
+	  <th style="text-align: center">NAME</th>
+	  <th style="text-align: center">TIME</th>
+	  <th style="text-align: center">PLACE</th>
+	</tr>
 	  <tr>
 		  <td style="text-align: center"><a href="/life/dairy/2016-12-30.html">搬家</a></td>	  
 		  <td style="text-align: center"><code class="highlighter-rouge">2016-12-30</code></td>
