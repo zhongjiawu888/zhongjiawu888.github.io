@@ -16,13 +16,14 @@ title: 随笔
 
 
 <div class='lifelog'>
+ <tbody>
 	<table>
+  		<h4 id="section-2">某天</h4>
 		<tr>
 		  <th style="text-align: center">NAME</th>
 		  <th style="text-align: center">TIME</th>
 		  <th style="text-align: center">PLACE</th>
 		</tr>
-	
 		<tr>
 		  <td style="text-align: center"><a href="/life/essay/2016-10-27.html">快乐</a></td>	  
 		  <td style="text-align: center"><code class="highlighter-rouge">2016-10-27 18:06</code></td>
@@ -118,8 +119,9 @@ title: 随笔
 		  <td style="text-align: center"><code class="highlighter-rouge">南昌大学</code></td>			  
 		</tr>
 
-	 
 	</table>
+ </tbody>
+
 </div>
 
 
