@@ -9,9 +9,7 @@ title: 做一个有态度的吃货
 
 -----------
 
-******
-<div class='lifelog'>
-  <h4 id="section-1">食性集</h4>
+<h4 id="section-1">食性集</h4>
 <table>
 <tr>
 <th style="text-align: center">NAME</th>
@@ -49,9 +47,7 @@ title: 做一个有态度的吃货
 </tr>
 
 </table>
-</div>
 
-******
 
 -----------
 
