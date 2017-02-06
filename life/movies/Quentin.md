@@ -2,7 +2,7 @@
 layout: life
 duoshuo: true
 cssbg: life1.css
-title: 鬼才导演:昆汀·塔伦蒂诺
+title: 喜爱的鬼才导演:昆汀·塔伦蒂诺
 ---   
 
 {% include bg.html %}
