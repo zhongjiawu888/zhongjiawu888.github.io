@@ -25,32 +25,6 @@ title: 随笔
 		</tr>
 	  </thead>
 	  <tbody>
-		<tr>
-		  <td style="text-align: center"><a href="/life/essay/2016-10-27.html">快乐</a></td>	  
-		  <td style="text-align: center"><code class="highlighter-rouge">2016-10-27 18:06</code></td>
-		  <td style="text-align: center"><code class="highlighter-rouge">公司</code></td>			  
-		</tr>
-		<tr>
-		  <td style="text-align: center"><a href="/life/essay/2016-10-13.html">注意安全</a></td>	  
-		  <td style="text-align: center"><code class="highlighter-rouge">2016-10-13</code></td>
-		  <td style="text-align: center"><code class="highlighter-rouge">万馨</code></td>			  
-		</tr>
-		<tr>
-		  <td style="text-align: center"><a href="/life/essay/2016-10-11.html">死的最早的一只</a></td>	  
-		  <td style="text-align: center"><code class="highlighter-rouge">2016-10-11</code></td>
-		  <td style="text-align: center"><code class="highlighter-rouge">公司</code></td>			  
-		</tr>
-		<tr>
-		  <td style="text-align: center"><a href="/life/essay/2016-10-04.html">误机</a></td>	  
-		  <td style="text-align: center"><code class="highlighter-rouge">2016-10-04 12:46</code></td>
-		  <td style="text-align: center"><code class="highlighter-rouge">地纬广场</code></td>			  
-		</tr>
-
-		<tr>
-		  <td style="text-align: center"><a href="/life/essay/2016-10-03.html">国庆3天</a></td>	  
-		  <td style="text-align: center"><code class="highlighter-rouge">2016-10-03</code></td>
-		  <td style="text-align: center"><code class="highlighter-rouge">万馨</code></td>			  
-		</tr>
 
 		<tr>
 		  <td style="text-align: center"><a href="/life/essay/2016-09-23-2.html">一个月</a></td>	  
@@ -89,11 +63,7 @@ title: 随笔
 		  <td style="text-align: center"><code class="highlighter-rouge">2016-09-17 14:30</code></td>
 		  <td style="text-align: center"><code class="highlighter-rouge">万馨</code></td>			  
 		</tr>
-		<tr>
-		  <td style="text-align: center"><a href="/life/essay/2016-09-14.html">最后一篇</a></td>	  
-		  <td style="text-align: center"><code class="highlighter-rouge">2016-09-14</code></td>
-		  <td style="text-align: center"><code class="highlighter-rouge">公司</code></td>			  
-		</tr>		
+	
 
 		<tr>
 		  <td style="text-align: center"><a href="/life/essay/2016-09-12.html">说话</a></td>	  
@@ -125,22 +95,6 @@ title: 随笔
 		  <td style="text-align: center"><code class="highlighter-rouge">南昌大学</code></td>			  
 		</tr>
 
-		<tr>
-		  <td style="text-align: center"><a href="/life/essay/2010-11-08.html">别再犯错</a></td>		  
-		  <td style="text-align: center"><code class="highlighter-rouge">2010-11-08 21:08</code></td>
-		  <td style="text-align: center"><code class="highlighter-rouge">南昌大学</code></td>			  
-		</tr>		
-		<tr>
-		  <td style="text-align: center"><a href="/life/essay/2010-09-19.html">恋爱这事</a></td>		  
-		  <td style="text-align: center"><code class="highlighter-rouge">2010-09-19 22:20</code></td>
-		  <td style="text-align: center"><code class="highlighter-rouge">南昌大学</code></td>			  
-		</tr>
-
-		<tr>
-		  <td style="text-align: center"><a href="/life/essay/2010-09-14.html">怀念初中</a></td>
-		  <td style="text-align: center"><code class="highlighter-rouge">2010-09-14 18:17</code></td>
-		  <td style="text-align: center"><code class="highlighter-rouge">南昌大学</code></td>			  
-		</tr>
 
 	  </tbody>
 	</table>
