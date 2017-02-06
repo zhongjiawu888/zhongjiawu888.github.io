@@ -2,7 +2,7 @@
 layout: life
 duoshuo: true
 cssbg: life1.css
-title: 最喜爱的演员
+title: 喜爱的演员
 ---   
 
 {% include bg.html %}
