@@ -8,7 +8,9 @@ title: 电影
 {% include bg.html %}
 
 --------
+
 >>>>>[<font color="#100" size = "4px">欧美电影</font>]()
+
 
 >>> - [<font color="#4590a3" size = "3px">昆汀电影</font>]()
 >>> - [<font color="#4590a3" size = "3px">谍影重重系列</font>]()
@@ -58,7 +60,10 @@ title: 电影
 >>> - [<font color="#4590a3" size = "3px">铁拳</font>]()
 >>> - [<font color="#4590a3" size = "3px">当幸福来敲门</font>]()
 
+
+
 >>>>>[<font color="#100" size = "4px">国内电影</font>]()
+
 
 
 >>> - [<font color="#4590a3" size = "3px">杜琪峰电影</font>]()
@@ -79,7 +84,9 @@ title: 电影
 >>> - [<font color="#4590a3" size = "3px">师父</font>]()
 
 
+
 >>>>>[<font color="#100" size = "4px">韩国电影</font>]()
+
 
 
 >>> - [<font color="#4590a3" size = "3px">杀人回忆</font>]()
@@ -111,6 +118,8 @@ title: 电影
 
 
 >>>>>[<font color="#100" size = "4px">电视剧</font>]()
+
+
 
 >>> - [<font color="#4590a3" size = "3px">越狱</font>]()
 >>> - [<font color="#4590a3" size = "3px">老友记</font>]()
