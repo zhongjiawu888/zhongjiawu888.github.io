@@ -49,7 +49,7 @@ title: 日记
 		</tr>
 
 	  	<tr>
-		  <td style="text-align: center"><a href="/life/dairy/2017-01-28.html">2017-01-28（正月初一）</a></td>	  
+		  <td style="text-align: center"><a href="/life/dairy/2017-01-28.html">2017-01-28(正月初一)</a></td>	  
 		  <td style="text-align: center"><code class="highlighter-rouge">老家</code></td>			  
 		</tr>	
 	  	<tr>
@@ -78,7 +78,7 @@ title: 日记
 		  <td style="text-align: center"><code class="highlighter-rouge">草堂</code></td>			  
 		</tr>
 
-	</tabel>
+	</table>
 </div>
 
 
@@ -103,7 +103,7 @@ title: 日记
 	  	<tr>
 		  <td style="text-align: center"><a href="/life/dairy/2016-12-25.html">挂了</a></td>	  
 		  <td style="text-align: center"><code class="highlighter-rouge">2016-12-25</code></td>
-		  <td style="text-align: center"><code class="highlighter-rouge">交大（法华校区）</code></td>			  
+		  <td style="text-align: center"><code class="highlighter-rouge">交大法华校区</code></td>			  
 		</tr>	  	
 
 	  	<tr>
@@ -192,7 +192,7 @@ title: 日记
 		  <td style="text-align: center"><code class="highlighter-rouge">公司</code></td>			  
 		</tr>			
 		<tr>
-		  <td style="text-align: center"><a href="/life/dairy/2016-09-08.html">早起</a></td>	  
+		  <td style="text-align: center"><a href="/life/dairy/2016-09-08.html">牢骚</a></td>	  
 		  <td style="text-align: center"><code class="highlighter-rouge">2016-09-08</code></td>
 		  <td style="text-align: center"><code class="highlighter-rouge">公司</code></td>			  
 		</tr>			
@@ -251,7 +251,7 @@ title: 日记
 	  
 
 
-	</tabel>
+	</table>
 		  </tbody>
 </div>
 
