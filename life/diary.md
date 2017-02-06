@@ -20,7 +20,7 @@ title: 日记
 >**吞噬了**
 
 
-
+-----------
 
 <div class='2017'>
 	<table>
@@ -91,7 +91,6 @@ title: 日记
 		  <th style="text-align: center">TIME</th>
 		  <th style="text-align: center">PLACE</th>
 		</tr>
-
 	  <tr>
 		  <td style="text-align: center"><a href="/life/dairy/2016-12-30.html">搬家</a></td>	  
 		  <td style="text-align: center"><code class="highlighter-rouge">2016-12-30</code></td>
@@ -246,26 +245,20 @@ title: 日记
 
 <div class='2015-2010'>
   <h4 id="section-1">2015-2010</h4>
-
-    <tbody>
+  <tbody>
 	<table>
 		<tr>
 		  <th style="text-align: center">NAME</th>
 		  <th style="text-align: center">TIME</th>
 		  <th style="text-align: center">PLACE</th>
 		</tr>
-	
-
 	  	<tr>
 		  <td style="text-align: center"><a href="/life/dairy/2015-11-28.html">2015-2010</a></td>	  
 		  <td style="text-align: center"><code class="highlighter-rouge">2015-11-28</code></td>
 		  <td style="text-align: center"><code class="highlighter-rouge">三林</code></td>			  
 		</tr>
-	  
-
-
 	</table>
-		  </tbody>
+ </tbody>
 </div>
 
 
