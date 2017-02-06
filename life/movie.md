@@ -15,7 +15,7 @@ title: 电影
 
 >>> - [<font color="#4590a3" size = "4px">演员</font>](/life/movies/actors)
 
->>> - [<font color="#4590a3" size = "4px">电影</font>](/life/movies/movies)
+>>> - [<font color="#4590a3" size = "4px">影视</font>](/life/movies/movies)
 
 -----------
 
