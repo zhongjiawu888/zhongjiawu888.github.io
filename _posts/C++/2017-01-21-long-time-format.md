@@ -13,13 +13,13 @@ title: 时间戳和格式化互转
 	版本: 0.0.2 （注意32位与64位）跨平台
 -----------
 
-#include <time.h>  
-#include <stdio.h>  
-#ifdef WIN32  
-#include <sys/timeb.h>  
-#else  
-#include <sys/time.h>  
-#endif  
+	#include <time.h>  
+	#include <stdio.h>  
+	#ifdef WIN32  
+	#include <sys/timeb.h>  
+	#else  
+	#include <sys/time.h>  
+	#endif  
 
 1.时间戳转格式化
 
