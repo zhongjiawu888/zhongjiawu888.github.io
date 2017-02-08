@@ -9,7 +9,7 @@ title: 玩家金币(long long)保留2位小数处理
 	作者: MrZhong
 	时间: 2016年12月29日
 	版本: 0.0.1
-
+	
 -----------
 
 资源图片：.0123456789
@@ -82,13 +82,22 @@ title: 玩家金币(long long)保留2位小数处理
 			else   break;
 		}
 		return   str;
-	}
-
+	}小数	
+	
 
 
 cocos:
 
 	LabelAtlas * pBasePointNum = LabelAtlas::create("0", "hongbaonum.png", 51, 69, '/');
 	pBasePointNum->setString(str);
+	
+	
+小数处理
+		char arrCh[250];//100
+		sprintf(arrCh, "%.2f", num / 100.f);
+		log("hong bao::");
+
+		std::string str = arrCh;
+		log("hong bao::%lld,%s", num, str.c_str());	
 
 -----------
