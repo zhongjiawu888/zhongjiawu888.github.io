@@ -93,6 +93,7 @@ cocos:
 	
 	
 小数处理
+
 		char arrCh[250];//100
 		sprintf(arrCh, "%.2f", num / 100.f);
 		log("hong bao::");
