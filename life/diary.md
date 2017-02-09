@@ -29,7 +29,10 @@ title: 日记
 		  <th style="text-align: center">TIME</th>
 		  <th style="text-align: center">PLACE</th>
 		</tr>
-
+	  	<tr>
+		  <td style="text-align: center"><a href="/life/dairy/2017-02-09.html">2017-02-09</a></td>	  
+		  <td style="text-align: center"><code class="highlighter-rouge">公司</code></td>			  
+		</tr>
 
 	  	<tr>
 		  <td style="text-align: center"><a href="/life/dairy/2017-02-05.html">2017-02-05</a></td>	  
