@@ -3,7 +3,7 @@ layout: life
 category : C++
 duoshuo: true
 date: 2017-02-08
-title: 线程 （转）
+title: C 字符串函数 （转）
 ---
 
 	作者: MrZhong
