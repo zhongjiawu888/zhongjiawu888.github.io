@@ -2,12 +2,12 @@
 layout: life
 category : C++
 duoshuo: true
-date: 2014-02-13
+date: 2017-02-13
 title: 3个数中求最小数
 ---
 
 	作者: MrZhong
-	时间: 2014-02-13
+	时间: 2017-02-13
 	版本: 0.0.1
 
 -----------
