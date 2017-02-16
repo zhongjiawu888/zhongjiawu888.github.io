@@ -1,3 +1,20 @@
+---
+layout: life
+category : Java
+duoshuo: true
+date: 2014-02-16
+title: 读取AndroidManifest.xml中<meta-data>元素的value
+
+---
+
+	作者: MrZhong
+	时间: 2014-02-16
+	版本: 0.0.1
+
+-----------
+
+
+
 Android 开发中：
 
 在AndroidManifest.xml中，<meta-data>元素可以作为子元素，
