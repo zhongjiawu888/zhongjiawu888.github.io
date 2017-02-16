@@ -2,13 +2,13 @@
 layout: life
 category : Java
 duoshuo: true
-date: 2014-02-16
+date: 2017-02-16
 title: 读取AndroidManifest.xml中<meta-data>元素的value
 
 ---
 
 	作者: MrZhong
-	时间: 2014-02-16
+	时间: 2017-02-16
 	版本: 0.0.1
 
 -----------
