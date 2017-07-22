@@ -9,9 +9,9 @@ title: 钟式换行"诗"
 
 -----------
 
->>>>>[<font color="#100" size = "6px">目录</font>]()
+>>>>>[<font color="#100" size = "6px">目录</font>]
 
->>> - [<font color="#8590a3" size = 5px">2017</font>]()
+>>> - [<font color="#8590a3" size = 5px">2017</font>]
 >>> - [<font color="#4590a3" size = "4px">冬天来临</font>](/life/poem/winter)
 
 >>> - [<font color="#8590a3" size = 5px">2016</font>]()
