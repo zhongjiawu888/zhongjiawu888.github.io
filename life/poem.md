@@ -19,7 +19,19 @@ title: 钟式换行"诗"
 >>> - [<font color="#4590a3" size = "4px">爱高温的理由</font>](/life/poem/2017-07-04)
 >>> - [<font color="#4590a3" size = "4px">路上</font>](/life/poem/2017-05-10)
 >>> - [<font color="#4590a3" size = "4px">诗一首</font>](/life/poem/2017-05-09)
-
+>>> - [<font color="#4590a3" size = "4px">一次</font>](/life/poem/2017-08-06)
+>>> - [<font color="#4590a3" size = "4px">2017-08-06</font>](/life/poem/2017-08-062)
+>>> - [<font color="#4590a3" size = "4px">2017-08-07</font>](/life/poem/2017-08-07)
+>>> - [<font color="#4590a3" size = "4px">2017-08-18</font>](/life/poem/2017-08-18)
+>>> - [<font color="#4590a3" size = "4px">2017-08-182</font>](/life/poem/2017-08-18)
+>>> - [<font color="#4590a3" size = "4px">2017-08-19</font>](/life/poem/2017-08-19)
+>>> - [<font color="#4590a3" size = "4px">2017-08-19</font>](/life/poem/2017-08-24)
+>>> - [<font color="#4590a3" size = "4px">2017-08-24</font>](/life/poem/2017-08-24)
+>>> - [<font color="#4590a3" size = "4px">不期而遇</font>](/life/poem/2017-09-08)
+>>> - [<font color="#4590a3" size = "4px">2017-09-08</font>](/life/poem/2017-09-08)
+>>> - [<font color="#4590a3" size = "4px">2017-09-19</font>](/life/poem/2017-09-19)
+>>> - [<font color="#4590a3" size = "4px">2017-09-23</font>](/life/poem/2017-09-23)
+>>> - [<font color="#4590a3" size = "4px">2017-09-25</font>](/life/poem/2017-09-25)
 
 >>>>  <font color="#50" size = "5px">2016</font>
 >>> - [<font color="#4590a3" size = "4px">冬天来临</font>](/life/poem/winter)
